@@ -1,0 +1,48 @@
+.reveal .slides section img.bullet-image {
+  float: left;
+  border: none;
+  background: none;
+  width: 25%;
+  position: relative;
+  left: 2%;
+  box-shadow: none;
+}
+
+.reveal .slides section > ul,
+.reveal .slides section > ol {
+  margin-top: 3%;
+}
+
+.reveal .slides section > ul ul,
+.reveal .slides section > ol ul {
+  list-style-type: none;
+}
+
+.avatars {
+  text-align: center;
+}
+.reveal section .avatars img {
+  margin: 0 28px;
+  width: 25%;
+  border-radius: 10px;
+}
+.avatars span {
+  margin: 0 20px;
+  text-align: center;
+  width: 28%;
+  display: inline-block;
+}
+#hot-tip {
+  position: relative;
+}
+#hot-tip img {
+  border: none;
+  box-shadow: none;
+  position: absolute;
+}
+#hot-tip img.left {
+  left: 0;
+}
+#hot-tip img.right {
+  right: 0;
+}
