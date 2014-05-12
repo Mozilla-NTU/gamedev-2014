@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Introduction to JavaScript</title>
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+            <h1>Introduction to JavaScript</h1>
+        </section>
+        <section>
+          <ul>
+            <li>JavaScript development environment</li>
+            <li>Basic data structures</li>
+            <li>"Functional" programming</li>
+            <li>Object oriented JS</li>
+            <li>Making sense of "this"</li>
+            <li>Modularization</li>
+            <li>The Bad Parts</li>
+          </ul>
+        </section>
+        <section>
+          <section>
+            <h2>JavaScript development environment</h2>
+          </section>
+          <section>
+            <h2>JavaScript Console</h2>
+            <img src="../img/jacob/firefox-console.png"/>
+            <div> firefox: tools > web developer > web console </div>
+            <div> chrome: view > developer > JavaScript console </div>
+          </section>
+          <section>
+            <h2>Minimal Web Page</h2>
+            index.html
+            <pre><code contenteditable class="xml" style="font-size: 20px">
+              &lt;!DOCTYPE html&gt;
+              &lt;html&gt;                            
+                &lt;head&gt;
+                  &lt;script src="test.js"&gt;&lt;/script&gt;
+                &lt;/head&gt; 
+                &lt;body&gt;
+                &lt;/body&gt;
+              &lt;/html&gt;
+            </code></pre>
+            test.js
+            <pre><code contenteditable class="javascript" style="font-size: 20px">
+              (function(){
+                console.log("hello world!");
+              })()
+            </code></pre>
+          </section>
+          <section>
+            <h2>helpful tools</h2>
+            <div>print to console:</div>
+            <pre><code>console.log(thingToPrint1, thingToPrint2, ....)</code></pre>
+            <div>puts a breakpoint</div>
+            <pre><code>debugger;</code></pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Basic data structures</h2>
+          </section>
+          <section>
+            <span><strong>Strings:</strong></span>
+            <pre><code>"hello world"</code></pre> 
+            <span><strong>Numbers:</strong></span>
+            <pre><code>4</code></pre>
+            <span><strong>null:</strong></span>
+            <pre><code>null</code></pre> 
+            <span><strong>boolean:</strong></span>
+            <pre><code>true; false</code></pre> 
+          </section>
+          <section>
+            <span><strong>function:</strong></span>
+<pre><code>var fun = function(foo){
+  console.log("hello", foo);
+}
+fun("NTU");  // logs "hello NTU"
+
+function fun2(foo){
+  console.log("hello", foo);
+}
+fun2("NTU"); // logs "hello NTU"
+</code></pre> 
+          </section>
+          <section>
+            <span><strong>Arrays:</strong></span>
+<pre><code>
+var arr = [1,"a", 3, null];
+arr[0];     => 1
+arr[3];     => null
+
+arr[4];     => undefined
+arr[-1];    => undefined
+arr.length;  => 4
+
+arr.push("hello");
+arr.length;  => 5 
+console.log(arr); // prints [1, "a", 3, null, "hello"]
+</code></pre> 
+          </section>
+          <section>
+            <div><strong>Array Reference:</strong></div>
+            <span>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array</span>
+          </section>
+          <section>
+            <span><strong>Objects:</strong></span>
+<pre><code>
+var obj = {"a": 1, "b": []};
+obj["a"]                => 1
+obj.b                   => []
+obj["c"]                => undefined
+obj.hasOwnProperty("a") => true
+</code></pre> 
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Functional programming</h2>
+          </section>
+          <section>
+<pre><code>
+var arr = [];
+var fun = function(){ console.log("hello!"); }
+arr.push(fun);
+arr.length      => 1
+arr[0](); // logs "hello!"
+</code></pre> 
+            
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Object oriented JS</h2>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Making sense of "this"</h2>
+          </section>
+        </section>
+        <section>
+          <section><h2>Basic Structure</h2></section>
+          <section>
+          <pre><code contenteditable class="xml" style="font-size: 22px">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;                            
+&lt;head&gt;
+&lt;title&gt;My First Webpage&lt;/title&gt;
+&lt;/head&gt; 
+
+&lt;body&gt;                        
+This is my first homepage.
+<!-- you won't see me on the page -->
+&lt;/body&gt; 
+
+&lt;/html&gt;
+            </code></pre>
+          </section>
+          <section>
+            <img src="../img/wangyan/basic-html.jpg">
+          </section>
+        </section>
+        <section>
+          <h2>Document Type</h2>
+          <img src="../img/wangyan/document-type.png">
+        </section>
+
+        <section>
+          <span><strong>Tags: </strong>opening/closing tag</span><br>
+          <pre><code>&lt;a> &lt;/a></code></pre> 
+          <span><strong>Attributes: </strong>extra information<br>
+          <pre><code>&lt;a id="alink" title="click me" href="facebook.com"> &lt;/a></code></pre></span>
+          <span><strong>Elements: </strong>make up web pages</span>
+          <pre><code>&lt;a class="link" id="alink" title="click me" href="facebook.com"&gt;link&lt;/a&gt;</code></pre>
+        </section>
+
+        <section>
+          <section><h2>Tags in &lt;BODY&gt;</h2></section>
+          <section>
+            <img src="../img/wangyan/ntu-example.jpg">
+          </section>
+          <section>
+            <h2>Forms</h2>
+            input, textarea, select, button, 
+          </section>
+          <section>
+            <img src="../img/wangyan/form.jpg">
+          </section>
+        </section>
+        <section>
+          <section><h2>LAYOUT</h2></section>
+          <section>
+            <img src="../img/wangyan/messy_vs_clean.jpg">
+          </section>
+          <section>
+            <img src="../img/wangyan/web-layout.png">
+          </section>
+          <section>
+            <h2>You need design it !</h2>
+          </section>
+        </section>
+        <section>
+          <h2>validate markup</h2>
+          <img src="../img/wangyan/validate.jpg" width="500">
+        </section>
+        <section>
+          <h2>Best Practices</h2>
+          <ul>
+            <li>Always Declare a Doctype</li>
+            <li>Use Meaningful Tags</li>
+            <li>Use the Right HTML Element at the Right Place</li>
+            <li>Difference between ID and Class</li>
+            <li>Separate Content from Presentation</li>
+            <li>Check page load speed</li>
+            <li>Stylesheets on top, Scripts at bottom</li>
+            <li>Validate Your Code</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
+
