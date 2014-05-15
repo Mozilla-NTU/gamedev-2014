@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Introduction to JavaScript</title>
+    <title>Basic JavaScript for Game Developers</title>
     <link rel="stylesheet" href="../css/reveal.css">
     <link rel="stylesheet" href="../css/theme/solarized.css" id="theme">
     <link rel="stylesheet" href="../lib/css/zenburn.css">
@@ -11,7 +11,7 @@
     <div class="reveal">
       <div class="slides">
         <section>
-            <h1>Introduction to JavaScript</h1>
+            <h1>Basic JavaScript for Game Developers</h1>
         </section>
         <section>
           <ul>
@@ -19,8 +19,7 @@
             <li>Basic data structures</li>
             <li>"Functional" programming</li>
             <li>Object oriented JS</li>
-            <li>Making sense of "this"</li>
-            <li>Modularization</li>
+            <li>Common Patterns</li> <!-- modularization, opts objects, || defaults, etc. -->
             <li>The Bad Parts</li>
           </ul>
         </section>
@@ -61,6 +60,11 @@
             <div>puts a breakpoint</div>
             <pre><code>debugger;</code></pre>
           </section>
+          <section>
+            <img src="../img/jacob/node.png" />
+            <div>JavaScript interpreter that runs in your console or on your server</div>
+            <div>http://nodejs.org/</div>
+          </section>
         </section>
         <section>
           <section>
@@ -73,12 +77,13 @@
             <pre><code>4</code></pre>
             <span><strong>null:</strong></span>
             <pre><code>null</code></pre> 
-            <span><strong>boolean:</strong></span>
+            <span><strong>Booleans:</strong></span>
             <pre><code>true; false</code></pre> 
           </section>
           <section>
-            <span><strong>function:</strong></span>
-<pre><code>var fun = function(foo){
+            <span><strong>Functions:</strong></span>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+var fun = function(foo){
   console.log("hello", foo);
 }
 fun("NTU");  // logs "hello NTU"
@@ -90,16 +95,32 @@ fun2("NTU"); // logs "hello NTU"
 </code></pre> 
           </section>
           <section>
+            <span><strong>undefined:</strong></span>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+var a = undefined;
+var b;
+a === b          => true
+console.log(b);  // logs undefined
+
+function printer(foo) {
+  console.log(foo);
+}
+printer(); // logs undefined
+
+if(!undefined){ console.log("hello"); }  // logs "hello"
+</code></pre> 
+          </section>
+          <section>
             <span><strong>Arrays:</strong></span>
-<pre><code>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
 var arr = [1,"a", 3, null];
 arr[0];     => 1
 arr[3];     => null
 
 arr[4];     => undefined
 arr[-1];    => undefined
-arr.length;  => 4
 
+arr.length;  => 4
 arr.push("hello");
 arr.length;  => 5 
 console.log(arr); // prints [1, "a", 3, null, "hello"]
@@ -111,7 +132,7 @@ console.log(arr); // prints [1, "a", 3, null, "hello"]
           </section>
           <section>
             <span><strong>Objects:</strong></span>
-<pre><code>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
 var obj = {"a": 1, "b": []};
 obj["a"]                => 1
 obj.b                   => []
@@ -119,52 +140,342 @@ obj["c"]                => undefined
 obj.hasOwnProperty("a") => true
 </code></pre> 
           </section>
+          <section>
+            <span>Iterate over object properties with <code>for</code> loops</span>
+            <pre><code contenteditable class="javascript" style="font-size: 20px">
+for (var key in obj){
+  console.log(key, obj[key]);
+}
+            </code></pre>
+          </section>
+          <section>
+          <span><strong>typeof:</strong></span>
+          <ul>
+            <li><code>typeof</code> tells type of a variable, but results can be unexpected:</li>
+          </ul>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+typeof(2)          => "number"
+typeof(true)       => "boolean"
+typeof(undefined)  => "undefined"
+typeof({})         => "object"
+
+
+typeof(null)       => "object"
+typeof([])         => "object"
+</code></pre> 
+
+        </section>
         </section>
         <section>
           <section>
             <h2>Functional programming</h2>
           </section>
           <section>
-<pre><code>
+            <div>"First class functions"  -> use functions like any other variable</div>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+var doBefore = function (doAfter){
+  console.log("outer function");
+  doAfter();
+}
+
+doBefore(function(){
+  console.log("inner function");
+}); // logs "outer function" \n "inner function"
+
+</code></pre>
+            <div>passing the function to do next as a variable is the "callback" pattern</div>
+          </section>
+          <section>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
 var arr = [];
 var fun = function(){ console.log("hello!"); }
 arr.push(fun);
 arr.length      => 1
 arr[0](); // logs "hello!"
-</code></pre> 
-            
+</code></pre>
           </section>
+          <section>
+            <div>functions create new scope</div>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+var fun = function(foo){
+
+  var secondFun = function(innerFoo){
+    // variable 'foo' is available from outer scope!
+    console.log(foo, innerFoo);
+  }
+
+  // using "innerFoo" here would result in an error
+
+  secondFun("second");
+}
+
+fun("first"); // logs "first second"
+
+</code></pre>
+          </section>
+
         </section>
         <section>
           <section>
             <h2>Object oriented JS</h2>
           </section>
+          <section>
+            <h2>Object oriented JS</h2>
+            <ul>
+              <li>no "classes" in JS</li>
+              <li>object instances are built with <strong><code>constructor</code></strong> functions</li>
+              <li>inheritance happens with <strong><code>prototypes</code></strong></li>
+            </ul>
+          </section>
+          <section>
+            <ul>
+              <li>Calling a function with <code>new</code> makes it a <strong>constructor function</strong></li>
+              <li>Inside a constructor, "this" is a new object</li>
+              <li>The new object is returned from the constructor</li>
+            </ul>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+function Character(firstName, lastName, hp){
+  this.name = firstName + " " + lastName;
+  this.hp = hp;
+}
+
+var char1 = new Character("Zhenghao", "Chen", 100);
+var char2 = new Character("Jacob", "Lyles", 200);
+
+char1.name       => "Zhenghao Chen";
+char1.hp         => 100
+char2.name       => "Jacob Lyles";
+char2.hp         => 200
+</code></pre>
+          </section>
+          <section>
+            <h2>Methods</h2>
+            <ul>
+              <li>methods are a property of an object that is a function</li>
+              <li>inside a method, <code>this</code> refers to the object that "owns" the function</li>
+            </ul>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+
+function Character(firstName, lastName, hp) {
+  this.name = firstName + " " + lastName;
+  this.hp = hp;
+}
+
+var char1 = new Character("Jacob", "Lyles", 200);
+
+char1.takeDamage = function(damage){
+  this.hp - damage;
+  console.log(this.hp + " is left");
+}
+
+char1.takeDamage(50); // logs "150 is left"
+
+</code></pre>
+
+          </section>
+          <section>
+            <h2>Inheritance</h2>
+            <ul>
+              <li>objects inherit properties from the constructor's prototype</li>
+              <li>the prototype acts as a fallback if an undefined property is called on the instance</li>
+            </ul>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+function Character(firstName, lastName, hp) {
+  this.name = firstName + " " + lastName;
+  this.hp = hp;
+}
+
+Character.prototype.takeDamage = function(damage) {
+  this.hp -= damage;
+  console.log(this.hp + " is left");
+}
+
+var char1 = new Character("Jacob", "Lyles", 200);
+char1.hasOwnProperty("takeDamage")     => false
+char1.takeDamage(50);                  // logs "150 is left"
+</code></pre>
+          </section>
+          <section>
+            <h2>Inheritance</h2>
+            <span><code>Object.create</code> makes a new object with the given prototype without calling the constructor <small>(not available in older browsers)</small></span>
+
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+
+function FrostKnight(firstName, lastName, hp) {
+  this.name = firstName + " " + lastName;
+  this.hp = hp;
+  this.type = "ice";
+}
+
+FrostKnight.prototype = Object.create(Character.prototype);
+FrostKnight.prototype.frostArmor = function(){
+  this.hp += 100;
+  console.log(this.hp + " is left");
+};
+
+var iceChar = new FrostKnight("Jacob", "Lyles", 200);
+iceChar.takeDamage(50); // logs "150 is left"
+iceChar.frostArmor();   // logs "250 is left"
+
+</code></pre>
+          </section>
+          <section>
+            <h2>Inheritance</h2>
+            <span>The constructor's prototype is assigned to the <code>__proto__</code> property of an instance</code>
+
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+
+function FrostKnight(firstName, lastName, hp) {
+  ...
+}
+
+FrostKnight.prototype = Object.create(Character.prototype);
+
+var iceChar = new FrostKnight("Jacob", "Lyles", 200);
+
+iceChar.__proto__ === FrostKnight.prototype                => true
+
+iceChar.hasOwnProperty("takeDamage")                       => false
+iceChar.__proto__.hasOwnProperty("takeDamage")             => false
+iceChar.__proto__.__proto__.hasOwnProperty("takeDamage")   => true
+
+</code></pre>
+          </section>
+          <section>
+            <h2>Changing <code>this</code></h2>
+            <ul><li><code>bind</code> sets the value of <code>this</code> in a function</li>
+              <li>this code erroneously logs "NaN is left"</li>
+            </ul>
+
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+FrostKnight.prototype.delayedMeltDamage = function(damage){
+  setTimeout(this.takeDamage, 5000, damage);
+};
+
+var iceChar = new FrostKnight("jacob", "lyles", 200);
+iceChar.delayedMeltDamage(50);
+</code></pre>
+            <span>But this will work:</span>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+FrostKnight.prototype.delayedMeltDamage = function(damage){
+  setTimeout(this.takeDamage.bind(this), 5000, damage);
+};
+
+var iceChar = new FrostKnight("jacob", "lyles", 200);
+iceChar.delayedMeltDamage(50);
+</code></pre>
+          </section>
+
         </section>
         <section>
           <section>
-            <h2>Making sense of "this"</h2>
+            <h2>Common Patterns</h2>
+          </section>
+          <section>
+            <h2>The options object pattern</h2>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+function Character(firstName, lastName, hp, type, boss, level, world, bio, background){
+  ...
+}  
+
+function Character(opts){
+  ...
+}
+
+</code></pre>
+          </section>
+          <section>
+            <h2>The defaults pattern</h2>
+            <span> In JS, <code>foo || "default"</code> evals to <code>"default"</code> if <code>foo</code> is <code>false, undefined, null</code> or another "falsy" object</span>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+function Character(opts){
+  this.name = opts.name || "Jack NoName";
+  this.hp = opts.hp || 200;
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>The module pattern</h2>
+            <span>When you load a JS file, variables get added to the global name space. Two files that define variables of the same name will cause a collision</span>
+<pre><code contenteditable class="xml" style="font-size: 20px">
+&lt;script src="character.js"&gt;&lt;/script&gt;
+&lt;script src="enemy.js"&gt;&lt;/script&gt;
+</code></pre>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+// in character.js
+var DEFAULT_HP = 500;
+
+// in enemy.js
+var DEFAULT_HP = 1000;
+
+// value from enemy.js overwrites value in character.js
+</code></pre>
+          </section>
+          <section>
+            <h2>The module pattern</h2>
+            <ul>
+              <li>Since functions create scope, wrap files in a function and only add what is needed to the global namespace</li>
+              <li>In the browser, the global namespace is called <code>window</code>. All values available by default are properties of <code>window</code></li>
+            </ul>
+
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+
+(function(global){
+  var DEFAULT_HP = 1000;
+
+  var Enemy = function (){
+    ...
+  }
+
+  window.Enemy = Enemy;
+
+})(window);
+
+window.DEFAULT_HP   => undefined
+window.Enemy        => function
+
+</code></pre>
           </section>
         </section>
         <section>
-          <section><h2>Basic Structure</h2></section>
-          <section>
-          <pre><code contenteditable class="xml" style="font-size: 22px">
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;                            
-&lt;head&gt;
-&lt;title&gt;My First Webpage&lt;/title&gt;
-&lt;/head&gt; 
-
-&lt;body&gt;                        
-This is my first homepage.
-<!-- you won't see me on the page -->
-&lt;/body&gt; 
-
-&lt;/html&gt;
-            </code></pre>
+          <section><h2>The Bad Parts<small>(or: rules to keep you sane)</small></h2>
+            <span><small>(many thanks to Doug Crockford's book "JavaScript: the Good Parts")</small></span>
           </section>
           <section>
-            <img src="../img/wangyan/basic-html.jpg">
+            <h2>Rule 1:</h2> 
+            <ul>
+              <li>use <code>===</code> by default instead of <code>==</code></li>
+              <li><code>==</code> does type coercion, and may not give you what you want</li>
+            </ul>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+[] == ""      => true
+5 == "5"      => true
+" " == 0      => true
+
+[] === ""     => false
+5 === "5"     => false
+" " === 0     => false
+</code></pre>
+<span>Also, <code>!==</code> instead of <code>!=</code></span>
+          </section>
+          <section>
+            <h2>Rule 2:</h2>
+            <ul>
+              <li>always use <code>var</code> to declare a variable</li>
+              <li>declaring variable without "var" makes it <strong>global</strong></li>
+            </ul>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+for(i = 0; i < 3; i++){    // WARNING - this loop will only run once!
+  console.log("first i is " + i);
+  second();
+}
+
+function second(){
+  for (i = 0; i < 3; i++){
+    console.log("second i is " + i);
+  }
+}
+</code></pre>
           </section>
         </section>
         <section>
