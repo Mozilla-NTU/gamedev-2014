@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Basic JavaScript for Game Developers</title>
+    <title>JavaScript for Game Developers</title>
     <link rel="stylesheet" href="../css/reveal.css">
     <link rel="stylesheet" href="../css/theme/solarized.css" id="theme">
     <link rel="stylesheet" href="../lib/css/zenburn.css">
@@ -11,27 +11,28 @@
     <div class="reveal">
       <div class="slides">
         <section>
-            <h1>Basic JavaScript for Game Developers</h1>
-        </section>
-        <section>
-          <ul>
-            <li>JavaScript development environment</li>
-            <li>Basic data structures</li>
-            <li>"Functional" programming</li>
-            <li>Object oriented JS</li>
-            <li>Common Patterns</li> <!-- modularization, opts objects, || defaults, etc. -->
-            <li>The Bad Parts</li>
-          </ul>
+            <h1>JavaScript for Game Developers</h1>
         </section>
         <section>
           <section>
-            <h2>JavaScript development environment</h2>
+            <img src="../img/jacob/hammer_nails.png" />
           </section>
           <section>
-            <h2>JavaScript Console</h2>
-            <img src="../img/jacob/firefox-console.png"/>
-            <div> firefox: tools > web developer > web console </div>
-            <div> chrome: view > developer > JavaScript console </div>
+            <img src="../img/jacob/lumber_chair.png" style="border:none;"/>
+          </section>
+          <section>
+            <blockquote>
+              ...student performance on examinations and concept inventories increased by 0.47 SDs under active learning (n = 158 studies), and that the odds ratio for failing was 1.95 under traditional lecturing (n = 67 studies).... <strong>The results raise questions about the continued use of traditional lecturing as a control in research studies, and support active learning as the preferred, empirically validated teaching practice in regular classrooms.</strong>
+            </blockquote>
+            <span><small>2014 Freeman et al. "Active learning increases student performance in science, engineering, and mathematics" published in PNAS</small></span>
+          </section>
+          <section>
+            <h2>Your hammer: The text editor</h2>
+            <ul>
+              <li>Windows: Notepad++</li>
+              <li>Linux: Gedit++</li>
+              <li>All platforms: Sublime Text <small>,VIM, Emacs</small></li>
+            </ul>
           </section>
           <section>
             <h2>Minimal Web Page</h2>
@@ -54,18 +55,57 @@
             </code></pre>
           </section>
           <section>
-            <h2>helpful tools</h2>
-            <div>print to console:</div>
-            <pre><code>console.log(thingToPrint1, thingToPrint2, ....)</code></pre>
-            <div>puts a breakpoint</div>
-            <pre><code>debugger;</code></pre>
+            <h2>JavaScript Console</h2>
+            <img src="../img/jacob/firefox-console.png"/>
+            <div> firefox: tools > web developer > web console </div>
+            <div> chrome: view > developer > JavaScript console </div>
           </section>
           <section>
             <img src="../img/jacob/node.png" />
             <div>JavaScript interpreter that runs in your console or on your server</div>
             <div>http://nodejs.org/</div>
           </section>
+        <section>
+            <h2>helpful tools</h2>
+            <div>print to console:</div>
+            <pre><code>console.log(thingToPrint1, thingToPrint2, ....)</code></pre>
+            <div>puts a breakpoint</div>
+            <pre><code>debugger;</code></pre>
+          </section>
         </section>
+
+        <section>
+          <ul>
+            <li>Basic control structures</li>
+            <li>Basic data structures</li>
+            <li>"Functional" programming</li>
+            <li>Object oriented JS</li>
+            <li>Common Patterns</li> <!-- modularization, opts objects, || defaults, etc. -->
+            <li>The Bad Parts</li>
+          </ul>
+        </section>
+        <section>
+          <section>
+            <h2>Basic control structures</h2>
+          </section>
+          <section>
+            <div>for loops and try-catch</div>
+            <pre><code contenteditable class="javascript" style="font-size: 20px">
+var target = 9;
+for (var i = 0; i < target; i++){
+  ...
+}
+
+try {
+  ...
+} catch (e) {
+  console.error(e);
+}
+            </code></pre> 
+
+          </section>
+        </section>
+
         <section>
           <section>
             <h2>Basic data structures</h2>
@@ -79,6 +119,21 @@
             <pre><code>null</code></pre> 
             <span><strong>Booleans:</strong></span>
             <pre><code>true; false</code></pre> 
+          </section>
+          <section>
+            <h2>String ops:</h2>
+            <ul>
+              <li><code>+</code> concatenates strings. </li>
+              <li><code>+</code> with a string converts a number to string</li>
+            </ul>
+
+            <pre><code contenteditable class="javascript" style="font-size: 20px">
+var firstName = "Jacob";
+var lastName = "Lyles";
+var iceCream = 5;
+var fullName = firstName + " " + lastName;
+var message = fullName + " ate " + iceCream + " ice creams today";
+            </code></pre> 
           </section>
           <section>
             <span><strong>Functions:</strong></span>
@@ -138,6 +193,7 @@ obj["a"]                => 1
 obj.b                   => []
 obj["c"]                => undefined
 obj.hasOwnProperty("a") => true
+"a" in obj              => true
 </code></pre> 
           </section>
           <section>
@@ -163,8 +219,46 @@ typeof({})         => "object"
 typeof(null)       => "object"
 typeof([])         => "object"
 </code></pre> 
-
         </section>
+          <section>
+            <h2>Boolean warning</h2>
+            <ul>
+              <li>all these things are "falsy"</li>
+              <li>have to check for them explicitly</li>
+            </ul>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+null
+0
+""
+undefined
+</code></pre> 
+          </section>
+          <section>
+            <h2>Dates</h2>
+            <pre><code contenteditable class="javascript" style="font-size: 20px">
+var now = new Date();
+now                                     => Fri May 09 2014 05:50:40 GMT-0700 (PDT)
+var yesterday = new Date();
+yesterday.setDate(now.getDate() - 1)   
+yesterday                               => Thu May 08 2014 05:51:48 GMT-0700 (PDT)
+            </code></pre> 
+          </section>
+          <section>
+            <h2>Serialization with JSON</h2>
+            <span>JSON: a string format for storing JS objects</span>
+            <pre><code contenteditable class="javascript" style="font-size: 20px">
+var json = '{ "name": "Nick" }';
+try {
+  var nick = JSON.parse(json);
+  nick.name; // "Nick"
+} catch (e) {
+  console.error(e);
+}
+
+var dog = { name: "Winston", type: "Bulldog", };
+JSON.stringify(dog); // '{ "name": "Winson", "type": "Bulldog" }'
+            </code></pre> 
+          </section>
         </section>
         <section>
           <section>
@@ -321,7 +415,7 @@ iceChar.frostArmor();   // logs "250 is left"
           </section>
           <section>
             <h2>Inheritance</h2>
-            <span>The constructor's prototype is assigned to the <code>__proto__</code> property of an instance</code>
+            <span>The prototype of an instance can be checked with <code>Object.getPrototypeOf</code></span>
 
 <pre><code contenteditable class="javascript" style="font-size: 20px">
 
@@ -332,12 +426,14 @@ function FrostKnight(firstName, lastName, hp) {
 FrostKnight.prototype = Object.create(Character.prototype);
 
 var iceChar = new FrostKnight("Jacob", "Lyles", 200);
+var iceProto = Object.getPrototypeOf(iceChar)              
+iceProto === FrostKnight.prototype                             => true
 
-iceChar.__proto__ === FrostKnight.prototype                => true
+iceChar.hasOwnProperty("takeDamage")                           => false
+iceProto.hasOwnProperty("takeDamage")                          => false
+Object.getPrototypeOf(iceProto).hasOwnProperty("takeDamage")   => true
 
-iceChar.hasOwnProperty("takeDamage")                       => false
-iceChar.__proto__.hasOwnProperty("takeDamage")             => false
-iceChar.__proto__.__proto__.hasOwnProperty("takeDamage")   => true
+"takeDamage" in iceChar                                        => true
 
 </code></pre>
           </section>
@@ -488,6 +584,29 @@ function second(){
 (0.1 + 0.2) === 0.3    => false
 10.5 | 0               => 10
 </code></pre>
+          </section>
+          <section>
+            <h2>Rule 4:</h2>
+            <ul>
+              <li>Always break at the end of switch-case statements</li>
+              <li>JS switch blocks "fall through", which can lead to unexpected results</li>
+              <li>buffing an "ice" character results in 250 point buff</li>
+            </ul>
+<pre><code contenteditable class="javascript" style="font-size: 20px">
+function buff(character){
+  switch(character.type) {
+    case "ice":
+      character.hp += 100;
+
+    case "fire":
+      character.hp += 50;
+
+    default: 
+      character.hp += 100;
+  }
+}
+</code></pre>
+
           </section>
         </section>
         <section>
