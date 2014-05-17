@@ -13,6 +13,25 @@
   margin-top: 3%;
 }
 
+.reveal .slides section > ul > p > a {
+  font-size: 41px;
+  font-weight: bold;
+  color: rgba(40, 98, 237, 1);
+  position: relative;
+  top: 15px;
+  right: 30px;
+}
+
+.reveal .slides section > ul > li {
+  font-weight: bold;
+}
+.reveal .slides section > ul > ul > li {
+  font-style: italic;
+  font-size: 33px;
+  position: relative;
+  bottom: 5px;
+}
+
 .reveal .slides section > ul ul,
 .reveal .slides section > ol ul {
   list-style-type: none;
