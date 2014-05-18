@@ -1,0 +1,35 @@
+#container {
+  width: 400px;
+}
+
+header {
+  background-color: #ffa500;
+}
+
+h1 {
+  margin: 0;
+}
+
+#menu {
+  background-color: #FFD700;
+  height:200px;
+  width:100px;
+  float:left;
+}
+
+#content {
+  background-color:#EEEEEE;
+  height:200px;
+  width: 300px;
+  float:left;
+}
+
+#content-full {
+  background-color:#EEEEEE;
+}
+
+#footer {
+  background-color:#FFA500;
+  clear:both;
+  text-align:center;
+}

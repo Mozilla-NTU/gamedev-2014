@@ -1,0 +1,27 @@
+#container {
+  width: 500px;
+}
+
+header {
+  background-color: #ffa500;
+}
+
+#menu {
+  background-color: #FFD700;
+  height:200px;
+  width:100px;
+  float:left;
+}
+
+#content {
+  background-color:#EEEEEE;
+  height:200px;
+  width:400px;
+  float:left;
+}
+
+#footer {
+  background-color:#FFA500;
+  clear:both;
+  text-align:center;
+}
