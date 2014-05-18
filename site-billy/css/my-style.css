@@ -1,0 +1,120 @@
+.story-image {
+  width: auto;
+  height: 500px;
+}
+
+em.highlight {
+  font-style: normal;
+  color: yellow;
+}
+
+em.highlight-orange {
+  font-style: normal;
+  color: #E7AD52;
+}
+
+.css-demo {
+  width: 90%;
+  //height: 500px;
+  margin: 15px auto !important;
+  border: 1px dashed white !important;
+}
+
+.css-demo p {
+  vertical-align: middle;
+  font: 400 130px/0.8 'Cookie', Helvetica, sans-serif;
+  color: #f0f;
+  text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
+}
+
+.image-border {
+  border-width: 20px !important;
+  border-color: #f0f !important;
+}
+
+/*
+ * 'Night' theme fonts
+ */
+@font-face {
+  font-family: 'Cookie';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Cookie-Regular'),
+       url(../assets/fonts/Cookie.woff) format('woff'),
+       url(https://themes.googleusercontent.com/static/fonts/cookie/v5/CytOAGPO6GUb8gQ4_bMS1OvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'),
+       url(../assets/fonts/Lato-Regular.woff) format('woff'),
+       url(https://themes.googleusercontent.com/static/fonts/lato/v7/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Lato Bold'), local('Lato-Bold'),
+       url(../assets/fonts/Lato-Bold.woff) format('woff'),
+       url(https://themes.googleusercontent.com/static/fonts/lato/v7/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Lato Italic'), local('Lato-Italic'),
+       url(../assets/fonts/Lato-Italic.woff) format('woff'),
+       url(https://themes.googleusercontent.com/static/fonts/lato/v7/RYyZNoeFgb0l7W3Vu1aSWOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Lato Bold Italic'), local('Lato-BoldItalic'),
+       url(../assets/fonts/Lato-BoldItalic.woff) format('woff'),
+       url(https://themes.googleusercontent.com/static/fonts/lato/v7/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Montserrat-Bold'),
+       url(../assets/fonts/Montserrat-Bold.woff) format('woff'),
+       url(https://themes.googleusercontent.com/static/fonts/montserrat/v4/IQHow_FEYlDC4Gzy_m8fcnbFhgvWbfSbdVg11QabG8w.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'),
+       url(../assets/fonts/OpenSans.woff) format('woff'),
+       url(https://themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'),
+       url(../assets/fonts/OpenSans-Bold.woff) format('woff'),
+       url(https://themes.googleusercontent.com/static/fonts/opensans/v8/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Open Sans Italic'), local('OpenSans-Italic'),
+       url(../assets/fonts/OpenSans-Italic.woff) format('woff'),
+       url(https://themes.googleusercontent.com/static/fonts/opensans/v8/xjAJXh38I15wypJXxuGMBrrIa-7acMAeDBVuclsi6Gc.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'),
+       url(../assets/fonts/OpenSans-BoldItalic.woff) format('woff'),
+       url(https://themes.googleusercontent.com/static/fonts/opensans/v8/PRmiXeptR36kaC0GEAetxhbnBKKEOwRKgsHDreGcocg.woff) format('woff');
+}
