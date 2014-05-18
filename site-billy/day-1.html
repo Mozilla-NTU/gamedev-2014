@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>HTML5 for Games</title>
+    <meta name="description" content="">
+    <meta name="author" content="Billy Lamberta, lamberta.org">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- custom additions -->
+    <link rel="stylesheet" href="css/my-style.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = 'css/print/pdf.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        
+        <section>
+          <h3>How Ryan Became a Big Time Game Dev</h3>
+	  <h4>(an introduction to html5 for games)</h4>
+	  <img src="./assets/day-1/cover.jpg">
+          <p>Presented by <a href="http://lamberta.org">Billy Lamberta</a> (Ryan Gosling not affiliated)</p>
+        </section>
+
+	<section>
+          <h3>Poor Ryan has no one to play with …</h3>
+	  <img class="story-image" src="./assets/day-1/ryan-pathetic.gif">
+	  <h3></h3>
+        </section>
+
+	<section>
+	  <h3>“If I make a game, I’ll have lots of friends!”</h3>
+	  <img class="story-image" src="./assets/day-1/ryan-shrug.gif">
+	  <h3>“But where to start?!”</h3>
+        </section>
+
+	<section>
+	  <h3>Researching the many languages, platforms, and frameworks.</h3>
+	  <img class="story-image" src="./assets/day-1/ryan-facepalm.gif">
+	  <h3></h3>
+        </section>
+
+	<section>
+	  <h3>“But to run on all my friend’s phones …</h3>
+	  <img class="story-image" src="./assets/day-1/ryan-upset.gif">
+	  <h3>I need <em class="highlight">Obj-C</em> AND <em class="highlight">Java</em> AND more?!”</h3>
+        </section>
+
+	<section>
+	  <h3>Stop your crying!</h3>
+	  <img class="story-image" src="./assets/day-1/ryan-slapped.gif">
+	  <h3>Let’s try <em class="highlight-orange">HTML5</em>!</h3>
+        </section>
+
+	<section>
+	  <h3><em class="highlight">HTML 4.01</em> and <em class="highlight">XHTML 1.1</em><br/>Were Getting Out of Hand</h3>
+	  <img style="height:450px;" src="./assets/day-1/ryan-push-slap.gif">
+	  <p>As the web becomes more multi-media focused,<br/> expectations change, and new features are desired.</p>
+	  <aside class="notes">
+	    HTML5 is not one big thing. It's a bunch of different features that go through
+	    a standardization process, get the interface hammered out, then are implemented
+	    independently by the the browser makers.
+	  </aside>
+	</section>
+	
+	<section>
+	  <h2>The <em class="highlight">D</em>ocument <em class="highlight">O</em>bject <em class="highlight">M</em>odel</h2>
+	  <img class="story-image" src="./assets/day-1/dom-tree.png">
+	  <aside class="notes">
+	    DEMO: Open up inspector and look.
+	  </aside>
+	</section>
+
+	<section>
+	  <h2><em class="highlight-orange">CSS</em> Style Sheets</h2>
+	  <img class="story-image" src="./assets/day-1/ryan-styles.jpg">
+	  <h3>Fancy clothes for your <em class="highlight">DOM</em> elements.</h3>
+	  <aside class="notes">
+	    Style sheets use selectors to target DOM elements.<br/>
+	    The old days, and separating form and function.<br/>
+	    DEMO: Open up inspector, play with values.
+	  </aside>
+	</section>
+
+	<section>
+	  <h2><em class="highlight-orange">JavaScript</em> and the <em class="highlight-orange">DOM</em></h2>
+	  <img id="ryanFlower" class="story-image" src="./assets/day-1/ryan-flower.jpg">
+	  <!--
+	      Access and manipulate elements with JavaScript.
+	      Add text, images, div elements.
+	      Create new ones with document.createElement
+	      Listen for events with element.addEventListenr
+	      Manipulate CSS styles with JS.
+	      classList
+	    -->
+	  <aside class="notes">
+	    var i = document.getElementById('ryanFlower');<br/>
+	    ryanFlower.style.width = "600px"<br/>
+	    i.classList.add('image-border')<br/>
+	    i.classList.remove('image-border')<br/>
+	    i.addEventListener('click', function () { console.log("hey girl"); })<br/>
+	    var h3 = document.createElement('h3')<br/>
+	    h3.innerHTML = "Hey Girl"<br/>
+	    i.parentNode.appendChild(h3)
+	  </aside>
+	</section>
+	
+	<section>
+	  <h2><em class="highlight-orange">JavaScript</em> and <em class="highlight-orange">HTML5</em></h2>
+	  <h3>They Make the Cutest Couple</h3>
+	  <!--
+	      [Jacob has JS lecture before this one.]
+	      How does JavsScript fit in with the HTML5 APIs.
+	    -->
+	  <img style="height:400px;" src="./assets/day-1/ryan-nose-pinch.gif">
+	  <h3>Much of what we’re calling <em class="highlight-orange">HTML5</em><br/> are just <em class="highlight">JavaScript APIs</em>.</h3>
+	  <aside class="notes">
+	    
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>Selling Points</h2>
+	  <img style="height:450px;" src="./assets/day-1/ryan-paid.jpg">
+	  <ul>
+	    <li>Write once, run everywhere.</li>
+	    <li>Lots of great documentation provided by MDN and others.</li>
+	    <li>Lots of examples online and questions answered.</li>
+	  </ul>
+	  <!--
+	      Why is JavaScript everywhere? Easy to embed. Good enough.
+	    -->
+	  <aside class="notes">
+	  </aside>
+	</section>
+
+	<section>
+          <h2>A Minimal <em class="highlight-orange">HTML5</em> Document</h2>
+          <pre><code>  &lt;!doctype html&gt;
+  &lt;html&gt;
+    &lt;head&gt;
+      &lt;meta charset=&quot;utf-8&quot;&gt;
+      &lt;title&gt;&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;p&gt;Hey Girl&lt;/p&gt;
+      &lt;script&gt;
+        document.addEventListener('DOMContentLoaded', function () {
+          &quot;use strict&quot;;
+          //our javascript code here ...
+        });
+      &lt;/script&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;</code></pre>
+	  <aside class="notes">
+              Huhu.
+	    </aside>
+        </section>
+
+	<section>
+	  <h2>Let’s Check Out Some …</h2>
+	  <img class="story-image" src="./assets/day-1/ryan-look-you-over.gif">
+	  <h2><em class="highlight-orange">HTML5</em> Media Elements</h2>
+	</section>
+	
+	<section>
+	  <h2>Typography</h2>
+	  <pre><code class="css" style="line-height: 1.1em;">  &lt;!doctype html&gt;
+  &lt;html&gt;
+    &lt;head&gt;
+      ...
+      &lt;style&gt;
+       p {
+         font: 400 130px/0.8 'Cookie', sans-serif;
+       }
+       @font-face {
+         font-family: 'Cookie';
+         font-style: normal;
+         font-weight: 400;
+         src: local('Cookie-Regular'), url(http://example.com/font.woff) format('woff');
+       }
+      &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;p&gt;Hey Girl&lt;/p&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;</code></pre>
+	  <div class="css-demo">
+	    <p style="line-height: 150px !important;">Hey Girl</p>
+	  </div>
+	</section>
+
+	<section>
+	  <h2>Video</h2>
+	  <code class="html"><pre>  &lt;video controls poster=&quot;screenshot.png&quot;&gt;
+    &lt;source src=&quot;hello.webm&quot; type=&quot;video/webm;codecs='vp8,vorbis'&quot;&gt;
+    &lt;source src=&quot;hello.mp4&quot; type=&quot;video/mp4;codecs='avc1.42E01E,mp4a.40.2'&quot;&gt;
+    &lt;track src=&quot;hello-en.vtt&quot; label=&quot;English subtitles&quot; 
+           kind=&quot;subtitles&quot; srclang=&quot;en&quot; default&gt;&lt;/track&gt;
+    &lt;p&gt;Fallback content if browser does not support the video tag.&lt;/p&gt;
+  &lt;/video&gt;</code></pre>
+	  <video class="css-demo" style="height:360px;" controls poster="./assets/day-1/ryan-wave.jpg">
+	    <track src="" label="English subtitles" kind="subtitles" srclang="en" default></track>
+	    <p>Your browser does not support the video element.</p>
+          </video>
+	</section>
+
+	<section>
+	  <h2>Audio</h2>
+	  <code class="html"><pre>  &lt;audio id=&quot;demo&quot; src=&quot;hey-girl.mp3&quot; controls loop&gt;&lt;/audio&gt;
+  &lt;script&gt;
+    var audio = document.getElementById('demo');
+    audio.play();
+  &lt;/script&gt;</code></pre>
+	  <audio class="css-demo" src="" controls>
+	    <p>Your browser does not support the audio element.</p>
+	  </audio>
+	  <img class="story-image" style="height:360px;" src="./assets/day-1/ryan-guitar.gif">
+	  <aside class="notes">
+	    Audio element is used to play a single audio stream.
+	    WebAudio is for processing and synthesizing.
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>WebRTC</h2>
+	  <h4>(Real-Time Communication)</h4>
+	  <ul>
+	    <li>Camera and microphone access</li>
+	    <li>Peer-to-peer connections</li>
+	    <li>Data channels</li>
+	  </ul>
+	  <br/>
+	  <img src="./assets/day-1/ryan-selfie.jpg">
+	  <h3>Voice calls, video chat, file sharing …</h3>
+	</section>
+
+	<section>
+	  <h3>“OK! Now I’ll make Flappy MerLion!”</h3>
+	  <!-- Check spelling -->
+	  <img class="story-image" src="./assets/day-1/ryan-ok.gif">
+	  <h3>We’ll Need Some <em class="highlight-orange">HTML5</em> Animation APIs …</h3>
+	</section>
+		
+	<section>
+	  <h2>CSS Animations</h2>
+	  <code class="css" style="line-height: 1.1em;"><pre>  @keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 100%;
+    }
+    75% {
+      font-size: 300%;
+      margin-left: 25%;
+      width: 150%;
+    }
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
+  p {
+    animation-duration: 2s;
+    animation-name: slidein;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }</code></pre>
+	  <div class="css-demo">
+	    <p id="css-animate-demo" style="line-height: 150px !important;">Hey Girl</p>
+	  </div>
+	  <style>
+	    @keyframes slidein {
+	      from {
+		margin-left: 100%;
+		width: 100%; 
+	      }
+	      75% {
+		font-size: 300%;
+		margin-left: 25%;
+		width: 150%;
+	      }
+	      to {
+		margin-left: 0%;
+		width: 100%;
+	      }
+	    }
+	    @-webkit-keyframes slidein {
+	      from {
+		margin-left: 100%;
+		width: 100%; 
+	      }
+	      75% {
+		font-size: 300%;
+		margin-left: 25%;
+		width: 150%;
+	      }
+	      to {
+		margin-left: 0%;
+		width: 100%;
+	      }
+	    }
+	    
+	    p#css-animate-demo {
+	      animation-duration: 2s;
+	      animation-name: slidein;
+	      animation-iteration-count: infinite;
+	      animation-direction: alternate;
+	      
+	      -webkit-animation-duration: 3s;
+	      -webkit-animation-name: slidein;
+	      -webkit-animation-iteration-count: infinite;
+	      -webkit-animation-direction: alternate;
+	    }
+	  </style>
+	</section>
+	
+        <section>
+	  <h2>Canvas</h2>
+	  <h4>2D Direct Drawing API</h4>
+	  <pre><code>  &lt;!doctype html&gt;
+  &lt;html&gt;
+    &lt;head&gt;...&lt;/head&gt;
+    &lt;body&gt;
+      &lt;canvas id=&quot;myCanvas&quot; width=&quot;512&quot; height=&quot;512&quot;&gt;&lt;/canvas&gt;
+      &lt;script&gt;
+        document.addEventListener('DOMContentLoaded', function () {
+          &quot;use strict&quot;;
+          var canvas = document.getElementById('myCanvas');
+          ...
+        });
+      &lt;/script&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;</code></pre>
+	  <aside class="notes">
+            Has vertical slides. &#8595;
+	  </aside>
+        </section>
+	  
+	<section>
+	  <h2>Canvas</h2>
+	  <h4>2D Direct Drawing API</h4>
+	  <pre><code>  document.addEventListener('DOMContentLoaded', function () {
+    "use strict";
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = "#f00";
+    ctx.beginPath();
+    ctx.moveTo(75, 40);
+    ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
+    ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
+    ctx.bezierCurveTo(20, 80, 40, 102, 75, 120);
+    ctx.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
+    ctx.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
+    ctx.bezierCurveTo(85, 25, 75, 37, 75, 40);
+    ctx.fill();
+  });</code></pre>
+	  <aside class="notes">
+            Canvas 'Heart' render next. [non-animated]
+	  </aside>
+        </section>
+	  
+	<section>
+	  <canvas id="canvasDemo1" width="512" height="512" style="background-color: #fff;"></canvas>
+	  <script>
+	      (function () {
+		var c = document.getElementById('canvasDemo1');
+		var ctx = c.getContext('2d');
+		var centerX = c.width / 2;
+		var centerY = c.height / 2;
+		ctx.fillStyle = "#f00";
+		ctx.beginPath();
+		ctx.moveTo(75,40);
+		ctx.bezierCurveTo(75,37,70,25,50,25);
+		ctx.bezierCurveTo(20,25,20,62.5,20,62.5);
+		ctx.bezierCurveTo(20,80,40,102,75,120);
+		ctx.bezierCurveTo(110,102,130,80,130,62.5);
+		ctx.bezierCurveTo(130,62.5,130,25,100,25);
+		ctx.bezierCurveTo(85,25,75,37,75,40);
+		ctx.fill();
+	      }());
+	  </script>
+	</section>
+
+	<section>
+	  <h2>Canvas</h2>
+	  <h4>And add an animation loop …</h4>
+	  <pre><code class="javascript">  document.addEventListener('DOMContentLoaded', function () {
+    "use strict";
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+    var SCREEN_WIDTH = canvas.width;
+    var SCREEN_HEIGHT = canvas.height;
+
+    (function drawFrame () {
+      window.requestAnimationFrame(drawFrame);
+      ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+      ...
+    }());
+  });</code></pre>
+        </section>
+
+	<section>
+	  <h2>Canvas</h2>
+	  <h4>And add an animation loop …</h4>
+	  <pre><code class="javascript">  ...
+  function drawHeart () {...}
+    
+  (function drawFrame () {
+    window.requestAnimationFrame(drawFrame);
+    ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    var n = centerScale + Math.sin(angle) * range;
+      
+    for (var i = 0; i < SCREEN_WIDTH; i += 102) {
+      ctx.translate(i, i);
+      ctx.scale(n, n);
+      drawHeart();
+      ...
+    }
+
+    ctx.translate(centerX, centerY);
+    ctx.rotate(j * Math.PI/180);
+    ctx.drawImage(img, -img.width/2, -img.height/2);
+    ...
+  }());</code></pre>
+	  <aside class="notes">
+            'Hearts' animation is next.
+	  </aside>
+        </section>
+	  
+	<section animation="hearts">
+	  <canvas id="canvasDemo2" width="512" height="512" style="background-color: #fff;"></canvas>
+	  <p>(We'll see the canvas more tomorrow.)</p>
+	  <image id="ryanface" src="./assets/day-1/ryan-face.png" style="display:none;">
+	  <script>
+	      (function () {
+		var img = document.getElementById("ryanface");
+		var c = document.getElementById('canvasDemo2');
+		var ctx = c.getContext('2d');
+		var SCREEN_WIDTH = c.width;
+		var SCREEN_HEIGHT = c.height;
+		var centerX = SCREEN_WIDTH/2;
+		var centerY = SCREEN_HEIGHT/2;
+		var img_half_width = 246/2; //dont wait for image load
+		var img_half_height = 347/2;
+		function drawHeart () {
+		  ctx.fillStyle = "#f00";
+		  ctx.beginPath();
+		  ctx.moveTo(75,40);
+		  ctx.bezierCurveTo(75,37,70,25,50,25);
+		  ctx.bezierCurveTo(20,25,20,62.5,20,62.5);
+		  ctx.bezierCurveTo(20,80,40,102,75,120);
+		  ctx.bezierCurveTo(110,102,130,80,130,62.5);
+		  ctx.bezierCurveTo(130,62.5,130,25,100,25);
+		  ctx.bezierCurveTo(85,25,75,37,75,40);
+		  ctx.fill();
+		}
+		var centerScale = 1;
+		var angle = 0;
+		var range = 0.6;
+		var speed = 0.05;
+		var scale;
+		var n = 0;
+
+		if (!window.animations) window.animations = {};
+		window.animations['hearts'] = function drawFrame () {
+		  window.animFrame = window.requestAnimationFrame(drawFrame);
+		  ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		  scale = centerScale + Math.sin(angle) * range;
+		  
+		  for (var i=0; i<SCREEN_WIDTH; i+=102) {
+		    ctx.save();
+		    ctx.translate(i, i);
+		    ctx.scale(scale, scale);
+		    angle += speed;
+		    drawHeart();
+		    ctx.restore();
+		  }
+		  ctx.save();
+		  ctx.translate(centerX, centerY);
+		  ctx.rotate(n * Math.PI/180);
+		  ctx.drawImage(img, -img_half_width, -img_half_height);
+		  ctx.restore();
+		  n += 1;
+		};
+	      }());
+	    </script>
+	  <aside class="notes">
+	    Last vertical slide. &#8594;
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>WebGL</h2>
+	  <h4>GPU programming in the browser</h4>
+	  <code class="glsl" style="font-size:0.9em; line-height:1em;"><pre>  &lt;script type=&quot;x-shader/x-fragment&quot;&gt;
+    precision mediump float;
+
+    void main(void) {
+      gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+    }
+  &lt;/script&gt;
+  &lt;script type=&quot;x-shader/x-vertex&quot;&gt;
+    attribute vec3 aVertexPosition;
+    uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+
+    void main(void) {
+      gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+    }
+  &lt;/script&gt;</code></pre>
+	  <code class="javascript" style="font-size:1em; line-height:1.5em;"><pre>  var gl = canvas.getContext('webgl');
+  gl.shaderSource(shader, shaderScript.textContent);
+  gl.compileShader(shader);
+  var shaderProgram = gl.createProgram();
+  gl.attachShader(shaderProgram, vertexShader);
+  gl.linkProgram(shaderProgram);
+  gl.useProgram(shaderProgram);
+  gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+  shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
+  ...</code></pre>
+	  <aside class="notes">
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>WebGL</h2>
+	  <img style="height:380px;" src="./assets/day-1/ryan-bearcpr.gif">
+	  <p>Steep learning curve, but you can do cool stuff.</p>
+	  <ul>
+	    <li><a href="http://madebyevan.com/webgl-water/" target="_blank">Water</a></li>
+	    <li><a href="http://nucleal.com/" target="_blank">Particles</a></li>
+	    <li><a href="http://helloracer.com/webgl/" target="_blank">Race car</a></li>
+	    <li><a href="http://ro.me" target="_blank">3 Dreams of Black</a></li>
+	  </ul>
+	</section>
+	
+	<section>
+	  <h2></h2>
+	  <h2>Better Performance</h2>
+	  <h4>Binary Data in the Browser</h4>
+	  <code class="javascript"><pre>  var i8   = new Int8Array(64);
+  var u32  = new Uint32Array(16);
+  var f64a = new Float64Array(8);
+
+  var pixels = new Uint8Array(320*240*4); //320x240 RGBA image
+  gl.readPixels(0, 0, 320, 240, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+
+  /*
+  struct someStruct {
+    unsigned long id;
+    char username[16];
+    float amountDue;
+  };
+  */
+  var buffer = new ArrayBuffer(24);
+  //read data into buffer ...
+  var idView = new Uint32Array(buffer, 0, 1);
+  var usernameView = new Uint8Array(buffer, 4, 16);
+  var amountDueView = new Float32Array(buffer, 20, 1);</code></pre>
+	  <ul>
+	    <li><a href="http://bellard.org/jslinux/" target="_blank">JavaScript PC Emulator</a></li>
+	    <li>ASM.js</li>
+	  </ul>
+	  <aside class="notes">
+	    ASM.js is a compile target.
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>Game APIs</h2>
+	  <img style="height:400px;" src="./assets/day-1/nes-controller.jpg"><br/>
+	  <ul>
+	    <li><h4>Gamepad</h4></li>
+	    <li><h4>Pointer Lock</h4></li>
+	    <li><h4>Fullscreen Mode</h4></li>
+	  </ul>
+	  <aside class="notes">
+	    <div style="font-size:16px;">
+	      POINTER LOCK:<br/>
+	      * Access raw mouse data and relative movements<br/>
+	      * Route all mouse events to a specific element<br/>
+	      GAMEPAD API:<br/>
+	      * Read state of gamepad attached to your computer<br/>
+	      FULLSCREEN MODE<br/>
+	      * Remove browser chrome and control what elements are displayed fullscreen<br/>
+	    </div>
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>Lots of APIs!</h2>
+	  <img style="float:left;height:450px;margin-left:75px;" src="./assets/day-1/ryan-clapping.gif">
+	  <ul class="list-item-color">
+	    <li><h4>Geolocation</h4></li>
+	    <li><h4>Networking</h4></li>
+	    <li><h4>File System</h4></li>
+	    <li><h4>Offline Support</h4></li>
+	    <li><h4>Vibration</h4></li>
+	    <li><h4>Orientation</h4></li>
+	    <li><h4>Battery Status</h4></li>
+	    <li><h4>Light Events</h4></li>
+	    <li><h4>Proximity Events</h4></li>
+	  </ul>
+	</section>
+	<style>ul.list-item-color li h4 { color: #E7AD52; }</style>
+
+	<section>
+	  <h2>Share With Your Friends</h2>
+	  <img style="height:320px;" src="./assets/day-1/ryan-doll.gif">
+	  <ul>
+	    <li><h4>The Simple—but Useful—Link</h4></li>
+	    <li><h4>Wrap in a WebView for iOS and Android</h4></li>
+	    <li><h4>FirefoxOS</h4></li>
+	  </ul>
+	  <aside class="notes">
+	    Both iOS and Android contain embeddable browser widgets.<br/>
+	    Very easy to package up an HTML5 app.<br/>
+	    With a little bit extra, you can learn how to access native functions as well.<br/>
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>And What Do Ya Know …</h2>
+	  <img class="story-image" src="./assets/day-1/ryan-fist-pump.gif">
+	  <h2>The Game is a Hit!</h2>
+	</section>
+
+        <section>
+          <h2>THE END</h2>
+	  <img class="story-image" src="./assets/day-1/ryan-peaceyo.gif">
+          <h4>By <em class="highlight-orange">Billy Lamberta</em> / <a href="http://lamberta.org">lamberta.org</a></h4>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script src="js/reveal-setup.js"></script>
+  </body>
+</html>
