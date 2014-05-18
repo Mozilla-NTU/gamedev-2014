@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Drawing APIs: SVG, WebGL, and Canvas</title>
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+            <h1>Drawing APIs: SVG and Canvas</h1>
+        </section>
+        <section>
+          <h2>http://caniuse.com</h2>
+        </section>
+        <section>
+          <section>
+            <h2>SVG</h2>
+            Scalable Vector Graphics
+            <br/>
+            <svg width="600px" height="200px" style="overflow: initial;">
+              <circle cx="400px" cy="100px" r="100px" fill="#D55" stroke="orange"/>
+              <rect x="400px" y="40px" width="150px" height="150px"
+                style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.4;stroke-opacity:0.9" />
+            </svg>
+            <pre><code>
+&lt;svg&gt;
+  &lt;rect x="400px" y="100px" width="150" height="150"
+        style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" /&gt;
+  &lt;circle cx="400px" cy="100px" r="100px" fill="green"
+          stroke="orange"/&gt;
+&lt;/svg&gt;
+            </code></pre>
+          </section>
+          <section>
+            <h2>Benefits</h2>
+            Easy to scale and script image
+          </section>
+          <section>
+            <h2>Scaling</h2>
+            <div style="height: 400px; width: 400px; margin-left: auto; margin-right: auto;">
+              <img src="../img/jacob/circle50.png" style="border: initial;"/>
+              <img src="../img/jacob/circle50.png" style="border: initial;" width="100px" height="100px"/>
+              <svg style="height: 400px;">
+                <circle fill="lime" r="25" cx="120" cy="100"/>
+                <circle fill="lime" r="50" cx="220" cy="100"/>
+              </svg>
+            </div>
+            <p>
+              Image scaling vs SVG.
+            </p>
+          </section>
+          <section>
+            <h2>Scripting</h2>
+            <svg id="circle" height="200" xmlns="http://www.w3.org/2000/svg">
+              <circle id="greencircle" cx="50%" cy="50%" r="30" fill="green" />
+            </svg>
+            <script>
+            (function(){
+              var circle = document.getElementById("greencircle");
+              circle.addEventListener("click", function(el){
+                var r = parseInt(this.getAttribute("r"), 10);
+                r += 10;
+                this.setAttribute("r", r);
+              });
+            })()
+            </script>
+            <pre><code contenteditable class="javascript" style="font-size: 20px">
+var circle = document.getElementById("greencircle");
+
+circle.addEventListener("click", function(el){
+  var r = parseInt(this.getAttribute("r"), 10);
+  r += 10;
+  this.setAttribute("r", r);
+});
+            </code></pre>
+          </section>
+          <section>
+            <h2>Other SVG Types</h2>
+            <div>Other SVG types include arcs, paths, lines, and polygons</div>
+            <span>
+              <svg id="polygon" height = 400 width=500>
+                <polygon fill="red" stroke="blue" stroke-width="10" 
+      points="350,75  379,161 469,161 397,215
+      423,301 350,250 277,301 303,215
+      231,161 321,161" />
+              </svg>
+            </span>
+            <span>
+              <svg id="circle" height="100" width="600" xmlns="http://www.w3.org/2000/svg">
+                <circle id="greencircle" cx="560" cy="30" r="30" fill="green">
+                <animate attributeName="cx" attributeType="XML" begin="0s" dur="5s" from="30" to="560" fill="freeze"></animate>
+                </circle>
+    </svg>
+            </span>
+          </section>
+          <section>
+            <div>http://www.w3schools.com/svg</div>
+          </section>
+      </section>
+      <section>
+        <section>
+          <h2>Canvas (Two Dimensional Context)</h2>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Canvas_tutorial">https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Canvas_tutorial</a>
+        </section>
+        <section>
+          <h2>Rectangles</h2>
+          <ul>
+            <li><code>ctx.drawRect(x, y, width, height)</code></li>
+            <li>(0,0) is upper left</li>
+          </ul>
+          <pre><code contenteditable class="xml" style="font-size: 20px">
+&lt;canvas id="drawing-space" height=200 width=200&gt;&lt;/canvas&gt;
+          </code></pre>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var canvas = document.getElementById("drawing-space");            
+var ctx = canvas.getContext("2d");
+
+ctx.strokeStyle = "#999";
+ctx.strokeRect(0,0,canvas.width, canvas.height);
+ctx.fillStyle = "#022448";
+ctx.fillRect(75,75,50,50);
+          </code></pre>
+          <canvas id="drawing-space1" height=200 width=200></canvas>
+          <script>
+(function(){
+            var canvas = document.getElementById("drawing-space1");
+            var ctx = canvas.getContext("2d");
+
+            ctx.strokeStyle = "#999";
+            ctx.strokeRect(0,0,canvas.width, canvas.height);
+            ctx.fillStyle = "#022448";
+            ctx.fillRect(75,75,50,50);
+})();
+          </script>
+        </section>
+        <section>
+          <h2>Lines</h2>
+          <div><code>ctx.moveTo(x,y)</code> and <code>ctx.lineTo(x,y)</code></div>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var canvas = document.getElementById("drawing-space");
+var ctx = canvas.getContext("2d");
+
+var height = canvas.height, width = canvas.width;
+ctx.strokeStyle = "#000";
+
+ctx.beginPath();
+ctx.moveTo(width / 2, 0);
+ctx.lineTo(width / 2, height);
+ctx.moveTo(0, height / 2);
+ctx.lineTo(width, height / 2);
+ctx.stroke();
+          </code></pre>
+          <canvas id="drawing-space2" height=200 width=200></canvas>
+          <script>
+(function(){
+            var canvas = document.getElementById("drawing-space2");
+            var ctx = canvas.getContext("2d");
+            var height = canvas.height, width = canvas.width;
+            ctx.strokeStyle = "#000";
+
+            ctx.beginPath();
+            ctx.moveTo(width / 2, 0);
+            ctx.lineTo(width / 2, height);
+            ctx.moveTo(0, height / 2);
+            ctx.lineTo(width, height / 2);
+            ctx.stroke();
+})()
+          </script>
+        </section>
+        <section>
+          <h2>Arcs</h2>
+          <span><code>ctx.arc(x, y, beginRadian, endRadian, antiClockwise)</code></span>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+ctx.beginPath();
+ctx.arc(75,75,50,0,Math.PI*2,true); // Outer circle
+ctx.moveTo(110,75);
+ctx.arc(75,75,35,0,Math.PI,false);   // Mouth (clockwise)
+ctx.moveTo(65,65);
+ctx.arc(60,65,5,0,Math.PI*2,true);  // Left eye
+ctx.moveTo(95,65);
+ctx.arc(90,65,5,0,Math.PI*2,true);  // Right eye
+ctx.stroke();
+          </code></pre>
+          <canvas id="drawing-space3" height=200 width=200></canvas>
+          <script type="text/javascript">
+(function(){
+              var canvas = document.getElementById('drawing-space3');
+              var ctx = canvas.getContext('2d');
+
+              ctx.beginPath();
+              ctx.arc(75,75,50,0,Math.PI*2,true); // Outer circle
+              ctx.moveTo(110,75);
+              ctx.arc(75,75,35,0,Math.PI,false);   // Mouth (clockwise)
+              ctx.moveTo(65,65);
+              ctx.arc(60,65,5,0,Math.PI*2,true);  // Left eye
+              ctx.moveTo(95,65);
+              ctx.arc(90,65,5,0,Math.PI*2,true);  // Right eye
+              ctx.stroke();
+})();
+          </script>
+        </section>
+        <section>
+          <h2>Text</h2>
+          <div><code>ctx.fillText(text, x, y);</code></div>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+ctx.font = "40pt Arial";
+ctx.fillText("hello NTU", 50, 100);
+          </code></pre>
+          <canvas id="drawing-space4" height=200 width=400></canvas>
+          <script type="text/javascript">
+(function(){
+              var canvas = document.getElementById('drawing-space4');
+              var ctx = canvas.getContext('2d');
+              ctx.strokeRect(0,0, canvas.width, canvas.height);
+              ctx.font = "40pt Arial";
+              ctx.fillText("hello NTU", 50, 100);
+})()
+          </script>
+        </section>
+        <section>
+          <h2>Fill Patterns</h2>
+          <div><code>ctx.createPattern(image, mode);</code></div>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var image = new Image();
+image.addEventListener("load", drawText);
+image.src = "../img/jacob/distressed.jpg"
+
+function drawText(){
+  var pattern = ctx.createPattern(image, 'repeat');
+  ctx.fillStyle = pattern;
+  ctx.strokeRect(0,0, canvas.width, canvas.height);
+  ctx.font = "40pt Arial";
+  ctx.fillText("hello NTU", 50, 100);
+}
+          </code></pre>
+          <iframe src="canvas_examples/text_textures.html" height=400 width=500></iframe>
+        </section>
+        <section>
+          <h2>Save Context</h2>
+          <ul>
+            <li><code>ctx.save()</code> saves current settings</li>
+            <li><code>ctx.restore()</code> restores previous settings</li>
+          </ul>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+ctx.fillStyle = "rgba(237,32,186,0.5)";
+ctx.fillRect(0,0,100,100);
+ctx.save();
+
+ctx.fillStyle = "rgba(10,10,10,0.5)";
+ctx.fillRect(40,40,100,100);
+
+ctx.restore();
+ctx.fillRect(80,80,100,100);            
+          </code></pre>
+
+          <canvas id="drawing-space-save" height=400 width=600></canvas>
+          <script type="text/javascript">
+          (function(){
+            var canvas = document.getElementById('drawing-space-save');
+            var ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = "rgba(237,32,186,0.5)";
+            ctx.fillRect(0,0,100,100);
+            ctx.save();
+
+            ctx.fillStyle = "rgba(10,10,10,0.5)";
+            ctx.fillRect(40,40,100,100);
+
+            ctx.restore();
+            ctx.fillRect(80,80,100,100);
+            
+          })()
+          </script> 
+
+        </section>
+        <section>
+          <h2>Simple Draw Image</h2>
+          <div><code>ctx.drawImage(image, x, y, width, height);</code></div>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var image = new Image();
+image.addEventListener("load", drawTheImage);
+image.src = "../img/jacob/unicorn.jpg"
+
+function drawTheImage(){
+  ctx.drawImage(image, 100, 0, 100, 100);
+  ctx.drawImage(image, 250, 0, 200, 200);
+}
+          </code></pre>
+          <canvas id="drawing-space6" height=400 width=600></canvas>
+          <script type="text/javascript">
+          (function(){
+            var canvas = document.getElementById('drawing-space6');
+            var ctx = canvas.getContext('2d');
+            var image = new Image();
+            image.addEventListener("load", drawTheImage);
+            image.src = "../img/jacob/unicorn.jpg"
+
+            function drawTheImage(){
+              ctx.drawImage(image, 100, 0, 100, 100);
+              ctx.drawImage(image, 250, 0, 200, 200);
+            }
+          })()
+          </script> 
+        </section>
+        <section>
+          <h2>Segment Draw Image</h2>
+          <div><small><code>ctx.drawImage(image, srcX, srcY, srcWidth, srcHeight, destX, destY, destWidth, destHeight);</code></small></div>  
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var image = new Image();
+image.addEventListener("load", drawTheImage);
+image.src = "../img/jacob/unicorn.jpg"
+
+function drawTheImage(){
+  ctx.drawImage(image, 300, 0, 200, 200, 0, 0, 400, 400);
+}
+          </code></pre>
+          <canvas id="drawing-space7" height=400 width=800></canvas>
+          <script type="text/javascript">
+          (function(){
+            var canvas = document.getElementById('drawing-space7');
+            var ctx = canvas.getContext('2d');
+            var image = new Image();
+            image.addEventListener("load", drawTheImage);
+            image.src = "../img/jacob/unicorn.jpg"
+
+            function drawTheImage(){
+              ctx.drawImage(image, 320, 50, 150, 150, 0, 0, 300, 300);
+            }
+          })()
+          </script> 
+        </section>
+        <section>
+          <h2>Text + events</h2 >
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+canvas.addEventListener("mousemove", drawCoords);
+
+function drawCoords(evt){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeRect(0,0, canvas.width, canvas.height);
+  var rect = canvas.getBoundingClientRect();
+  var x = evt.clientX - rect.left;
+  var y = evt.clientY - rect.top;
+  ctx.font = "24pt Arial";
+  ctx.fillText("(" + x + "," + y + ")", 50, 100);
+}
+          </code></pre>
+
+          <iframe src="canvas_examples/mouse_over.html" height=405, width=805></iframe>
+        </section>
+        <section>
+          <h2>Simple Paint Brush</h2>
+          <iframe src="canvas_examples/paint_brush.html" height=405, width=805></iframe>
+        </section>
+        <section>
+          <h2>Simple Paint Brush</h2>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+canvas.addEventListener("mousedown", mouseDown);
+canvas.addEventListener("mouseup", mouseUp);
+canvas.addEventListener("mousemove", drawCoords);
+var down = false;
+
+function mouseDown(evt){
+  down = true;
+}
+
+function mouseUp(evt){
+  down = false;
+}
+
+function drawCoords(evt){
+  if(down){
+    var rect = canvas.getBoundingClientRect();
+    var x = evt.clientX - rect.left;
+    var y = evt.clientY - rect.top;
+    ctx.fillRect(x-5,y-5,10,10);
+  }
+}            
+          </code></pre>
+        </section>
+      </section>
+      </div>
+    </div>
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
+
