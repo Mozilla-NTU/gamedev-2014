@@ -88,7 +88,7 @@
 	  <p>In JavaScript:</p>
 	  <code class="javascript"><pre>
   var FPS = 24;
-  var MS_PER_FRAME = 1000/FPS;
+  var MS_PER_FRAME = 1000/FPS; //41.667
   
   function drawFrame () {
     clear();
@@ -227,6 +227,7 @@
 	      };
 	    }());
 	  </script>
+	  <br/><a href="demos/day-2/01-draw-in-a-loop.html" target="_blank">[new tab]</a>
 	</section>
 		
 	<section>
@@ -253,6 +254,7 @@
     ctx.stroke();
     ctx.restore();
   };</code></pre>
+	  <code style="html"><pre>  &lt;script src=&quot;Ball.js&quot;&gt;&lt;/script&gt;</code></pre>
 	</section>
 
 	<section>
@@ -322,6 +324,7 @@
 	      };
 	    }());
 	  </script>
+	  <br/><a href="demos/day-2/02-sine-wave.html" target="_blank">[new tab]</a>
 	  <aside class="notes">
 	  </aside>
 	</section>
@@ -347,6 +350,7 @@
 	<section animation="cosine">
 	  <h3>Circle the Cosine</h3>
 	  <canvas id="cosineCanvas" width="512" height="512" style="background-color: #fff;"></canvas>
+	  <br/><a href="demos/day-2/03-circle.html" target="_blank">[new tab]</a>
 	  <aside class="notes">
 	  </aside>
 	  <script>
@@ -413,6 +417,7 @@
     ball.draw(ctx);
   }());</code></pre>
 	  <canvas id="velocityCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
+	  <br/><a href="demos/day-2/04-velocity.html" target="_blank">[new tab]</a>
 	  <aside class="notes">
 	  </aside>
 	  <script>
@@ -453,6 +458,7 @@
     arrow.draw(ctx);
   }());</code></pre>
 	  <canvas id="rotationVelCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
+	  <br/><a href="demos/day-2/05-rotate.html" target="_blank">[new tab]</a>
 	  <script>
             (function () {
 	      var canvas = document.getElementById('rotationVelCanvas');
@@ -495,6 +501,7 @@
     ball.draw(ctx);
   }());</code></pre>
 	  <canvas id="accelerationCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
+	  <br/><a href="demos/day-2/06-accelerate.html" target="_blank">[new tab]</a>
 	  <aside class="notes">
 	  </aside>
 	  <script>
@@ -527,6 +534,7 @@
 	  <p>Is just acceleration applied to the <em class="highlight">y-position</em>.</p>
 	  <p>(Apologies to Newton and Einstein.)</p>
 	  <canvas id="gravityCanvas" width="480" height="480" style="margin-top:10px; background-color: #fff;"></canvas>
+	  <br/><a href="demos/day-2/07-gravity.html" target="_blank">[new tab]</a>
 	  <aside class="notes">
 	  </aside>
 	  <script>
@@ -542,7 +550,7 @@
               var vy = 0;
               var ax = 0;
               var ay = 0;
-              gravity = 0.1;
+              var gravity = 0.1;
 
 	      if (!window.animations) window.animations = {};
 	      window.animations['gravity'] = function drawFrame () {
@@ -587,6 +595,7 @@
     ball.draw(ctx);
   }());</code></pre>
 	  <canvas id="easingBasicCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
+	  <br/><a href="demos/day-2/08-easing-bad.html" target="_blank">[new tab]</a>
 	  <aside class="notes">
 	    Click canvas to reset.<br/>
 	    Hard to get exact, so the ball position keeps being incremented until the float blows up.<br/>
@@ -651,6 +660,7 @@
     ball.draw(ctx);
   }());</code></pre>
 	  <canvas id="easingBetterCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
+	  <br/><a href="demos/day-2/09-easing-better.html" target="_blank">[new tab]</a>
 	  <aside class="notes">
 	    Click canvas to reset.<br/>
 	    Hard to get exact, so the ball position keeps being incremented until the float blows up.<br/>

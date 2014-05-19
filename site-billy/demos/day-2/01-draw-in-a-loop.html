@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  <style>
+    body {
+      background-color: #777;
+    }
+  </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="512" height="512" style="background-color: #fff;"></canvas>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        "use strict";
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        var SCREEN_WIDTH = canvas.width;
+        var SCREEN_HEIGHT = canvas.height;
+        var colors = ['#f00','#0f0','#00f','#ff0','#0ff','#f0f'];
+        window.a = 0;
+        window.n = SCREEN_HEIGHT/5;
+
+        //setup and run the rander loop ...
+        (function drawFrame () {
+          window.requestAnimationFrame(drawFrame);
+          ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+          for (var i = 0; i < n; i++) {
+            //update
+            window.t = (i * 5);
+            window.r = (a + i * 0.1);
+            window.s = (Math.sin(a) * 10);
+            //update
+            ctx.save();
+            ctx.translate(t, t);
+            ctx.rotate(r);
+            ctx.scale(s, s);
+            //draw
+            ctx.fillStyle = colors[i % 6];
+            ctx.fillRect(0, 0, 100, 100);
+            ctx.restore();
+          }
+          a += 0.02;
+        }());
+      });
+    </script>
+  </body>
+</html>

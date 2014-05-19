@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body {
+        background-color: #777;
+      }
+      #myCanvas {
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="512" height="512"></canvas>
+    <script src="./Ball.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        "use strict";
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        var SCREEN_WIDTH = canvas.width;
+        var SCREEN_HEIGHT = canvas.height;
+
+        //var setup ...
+        //var ball = new Ball();
+
+        //setup game loop and start ...
+        (function drawFrame () {
+          window.requestAnimationFrame(drawFrame);
+          ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+          //run each frame ...
+          //console.log('tick!');
+          //ball.draw(ctx);
+        }());
+      });
+    </script>
+  </body>
+</html>

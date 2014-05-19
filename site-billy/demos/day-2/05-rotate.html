@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    body {
+      background-color: #777;
+    }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="512" height="512" style="background-color: #fff;"></canvas>
+    <script src="Arrow.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        "use strict";
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        var SCREEN_WIDTH = canvas.width;
+        var SCREEN_HEIGHT = canvas.height;
+        var vr = 2; //degrees
+        var arrow = new Arrow();
+        arrow.x = SCREEN_WIDTH/2;
+        arrow.y = SCREEN_HEIGHT/2;
+  
+        (function drawFrame () {
+          window.requestAnimationFrame(drawFrame);
+          ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+          arrow.rotation += vr * Math.PI/180; //to radians
+          arrow.draw(ctx);
+        }());
+      });
+    </script>
+  </body>
+</html>
