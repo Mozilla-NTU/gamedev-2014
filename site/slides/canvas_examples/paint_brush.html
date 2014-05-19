@@ -1,0 +1,34 @@
+<html>
+<head></head>
+<body>
+          <canvas id="drawing-space8" height=200, width=400 style="position:static;"></canvas>
+          <script type="text/javascript">
+          (function(){
+            var canvas = document.getElementById('drawing-space8');
+            var ctx = canvas.getContext('2d');
+            ctx.strokeRect(0,0, canvas.width, canvas.height);
+            canvas.addEventListener("mousedown", mouseDown);
+            canvas.addEventListener("mouseup", mouseUp);
+            canvas.addEventListener("mousemove", drawCoords);
+            var down = false;
+            
+            function mouseDown(evt){
+              down = true;
+            }
+
+            function mouseUp(evt){
+              down = false;
+            }
+
+            function drawCoords(evt){
+              if(down){
+                var rect = canvas.getBoundingClientRect();
+                var x = evt.clientX - rect.left;
+                var y = evt.clientY - rect.top;
+                ctx.fillRect(x-5,y-5,10,10);
+              }
+            }
+          })()
+          </script>
+  </body>
+</html>

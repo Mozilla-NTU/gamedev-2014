@@ -1,0 +1,21 @@
+<html>
+<head></head>
+<body>
+    <canvas id="drawing-space5" height=200 width=410></canvas>
+    <script type="text/javascript">
+        var canvas = document.getElementById('drawing-space5');
+        var ctx = canvas.getContext('2d');
+        var image = new Image();
+        image.addEventListener("load", drawText);
+        image.src = "../../img/jacob/distressed.jpg"
+
+        function drawText(){
+          var pattern = ctx.createPattern(image, 'repeat');
+          ctx.fillStyle = pattern;
+          ctx.strokeRect(0,0, canvas.width, canvas.height);
+          ctx.font = "40pt Arial";
+          ctx.fillText("hello NTU", 50, 100);
+        }
+    </script>
+  </body>
+</html>
