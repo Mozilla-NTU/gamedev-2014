@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Drawing APIs: SVG, WebGL, and Canvas</title>
+    <title>Drawing APIs: SVG and Canvas</title>
     <link rel="stylesheet" href="../css/reveal.css">
     <link rel="stylesheet" href="../css/theme/solarized.css" id="theme">
     <link rel="stylesheet" href="../lib/css/zenburn.css">
@@ -12,6 +12,10 @@
       <div class="slides">
         <section>
             <h1>Drawing APIs: SVG and Canvas</h1>
+            <ul>
+              <li>yesterday's slides: http://j.mp/slides-ntu</li>
+              <li>yesterday's code: http://bit.ly/code-ntu (day1 directory)</li>
+            </ul>
         </section>
         <section>
           <h2>http://caniuse.com</h2>
@@ -150,6 +154,9 @@ ctx.strokeStyle = "#000";
 ctx.beginPath();
 ctx.moveTo(width / 2, 0);
 ctx.lineTo(width / 2, height);
+ctx.stroke();
+ctx.beginPath();
+ctx.strokeStyle = "#0F0";
 ctx.moveTo(0, height / 2);
 ctx.lineTo(width, height / 2);
 ctx.stroke();
@@ -165,6 +172,9 @@ ctx.stroke();
             ctx.beginPath();
             ctx.moveTo(width / 2, 0);
             ctx.lineTo(width / 2, height);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.strokeStyle = "#0F0";
             ctx.moveTo(0, height / 2);
             ctx.lineTo(width, height / 2);
             ctx.stroke();
