@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    body {
+      background-color: #777;
+    }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="512" height="512" style="background-color: #fff;"></canvas>
+    <script src="Ball.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        "use strict";
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        var SCREEN_WIDTH = canvas.width;
+        var SCREEN_HEIGHT = canvas.height;
+        var ball = new Ball();
+        var easing = 0.05;
+        var targetX = SCREEN_WIDTH - ball.radius;
+        var targetY = SCREEN_HEIGHT - ball.radius;
+        var easeComplete = false;
+        ctx.font = "22px Helvetica";
+        var x_str = null;
+        var y_str = null
+        
+        (function drawFrame () {
+          window.requestAnimationFrame(drawFrame);
+          ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+          var dx = targetX - ball.x;
+          var dy = targetY - ball.y;
+
+          if (!easeComplete && Math.abs(dx) < 1 && Math.abs(dy) < 1) {
+            ball.x = targetX;
+            ball.y = targetY;
+            easeComplete = true;
+            x_str = y_str = "close enough!"
+          } else if (!easeComplete) {
+            var vx = dx * easing;
+            var vy = dy * easing;
+            ball.x += vx;
+            ball.y += vy;
+            x_str = ball.x;
+            y_str = ball.y;
+          }
+          ball.draw(ctx);
+          ctx.fillText("ball.x: "+ x_str, 10, SCREEN_HEIGHT-35);
+          ctx.fillText("ball.y: "+ y_str, 10, SCREEN_HEIGHT-10);
+        }());
+
+        canvas.onclick = function () {
+          ball.x = ball.y = 0;
+        };
+      });
+    </script>
+  </body>
+</html>
