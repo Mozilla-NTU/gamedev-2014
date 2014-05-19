@@ -1,0 +1,12 @@
+{
+  "name": "Flappy DOM",
+  "description": "HTML5 Clone of Flappy Bird",
+  "launch_path": "/index.html",
+  "developer": {
+    "name": "Michael Henretty",
+    "url": "https://github.com/mikehenrty"
+  },
+  "fullscreen": "true",
+  "orientation": ["landscape-primary"],
+  "default_locale": "en"
+}
