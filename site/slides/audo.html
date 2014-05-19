@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Audio and Video</title>
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+            <h1>HTML5 Sound Effects, Music, and Video</h1>
+        </section>
+        <section>
+          <section>
+          <h2>Source tags</h2>
+          Both &lt;audio&gt; and &lt;video&gt; tags support nested
+          &lt;source&gt; tags of different encodings.
+          <pre><code>
+&lt;audio controls&gt;
+  &lt;source src="foo.ogg" type="audio/ogg"/&gt;
+  &lt;source src="foo.mp3" type="audio/mp3"/&gt;
+  Sorry, you're browser doesn't support ogg or mp3 codecs
+  (or possibly audio tags).
+&lt;/audio&gt;
+          </code></pre>
+        </section>
+        <section>
+          <h2>In JS</h2>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var sfx = new Audio("../sound/jacob/sfx.wav");
+sfx.play;
+          </code></pre>
+        </section>
+        <section>
+          <h2>Feature Detecting Codec Support</h2>
+          <pre><code>
+function canPlayOgg () {
+  var a = document.createElement('audio');
+  return !!(a.canPlayType &amp;&amp;
+            a.canPlayType('audio/ogg; codecs="vorbis"')
+             .replace(/no/, ''));
+};
+
+canPlayOgg(); // true or false
+          </code></pre>
+          <a href="http://diveintohtml5.info/everything.html#audio">
+            More feature detection
+          </a>
+        </section>
+        <section>
+          <h2>Audio</h2>
+          <audio controls>
+            <source src="../media/lateralus_clip.ogg" type="audio/ogg"/>
+            <source src="../media/lateralus_clip.mp3" type="audio/mp3"/>
+          </audio>
+          <pre>
+            <code>
+&lt;audio controls&gt;
+  &lt;source src="../media/lateralus_clip.ogg" type="audio/ogg"/&gt;
+  &lt;source src="../media/lateralus_clip.mp3" type="audio/mp3"/&gt;
+&lt;/audio&gt;
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h2>Out of Control</h2>
+          <audio id="noControls">
+            <source src="../media/lateralus_clip.ogg" type="audio/ogg"/>
+            <source src="../media/lateralus_clip.mp3" type="audio/mp3"/>
+          </audio>
+          <button id="play">Play/Pause</button>
+          <button id="volUp">Volume+</button>
+          <button id="volDown">Volume-</button>
+          <input id="seek" type="range" value="" max=""/>
+          <script>
+            var audio = document.getElementById("noControls");
+            var play = document.getElementById("play");
+            var volUp = document.getElementById("volUp");
+            var volDown = document.getElementById("volDown");
+            var seek = document.getElementById("seek");
+            var playing = false;
+
+            play.addEventListener("click", function (e) {
+              playing = !playing;
+              if (playing) {
+                audio.play();
+              } else {
+                audio.pause();
+              }
+            });
+
+            function changeVol (up) {
+              if (up) {
+                audio.volume += 0.1;
+              } else {
+                audio.volume -= 0.1;
+              }
+            };
+
+            volUp.addEventListener("click", function () {
+              changeVol(true);
+            });
+
+            volDown.addEventListener("click", function () {
+              changeVol(false);
+            });
+
+            audio.addEventListener("timeupdate", function (e) {
+              seek.value = audio.currentTime;
+            });
+
+            seek.min = seek.value = audio.seekable.start(0);
+            seek.max = audio.seekable.end(0);
+            seek.addEventListener("change", function (e) {
+              audio.currentTime = seek.value;
+            });
+          </script>
+        </section>
+        <section>
+          <pre><code>
+&lt;audio id="noControls"&gt;
+  &lt;source src="../media/lateralus_clip.ogg" type="audio/ogg"/&gt;
+  &lt;source src="../media/lateralus_clip.mp3" type="audio/mp3"/&gt;
+&lt;/audio&gt;
+&lt;button id="play">Play/Pause&lt;/button&gt;
+&lt;button id="volUp">Volume+&lt;/button&gt;
+&lt;button id="volDown">Volume-&gt;/button&gt;
+&lt;input id="seek" type="range" value="" max=""/&gt;
+&lt;script&gt;
+  var audio = document.getElementById("noControls");
+  var play = document.getElementById("play");
+  var volUp = document.getElementById("volUp");
+  var volDown = document.getElementById("volDown");
+  var seek = document.getElementById("seek");
+  var playing = false;
+
+  play.addEventListener("click", function (e) {
+    playing = !playing;
+    if (playing) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  });
+
+  function changeVol (up) {
+    if (up) {
+      audio.volume += 0.1;
+    } else {
+      audio.volume -= 0.1;
+    }
+  };
+
+  volUp.addEventListener("click", function () {
+    changeVol(true);
+  });
+
+  volDown.addEventListener("click", function () {
+    changeVol(false);
+  });
+
+  audio.addEventListener("timeupdate", function (e) {
+    seek.value = audio.currentTime;
+  });
+
+  seek.min = seek.value = audio.seekable.start(0);
+  seek.max = audio.seekable.end(0);
+  seek.addEventListener("change", function (e) {
+    audio.currentTime = seek.value;
+  });
+&lt;/script&gt;
+          </code></pre>
+        </section>
+        <section>
+          <h2>Events</h2>
+          <audio id="audioA" controls>
+            <source src="../media/lateralus_clip.ogg" type="audio/ogg"/>
+            <source src="../media/lateralus_clip.mp3" type="audio/mp3"/>
+          </audio>
+          <br>
+          <audio id="audioB" controls>
+            <source src="../media/lateralus_clip.ogg" type="audio/ogg"/>
+            <source src="../media/lateralus_clip.mp3" type="audio/mp3"/>
+          </audio>
+          <script>
+            var audioA = document.getElementById("audioA");
+            var audioB = document.getElementById("audioB");
+
+            audioA.addEventListener("ended", function () {
+              audioB.currentTime = 0;
+              audioB.play();
+            });
+
+            audioB.addEventListener("ended", function () {
+              audioA.currentTime = 0;
+              audioA.play();
+            });
+          </script>
+          <pre><code>
+            &lt;audio id="audioA" controls&gt;
+              &lt;source src="../media/lateralus_clip.ogg" type="audio/ogg"/&gt;
+              &lt;source src="../media/lateralus_clip.mp3" type="audio/mp3"/&gt;
+            &lt;/audio&gt;
+            &lt;br/&gt;
+            &lt;audio id="audioB" controls&gt;
+              &lt;source src="../media/lateralus_clip.ogg" type="audio/ogg"/&gt;
+              &lt;source src="../media/lateralus_clip.mp3" type="audio/mp3"/&gt;
+            &lt;/audio&gt;
+            &lt;script&gt;
+              var audioA = document.getElementById("audioA");
+              var audioB = document.getElementById("audioB");
+
+              audioA.addEventListener("ended", function () {
+                audioB.currentTime = 0;
+                audioB.play();
+              });
+
+              audioB.addEventListener("ended", function () {
+                audioA.currentTime = 0;
+                audioA.play();
+              });
+            &lt;/script&gt;
+          </code></pre>
+          <p>More events at <a href="http://areweplayingyet.com/">Are We Playing Yet?</a></p>
+        </section>
+        <section>
+          <h2>Video</h2>
+          <video controls>
+            <source src="../media/bunny.webm" type="video/webm"/>
+            <source src="../media/bunny.mp4" type="video/mp4"/>
+          </video>
+          <pre><code>
+            &lt;video controls&gt;
+              &lt;source src="../media/bunny.webm" type="video/webm"/&gt;
+              &lt;source src="../media/bunny.mp4" type="video/mp4"/&gt;
+            &lt;/video&gt;
+          </code></pre>
+        </section>
+        <section>
+          <h2>Mixing Video and Canvas 2D</h2>
+          <a href="http://html5doctor.com/demos/video-canvas-magic/demo2.html">Demo</a>
+        </section>
+        </section>
+      </div>
+    </div>
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
+
