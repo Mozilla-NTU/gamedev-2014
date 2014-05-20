@@ -43,10 +43,14 @@ body {
 
 .ball {
   border-radius: 40px;
-  height: 40px;
-  width: 40px;
+  height: 60px;
+  width: 60px;
   background-color: red;
   position: fixed;
+}
+
+.ball.colliding {
+  background-color: green;
 }
 
 div.field {

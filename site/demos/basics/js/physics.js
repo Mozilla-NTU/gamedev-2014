@@ -5,7 +5,6 @@ function Ball(stage, x, y) {
   this.stage.appendChild(this.el);
   this.x = x;
   this.y = y;
-  this.update(0);
 }
 
 Ball.prototype.update = function (delta) {
