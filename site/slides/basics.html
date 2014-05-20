@@ -114,7 +114,7 @@ function emitParticle(x, y) {
           </code></pre>
         </section>
         <section>
-          <h2>Object Pool - without</h2>
+          <h2>Object Pool - with</h2>
           <pre><code>
 funtion ParticlePool() {
   this.particles = []
@@ -134,7 +134,7 @@ ParticlePool.prototype.release = function(particle) {
           </code></pre>
         </section>
         <section>
-          <h2>Object Pool - without</h2>
+          <h2>Object Pool - with</h2>
           <pre><code>
 function emitParticle(pool, x, y) {
   var p = pool.get();
@@ -260,6 +260,7 @@ function loadImages() {
         <section>
           <h1>Questions?</h1>
           <img style="border:none; box-shadow:none; max-width: 200px"  src="../img/mike/HTML5Question2_2.png" />
+          <p>Code: <a href="https://github.com/Mozilla-NTU/gamedev-2014-demos/tree/master/basic-lecture/basics">https://github.com/Mozilla-NTU/gamedev-2014-demos/tree/master/basic-lecture/basics</a></p>
         </section>
       </div>
     </div>
