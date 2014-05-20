@@ -40,3 +40,22 @@ body {
   transition: bottom 1s ease-in;
   bottom: -50px;
 }
+
+.ball {
+  border-radius: 40px;
+  height: 40px;
+  width: 40px;
+  background-color: red;
+  position: fixed;
+}
+
+div.field {
+  background-image: url(../img/soccer-field.jpg);
+}
+
+div.soccer {
+  position: fixed;
+  background-image: url(../img/soccer.gif);
+  height: 150px;
+  width: 150px;
+}
