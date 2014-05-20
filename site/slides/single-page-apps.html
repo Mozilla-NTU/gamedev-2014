@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Single Page Apps</title>
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/mike/custom.css">
+    <link rel="stylesheet" href="../css/theme/beige.css" id="theme">
+    <link rel="stylesheet" href="../lib/css/zenburn.css"/>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 id="hot-tip">HOT TIP!<img class="left" src="../img/mike/Meet-the-Firefox-OS-Mascot-a-Fox-That-s-on-Fire.png" /><img class="right" src="../img/mike/Meet-the-Firefox-OS-Mascot-a-Fox-That-s-on-Fire.png" /></h1>
+          <h2>Command-T, fast file open</h2>
+          <img class="bullet-image" src="../img/mike/File stack-resized-600.png" />
+          <ul>
+          <li>Big project with many folders, many tabs</li>
+          <li>Cmd-T, start typing file name</li>
+          <li>Textmate and Sublime Text have it</li>
+          <li>vim and emacs have plugins</li>
+          <li>even <a href="https://github.com/mozilla-b2g/gaia/">Github</a> implemented</li>
+        </ul>
+        </section>
+        <section>
+          <h2>Single Page Applications</h2>
+          <img class="bullet-image" src="../img/mike/HTML5Question2_2.png" />
+          <ul>
+            <li>What is it?</li>
+            <li>Why is it cool?</li>
+            <li>What are the components?</li>
+            <li>How to build?</li>
+          <ul>
+        </section>
+        <section>
+          <h2>The good old days</h2>
+          <img style="border:none; box-shadow:none; height: 60%" src="../img/mike/olddays.png" />
+        </section>
+        <section>
+          <h2>The good old days</h2>
+          <img style="width: 33%" class="bullet-image" src="../img/mike/SlowSteadyTurtle.png" />
+          <ul>
+            <li>Every screen was many requests</li>
+            <ul><li>Download all html/css/js/images</li></ul>
+            <ul><li>Parse HTML, build DOM</li></ul>
+            <ul><li>Parse CSS, paint page</li></ul>
+            <ul><li>Parse JS, execute code</li></ul>
+            <li>Slooooooooooooooow</li>
+          </ul>
+        </section>
+        <section>
+          <h2>The good old days</h2>
+          <img class="bullet-image" src="../img/mike/tornado.png" />
+          <ul>
+            <li>Apps lived on the server</li>
+            <li>Many Users, 1 computer</li>
+            <li>Server went down, no more app</li>
+            <li>Scaling is expensive</li>
+            <li>Infrastructure complex</li>
+          </ul>
+        </section>
+        <section>
+          <h2>The good old days, SUCKED</h2>
+          <img class="bullet-image" src="../img/mike/200px-Mermaid_Man.svg.png" />
+          <ul>
+            <li>Click, wait, click, wait</li>
+            <li>Lots of redundant work</li>
+            <li>Uneccessary bandwidth</li>
+          </ul>
+          <p>No fun, no fun at all</p>
+        </section>
+        <section>
+          <h2>to repeat, heres bad</h2>
+          <img style="border:none; box-shadow:none; height: 60%" src="../img/mike/olddays.png" />
+        </section>
+        <section>
+          <h2>...and now, good</h2>
+          <img style="border:none; box-shadow:none; height: 60%" src="../img/mike/gooddays.png" />
+        </section>
+        <section>
+          <h2>What's the difference?</h2>
+          <img class="bullet-image" src="../img/mike/Sonic_the_Hedgehog2.png" />
+          <ul>
+            <li>1 page request</li>
+            <ul><li>load html/css/javascript once</li></ul>
+            <ul><li>parsing, DOM building once</li></ul>
+            <li>App lives in browser</li>
+            <ul><li>less bandwidth</li></ul>
+            <ul><li>less server load</li></ul>
+            <li>Immediately respond to user</li>
+            <li>Fassssssssssssssst!</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Introducing MVC</h2>
+          <img class="bullet-image" src="../img/mike/extjs4-mvc-lg1.png" />
+          <ul>
+            <li>Model, View, Controller</li>
+            <li>Easy to build</li>
+            <ul><li>Separation of Concerns</li></ul>
+            <ul><li>Swap out layers</li></ul>
+            <li>Easy to debug</li>
+            <ul><li>Errors isolated</li></ul>
+            <ul><li>Code is more readable</li></ul>
+            <li>Learn it, use it, love it!</li>
+          </ul>
+        </section>
+        <section>
+          <h2>The Model</h2>
+          <img class="bullet-image" src="../img/mike/250px-DataTNG.jpg" />
+          <ul>
+            <li>Objects, Classes that represent data</li>
+            <ul><li>ex. Player, Enemy in a Game</li></ul>
+            <ul><li>ex. Users, Friends in Social Network</li></ul>
+            <li>Talks to database</li>
+            <li>Enforces database rules</li>
+          </ul>
+        </section>
+        <section>
+          <h2>The Model</h2>
+          <pre><code>
+          function Player(name) {
+            this.name = name;
+            this.score = 0;
+          }
+
+          Player.prototype.addPoints = function(points) {
+            this.score += points;
+          };
+
+          Player.prototype.save = function() {
+            localStorage.name = this.name;
+            localStorage.score = this.score;
+          };
+
+          Player.prototype.restore = function() {
+            this.name = localStorage.name;
+            this.score = localStorage.score;
+          };
+          </code></pre>
+        </section>
+        <section>
+          <h2>The Model</h2>
+          <pre><code>
+          function initGame() {
+            var myPlayer = new Player();
+
+            myPlayer.restore();
+            myPlayer.addPoints(1000);
+            myPlayer.save();
+          }
+
+          document.addEventListener('DOMContentLoaded', initGame);
+          </code></pre>
+        </section>
+        <section>
+          <h2>The View</h2>
+          <img class="bullet-image" src="../img/mike/page_templates.png" />
+          <ul>
+            <li>DOM with CSS</li>
+            <li>Pages or page fragments</li>
+            <li>Easily manipulated</li>
+            <ul><li>swapped and moved around</li></ul>
+            <ul><li>Can be styled or populated with data</li></ul>
+            <li>Can be changed without breaking app</li>
+          </ul>
+        </section>
+        <section>
+          <h2>The View</h2>
+          <pre><code>
+&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+...
+
+  &lt;section id=&quot;profile&quot;&gt;
+    &lt;p&gt;
+      &lt;span id=&quot;name&quot;&gt;{{ name }}&lt;/span&gt;
+      &lt;span id=&quot;score&quot;&gt;{{ score }}&lt;/span&gt;
+    &lt;/p&gt;
+  &lt;/section&gt;
+
+
+...
+  <!-- other stuff we dont care about -->
+  &lt;section id=&quot;setting&quot;&gt;
+          </code></pre>
+        </section>
+        <section>
+          <h2>The View</h2>
+          <pre><code>
+          function View(id) {
+            this.element = document.getElementById(id);
+          }
+
+          View.prototype.populate = function(data) {
+            Mustache.to_html(this.element, data);
+          };
+
+          View.prototype.hide = function() {
+            this.element.style.display = 'none';
+          };
+
+          document.addEventListener('DOMContentLoaded', function() {
+            var myProfile = new View('profile');
+            var p = new Player("mike");
+            p.addPoints(100);
+
+            myProfile.populate(p);
+          });
+
+          </code></pre>
+        </section>
+        <section>
+          <h2>The Controller</h2>
+          <img class="bullet-image" src="../img/mike/ps_controller_vector__by_caeno-d5ochm8.png" />
+          <ul>
+            <li>Glue code</li>
+            <ul><li>decides what data we need</li></ul>
+            <ul><li>decides what to display</li></ul>
+            <ul><li>ties Model to the Views</li></ul>
+            <li>Can be hierarchical</li>
+            <ul><li>main controller (router)</li></ul>
+            <ul><li>page controllers</li></ul>
+            <li>responsible for flow of control</li>
+          </ul>
+        </section>
+        <section>
+          <pre><code>         function Controller(view, model) {
+            this.view = view;
+            this.model = model;
+          }
+
+          Controller.prototype.playGame = function() {
+            this.model.restore();
+            this.view.populate(this.model);
+            this.model.addScore(1000);
+            this.endGame();
+          };
+
+          Constroller.prototype.endGame = function() {
+            this.view.populate(this.model);
+            this.model.save();
+          };
+
+          var gameController = new Controller(new Player(), new View('profile'));
+          gameController.playGame();
+          </code></pre>
+        </section>
+        <section>
+          <h2>Router</h2>
+          <img class="bullet-image" src="../img/mike/eye-of-sauron.jpg" />
+          <ul>
+            <li>Application Overlord</li>
+            <ul><li>initialization</li></ul>
+            <ul><li>flow of control</li></ul>
+            <ul><li>error handling, sometimes</li></ul>
+            <li>Sometimes just called "App" object</li>
+            <li>Offloads work to sub controllers</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Tie it all together</h2>
+          <pre><code>         function Router() {
+            this.player = new Player();
+            this.profileView = new View('profile');
+            this.gameController = new Controller(this.profileView, this.player);
+          }
+
+          Router.prototype.route = function(route) {
+            if (route === 'play')
+              gameController.playGame();
+            } else {
+              console.log('Unrecognized route');
+            }
+          };
+
+          document.addEventListener('DOMContentLoaded', function() {
+            var myRouter = new Router();
+            myRouter.route('play');
+          });
+          </code></pre>
+        </section>
+        <section>
+          <h2>Best Practices</h2>
+          <img class="bullet-image" src="../img/mike/browserWars2.png" />
+          <ol>
+            <li>Don't invent your own</li>
+            <li>Try out a few<br />
+              <a href="http://backbonejs.org/">Backbone</a><br />
+              <a href="http://angularjs.org/">Angular</a><br />
+              <a href="http://emberjs.com/">Ember</a><br />
+            </li>
+            <li>Use only what you like</li>
+            <li>Eventually, make your own</li>
+          </ol>
+        </section>
+      </div>
+    </div>
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        dependencies: [
+           { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        ],
+      });
+    </script>
+  </body>
+</html>
+
