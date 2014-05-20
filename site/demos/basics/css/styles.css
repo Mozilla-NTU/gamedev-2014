@@ -1,0 +1,21 @@
+body {
+  background-image: url(../img/clouds.jpg);
+}
+
+#stage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#fps {
+  position: fixed;
+  top: 0;
+  height: 0;
+  z-index: 100;
+  font-size: 100px;
+  color: yellow;
+  text-shadow: 2px 4px 3px rgba(0,0,0,1);
+}
