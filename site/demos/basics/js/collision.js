@@ -15,8 +15,8 @@ function Ball(stage) {
   this.x = (Math.random() * window.innerWidth) | 0;
   this.y = (Math.random() * window.innerHeight) | 0;
 
-  this.vx = (Math.random() * 200) | 0;
-  this.vy = (Math.random() * 200) | 0;
+  this.vx = -200 + (Math.random() * 400) | 0;
+  this.vy = -200 + (Math.random() * 400) | 0;
 }
 
 Ball.prototype.update = function (delta) {
@@ -29,8 +29,8 @@ Ball.prototype.update = function (delta) {
     this.vx = -this.vx;
   }
   this.y += (this.vy * delta) / 1000;
-  if (this.y > window.innerWidth - 60) {
-    this.y = window.innerWidth - 60;
+  if (this.y > window.innerWidth - 120) {
+    this.y = window.innerWidth - 120;
     this.vy = -this.vy;
   } else if (this.y < 0) {
     this.y = 0;
