@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#clouds {
+  background-image: url(../img/clouds.jpg);
+}
+
+#clouds #stage {
+ background-color: transparent;
+}
+
+#stage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: black;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100%;
+  font-size: 30px;
+}
+
+#loading-bar {
+  margin: 10px 20%;
+  height: 20px;
+  background-color: gray;
+  border-radius: 7px;
+  overflow: hidden;
+}
+  #progress {
+    background-color: green;
+    width: 0;
+    height: 100%;
+    transition: width .3s ease-in-out;
+  }
+
+#fps {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  height: 0;
+  z-index: 100;
+  font-size: 100px;
+  color: yellow;
+  text-shadow: 2px 4px 3px rgba(0,0,0,1);
+}
+
+.particle {
+  background-image: url(../img/patrick-star10.gif);
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  z-index: 100000;
+  bottom: 100%;
+}
+
+.particle.fall {
+  transition: bottom 1s ease-in;
+  bottom: -50px;
+}
+
+.ball {
+  border-radius: 40px;
+  height: 60px;
+  width: 60px;
+  background-color: red;
+  position: fixed;
+}
+
+.ball.colliding {
+  background-color: green;
+}
+
+div.field {
+  background-image: url(../img/soccer-field.jpg);
+}
+
+div.soccer {
+  position: fixed;
+  background-image: url(../img/soccer.gif);
+  height: 150px;
+  width: 150px;
+}
+
+.loading {
+  display: inline-block;
+  width: 25%;
+  height: 25%;
+}

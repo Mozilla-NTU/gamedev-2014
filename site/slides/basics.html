@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Game Dev Basics</title>
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/mike/custom.css">
+    <link rel="stylesheet" href="../css/theme/beige.css" id="theme">
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1 id="hot-tip">HOT TIP!<img class="left" src="../img/mike/Meet-the-Firefox-OS-Mascot-a-Fox-That-s-on-Fire.png" /><img class="right" src="../img/mike/Meet-the-Firefox-OS-Mascot-a-Fox-That-s-on-Fire.png" /></h1>
+          <h2>Command-T, fast file open</h2>
+          <img class="bullet-image" src="../img/mike/File stack-resized-600.png" />
+          <ul>
+          <li>Big project with many folders, many tabs</li>
+          <li>Cmd-T, start typing file name</li>
+          <ul><li>Textmate and Sublime Text have it</li></ul>
+          <ul><li>vim and emacs have plugins</li></ul>
+          <ul><li>even <a href="https://github.com/mozilla-b2g/gaia/">Github</a> implemented</li></ul>
+        </section>
+        <section>
+          <h2>Game Loop</h2>
+          <img style="border-radius: 100px; position: relative; left: -60px" class="bullet-image" src="../img/mike/time-travel.jpg" />
+          <ul>
+            <li>Engine room of your game</li>
+            <li>Iterative as fast as possible</li>
+            <li>2 Parts for each: </li>
+            <ul><li>Ticking - updating game state</li></ul>
+            <ul><li>Drawing - display game state to screen</li></ul>
+            <li>In HTML5, we use requestAnimationFrame</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Game Loop - cont.</h2>
+          <pre><code>
+function singleStepOfGameLoop() {
+  updateGameState();
+  drawEverything();
+  requestAnimationFrame(singleStepOfGameLoop);
+}
+
+// kick us off
+singleStepOfGameLoop();
+          </code></pre>
+        </section>
+        <section>
+          <h2>Tick Loop - cont.</h2>
+          <img class="bullet-image" src="../img/mike/how-to-avoid-traffic-jams-35319_2.jpg" />
+          <ul>
+            <li>Question: </li>
+            <ul><li>what happens when things slow down?</li></ul>
+            <ul><li>are you tracking time???</li></ul>
+          <ul>
+          </ul>
+        </section>
+        <section>
+          <h2>Game Loop - cont.</h2>
+          <pre><code>
+function singleStepOfGameLoop() {
+  var delta = getMsSinceLastUpdate()
+  while (delta > 16) {
+    updateGameState();
+    delta = delta - 16
+  }
+  drawEverything();
+  requestAnimationFrame(singleStepOfGameLoop);
+}
+
+// kick us off
+singleStepOfGameLoop();
+          </code></pre>
+        </section>
+        <section>
+          <h2>Game Loop - cont.</h2>
+          <img class="bullet-image" src="../img/mike/how-to-avoid-traffic-jams-35319_2.jpg" />
+          <ul>
+            <li>Slowdown - no delta</li>
+            <ul><li><a href="../demos/basics/tick-nodelta.html">check it out!</a></li></ul>
+            <li>Slowdown - now with delta tracking!</li>
+            <ul><li><a href="../demos/basics/tick-delta.html">check it out!</a></li></ul>
+          </ul>
+        </section>
+        <section>
+          <h1>Questions?</h1>
+          <img style="border:none; box-shadow:none; max-width: 200px"  src="../img/mike/HTML5Question2_2.png" />
+        </section>
+        <section>
+          <h2>Object Pools</h2>
+          <img style="border-radius: 10px;" class="bullet-image" src="../img/mike/crowded-pool.jpg" />
+          <ul>
+            <li>Allocating memory in JavaScript is easy</li>
+            <ul><li>deallocating is even easier</li></ul>
+            <li>but... GARBAGE COLLECTION!</li>
+            <ul><li>no control over when</li></ul>
+            <ul><li>worst enemy, causes lag</li></ul>
+            <li>For example, particles</li>
+            <ul><li>lots of little moving objects</li></ul>
+            <ul><li></li></ul>
+          </ul>
+        </section>
+        <section>
+          <h2>Object Pool - without</h2>
+          <pre><code>
+function emitParticle(x, y) {
+  var p = new Particle();
+  p.x = x;
+  p.y = y;
+  p.animate();
+}
+          </code></pre>
+        </section>
+        <section>
+          <h2>Object Pool - without</h2>
+          <pre><code>
+funtion ParticlePool() {
+  this.particles = []
+  for (var i = 0; i < 100; i++) {
+    particles[i] = new Particle();
+  }
+}
+
+ParticlePool.prototype.get = function() {
+  return this.particles.pop();
+}
+
+ParticlePool.prototype.release = function(particle) {
+  this.particles.push(particle);
+}
+
+          </code></pre>
+        </section>
+        <section>
+          <h2>Object Pool - without</h2>
+          <pre><code>
+function emitParticle(pool, x, y) {
+  var p = pool.get();
+  p.x = x;
+  p.y = y;
+  p.animate();
+  // return so we can release it later
+  return p;
+}
+
+// then sometime later
+function onParticleComplete(pool, particle) {
+  pool.release(particle);
+}
+          </code></pre>
+        </section>
+        <section>
+          <h2>Object Pool</h2>
+          <img class="bullet-image" src="../img/mike/garbage.png" />
+          <ul>
+            <li>Particles, no pool</li>
+            <ul><li><a href="../demos/basics/nopools.html">check it out!</a></li></ul>
+            <li>Particles, now with added pooling!</li>
+            <ul><li><a href="../demos/basics/pools.html">check it out!</a></li></ul>
+          </ul>
+        </section>
+        <section>
+          <h1>Questions?</h1>
+          <img style="border:none; box-shadow:none; max-width: 200px"  src="../img/mike/HTML5Question2_2.png" />
+        </section>
+        <section>
+          <h2>Physics</h2>
+          <img style="border-radius: 10px;" class="bullet-image" src="../img/mike/Newton-Apple.jpg" />
+          <ul>
+            <li>Objects have to move realistically</li>
+            <li>But how??</li>
+            <ul><li>use MATHS silly</li></ul>
+            <p><a href="../demos/basics/physics.html">Let's see MATHS</a></p>
+          </ul>
+        </section>
+        <section>
+          <h1>Questions?</h1>
+          <img style="border:none; box-shadow:none; max-width: 200px"  src="../img/mike/HTML5Question2_2.png" />
+        </section>
+        <section>
+          <h2>Collision Detection</h2>
+          <img style="border-radius: 10px;" class="bullet-image" src="../img/mike/stock-footage-businessman-on-phone-to-insurance-company-whilst-inspecting-damage-to-car-in-accident-shot-on-canon.png" />
+          <ul>
+            <li>Ojects have to interact realistically</li>
+            <li>But how??</li>
+            <ul><li>use MATHS dummy</li></ul>
+            <p><a href="../demos/basics/collision.html">Let's see MATHS</a></p>
+          </ul>
+        </section>
+        <section>
+          <h1>Questions?</h1>
+          <img style="border:none; box-shadow:none; max-width: 200px"  src="../img/mike/HTML5Question2_2.png" />
+        </section>
+        <section>
+          <h2>Resource Loading</h2>
+          <img style="" class="bullet-image"  src="../img/mike/loading-7b6dc55620a355b55b835f6b4c300f9b.gif" />
+          <ul>
+            <li>HTML5 games aren't packaged</li>
+            <ul><li>they load, just like a webpage</li></ul>
+            <li>Media (images, sounds), load async</li>
+            <ul><li>hard to know when everything is ready</li></ul>
+            <ul><li>especially in JavaScript</li></ul>
+            <ul><li></li></ul>
+          </ul>
+        </section>
+        <section>
+          <h2>Resource Loading</h2>
+          <pre><code>
+var img = new Image();
+img.onload = function() { console.log('yay?'); }
+img.src = 'http://fake.image.url/cats.png'
+startGame();
+          </code></pre>
+          <ul><p><a href="../demos/basics/loading-basic.html">WAT?</a></p></ul>
+        </section>
+        <section>
+          <h2>Let's add progress</h2>
+          <pre><code>function loadNextImage() {
+  if (count === waitingFor) {
+    startGame();
+    return;
+  }
+
+  var img = new Image();
+  img.src = getAnotherImageUrl();
+
+  img.onload = loadNextImage;
+  count++;
+  updateProgressBar(count);
+}
+
+// kick it off
+loadNextImage();
+          </code></pre>
+          <ul><p><a href="../demos/basics/loading-better.html">Hmmmmm</a></p></ul>
+        </section>
+        <section>
+          <h2>smooooooth</h2>
+          <pre><code>
+function onLoadComplete() {
+  count++;
+  updateProgressBar(count);
+  if (count === waitingFor) {
+    startGame();
+  }
+}
+
+function loadImages() {
+  for (var i = 0; i < total; i++) {
+    var img = new Image();
+    img.src = getAnotherImageUrl();
+    img.onload = onLoadComplete;
+  }
+}
+          </code></pre>
+          <ul><p><a href="../demos/basics/loading.html">Boom</a></p></ul>
+        </section>
+        <section>
+          <h1>Questions?</h1>
+          <img style="border:none; box-shadow:none; max-width: 200px"  src="../img/mike/HTML5Question2_2.png" />
+        </section>
+      </div>
+    </div>
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        dependencies: [
+          { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        ],
+      });
+    </script>
+  </body>
+</html>
+
