@@ -1,4 +1,9 @@
 body {
+  margin: 0;
+  padding: 0;
+}
+
+#clouds {
   background-image: url(../img/clouds.jpg);
 }
 
@@ -8,9 +13,11 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
+  background-color: black;
 }
 
 #fps {
+  pointer-events: none;
   position: fixed;
   top: 0;
   height: 0;
@@ -18,4 +25,18 @@ body {
   font-size: 100px;
   color: yellow;
   text-shadow: 2px 4px 3px rgba(0,0,0,1);
+}
+
+.particle {
+  background-image: url(../img/patrick-star10.gif);
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  z-index: 100000;
+  bottom: 100%;
+}
+
+.particle.fall {
+  transition: bottom 1s ease-in;
+  bottom: -50px;
 }
