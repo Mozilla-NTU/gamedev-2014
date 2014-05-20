@@ -14,7 +14,26 @@ body {
   bottom: 0;
   right: 0;
   background-color: black;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100%;
+  font-size: 30px;
 }
+
+#loading-bar {
+  margin: 10px 20%;
+  height: 20px;
+  background-color: gray;
+  border-radius: 7px;
+  overflow: hidden;
+}
+  #progress {
+    background-color: green;
+    width: 0;
+    height: 100%;
+    transition: width .3s ease-in-out;
+  }
 
 #fps {
   pointer-events: none;
@@ -62,4 +81,10 @@ div.soccer {
   background-image: url(../img/soccer.gif);
   height: 150px;
   width: 150px;
+}
+
+.loading {
+  display: inline-block;
+  width: 25%;
+  height: 25%;
 }
