@@ -69,7 +69,7 @@ Ball.prototype.update = function (delta) {
 }
 
 Ball.prototype.draw = function(ctx) {
-  ctx.drawImage(this.image, this.x|0, this.y|0, this.width, this.height);
+  ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
 };
 
 function Game(stage) {
