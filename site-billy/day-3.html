@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Game Struture and Flow</title>
+    <meta name="description" content="">
+    <meta name="author" content="Billy Lamberta, lamberta.org">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- custom additions -->
+    <link rel="stylesheet" href="css/my-style.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = 'css/print/pdf.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        
+        <section>
+          <h2>Some Game Structure</h2>
+	  <h3>Catch the Bird!</h3>
+	  <img style="height:400px;" src="./assets/day-3/cover.png">
+	  <h4>Code: <a href="http://bit.ly/rpg-gameflow">bit.ly/rpg-gameflow</a></h4>
+          <p><small>Presented by <a href="http://lamberta.org">Billy Lamberta</a></small></p>
+        </section>
+
+	<section>
+	  <h3><em class="highlight">Added Stuff from RPG Basic</em></h3>
+	  <ul>
+	    <li><h3>Save Game</h3></li>
+	    <li><h3>Menu Buttons</h3></li>
+	    <li><h3>Scene Graph</h3></li>
+	    <li><h3>Title Screen</h3></li>
+	    <li><h3>End Game Condition</h3></li>
+	    <li><h3>Restart</h3></li>
+	  </ul>
+	</section>
+	
+	<section>
+	  <h2>Saving the Game State</h2>
+	  <p>(with localStorage)</p>
+	   <pre><code class="javascript">  window.localStorage.setItem('foo', bar);
+  var bar = window.localStorage.getItem('foo');
+
+  try {
+    window.localStorage['foo'] = bar;
+    var foo = window.localStorage['foo'];
+  } catch (err) {
+    //handle error ...
+  }</code></pre>
+	  <aside class="notes">
+	    Quick background on localStorage and sessionStorage.<br/>
+	    Access depends on browser cookie policy, you should check.
+	  </aside>
+	</section>
+
+	<section>
+	  <h3>Saving the Game State</h3>
+	  <p>Save: Serialize object properties to a JSON string then store.</p>
+	   <pre><code class="javascript">  try {
+    //{x: 45, y: 67} => "{\"x\":45,\"y\":67}"
+    var attrStr = JSON.stringify({
+      x: sprite.x,
+      y: sprite.y
+    });
+    window.localStorage.setItem('spritePos', attrStr);
+    message.innerHTML = "Game saved!"
+  } catch (err) {
+    message.innerHTML = "Unable to save game."
+  }</code></pre>
+          <p>Read: If there, parse object from JSON and query properties.</p>
+	  <pre><code class="javascript">  try {
+    var spriteAttrStr = window.localStorage.getItem('spritePos');
+  } catch (err) {
+    console.log("localStorage not supported.");
+  }
+  if (!spriteAttrStr) {
+    //default position
+    sprite1.x = 128;
+    sprite1.y = 384;
+  } else {
+    //saved position
+    var spriteAttr = JSON.parse(spriteAttrStr);
+    sprite.x = spriteAttr.x;
+    sprite.y = spriteAttr.y;
+  }</code></pre>
+	  <aside class="notes">
+	    Quick background on localStorage and sessionStorage.<br/>
+	    Access depends on browser cookie policy, you should check.
+	  </aside>
+	</section>
+
+        <section>
+	  <h2>Menu Buttons</h2>
+	  <h3>Start and Save using <em class="highlight">HTML</em> and <em class="highlight">CSS</em></h3>
+	  <aside class="notes">
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>A Simple Scene Graph</h2>
+	  <p>Draw top to bottom, left to right, depth first.</p>
+	  <img class="story-image" src="./assets/day-3/scene-graph.png">
+	  <p>Add a <em class="highlight">DrawNode</em> class.</p>
+	</section>
+	
+	<section>
+	  <h2>Simple Game Flow</h2>
+	  <ol>
+	    <li>Application Start</li>
+	    <li>Load Assets</li>
+	    <li>Display <em class="highlight">Title Screen</em></li>
+	    <li>Wait for User input</li>
+	    <li>Setup / Load</li>
+	    <li><em class="highlight-orange">Play</em></li>
+	    <li><em class="highlight">End Condition</em> Met</li>
+	    <li>Clean up</li>
+	    <li>Remove Game Screen</li>
+	    <li>Goto <em class="highlight">Step 3</em></li>
+	  </ol>
+	  <img style="height:200px;" src="./assets/day-3/mario.png">
+	  <aside class="notes">
+	    3 panel image of beginning middle end of game. mario?
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>Let’s Add a Title Screen!</h2>
+	  <img class="story-image" src="./assets/day-3/title-background.png"><br/>
+	  <small>(Game may not appear as pictured.)</small>
+	  <aside class="notes">
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>End Condition and Restart</h2>
+	  <p>Check for sprite overlap</p>
+	  <pre><code class="javascript">  function checkEndGame (sprite) {
+    var BOX_SIZE = 50; //size to catch
+    if (sprite.x > bird.x &&
+        sprite.x < bird.x + BOX_SIZE &&
+        sprite.y > bird.y &&
+        sprite.y < bird.y + BOX_SIZE) {
+      gameRunning = false;
+      rootNode.addChild(titleScreen);
+      rootNode.draw(ctx);
+      message.innerHTML = "You caught the bird!";
+      window.removeEventListener('keydown', keyListener.onKeyDown, false);
+      window.removeEventListener('keyup', keyListener.onKeyUp, false);
+      //reset sprites
+      bird.x = -bird.width;
+      bird.y = 160;
+      sprite.play(0);
+      sprite.stop();
+      sprite.vx = sprite.vy = 0;
+      startSpritePosition(sprite);
+    }
+  }</code></pre>
+	  <aside class="notes">
+	  </aside>
+	</section>
+
+	<section>
+	  <h2>Updating Sprite Position</h2>
+	  <ul>
+	    <li><h3>Move the bird</h3></li>
+	    <li><h3>Screen-wrap sprite-1</h3></li>
+	    <li><h3>Sprite-2 look at sprite-1</h3></li>
+	  </ul>
+	</section>
+	
+        <section>
+	  <h1>Thanks!</h1>
+	  <!--<img class="story-image" src="./assets/day-3/title-background.png">-->
+          <h4><em class="highlight-orange">Billy Lamberta</em> / <a href="http://lamberta.org">lamberta.org</a></h4>
+        </section>
+	
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script src="js/reveal-setup.js"></script>
+  </body>
+</html>
