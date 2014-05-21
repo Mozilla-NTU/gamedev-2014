@@ -42,10 +42,12 @@
         </section>
 
 	<section>
+	  <h3><em class="highlight">Added Stuff from RPG Basic</em></h3>
 	  <ul>
 	    <li><h3>Save Game</h3></li>
 	    <li><h3>Menu Buttons</h3></li>
 	    <li><h3>Scene Graph</h3></li>
+	    <li><h3>Title Screen</h3></li>
 	    <li><h3>End Game Condition</h3></li>
 	    <li><h3>Restart</h3></li>
 	  </ul>
@@ -107,15 +109,16 @@
 
         <section>
 	  <h2>Menu Buttons</h2>
-	  <h3>Start, Save</h3>
+	  <h3>Start and Save using <em class="highlight">HTML</em> and <em class="highlight">CSS</em></h3>
 	  <aside class="notes">
 	  </aside>
 	</section>
 
 	<section>
 	  <h2>A Simple Scene Graph</h2>
-	  <img class="story-image" src="./assets/day-3/scene-graph.png">
 	  <p>Draw top to bottom, left to right, depth first.</p>
+	  <img class="story-image" src="./assets/day-3/scene-graph.png">
+	  <p>Add a <em class="highlight">DrawNode</em> class.</p>
 	</section>
 	
 	<section>
@@ -148,14 +151,44 @@
 
 	<section>
 	  <h2>End Condition and Restart</h2>
-	  <p>(add to RPG Basic)</p>
+	  <p>Check for sprite overlap</p>
+	  <pre><code class="javascript">  function checkEndGame (sprite) {
+    var BOX_SIZE = 50; //size to catch
+    if (sprite.x > bird.x &&
+        sprite.x < bird.x + BOX_SIZE &&
+        sprite.y > bird.y &&
+        sprite.y < bird.y + BOX_SIZE) {
+      gameRunning = false;
+      rootNode.addChild(titleScreen);
+      rootNode.draw(ctx);
+      message.innerHTML = "You caught the bird!";
+      window.removeEventListener('keydown', keyListener.onKeyDown, false);
+      window.removeEventListener('keyup', keyListener.onKeyUp, false);
+      //reset sprites
+      bird.x = -bird.width;
+      bird.y = 160;
+      sprite.play(0);
+      sprite.stop();
+      sprite.vx = sprite.vy = 0;
+      startSpritePosition(sprite);
+    }
+  }</code></pre>
 	  <aside class="notes">
 	  </aside>
+	</section>
+
+	<section>
+	  <h2>Updating Sprite Position</h2>
+	  <ul>
+	    <li><h3>Move the bird</h3></li>
+	    <li><h3>Screen-wrap sprite-1</h3></li>
+	    <li><h3>Sprite-2 look at sprite-1</h3></li>
+	  </ul>
 	</section>
 	
         <section>
 	  <h1>Thanks!</h1>
-	  <img class="story-image" src="./assets/day-3/title-background.png">
+	  <!--<img class="story-image" src="./assets/day-3/title-background.png">-->
           <h4><em class="highlight-orange">Billy Lamberta</em> / <a href="http://lamberta.org">lamberta.org</a></h4>
         </section>
 	
