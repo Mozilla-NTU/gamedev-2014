@@ -15,6 +15,23 @@
         </section>
         <section>
           <section>
+            <h2>HTML5 audio and video</h2>
+          </section>
+          <section>
+            <h2>Sound Effects</h2>
+            <div>http://j.mp/game-sfx</div>
+          </section>
+          <section>
+            <h2>Source tags</h2>
+            <div><code>&lt;video&gt;</code> is similar</div>
+            <pre><code>
+  &lt;audio controls&gt;
+    &lt;source src="foo.ogg" type="audio/ogg"/&gt;
+  &lt;/audio&gt;
+            </code></pre>
+            <div>https://developer.mozilla.org/en/docs/Web/HTML/Element/audio</div>
+          </section>
+          <section>
           <h2>Source tags</h2>
           Both &lt;audio&gt; and &lt;video&gt; tags support nested
           &lt;source&gt; tags of different encodings.
@@ -26,29 +43,8 @@
   (or possibly audio tags).
 &lt;/audio&gt;
           </code></pre>
-        </section>
-        <section>
-          <h2>In JS</h2>
-          <pre><code contenteditable class="javascript" style="font-size: 20px">
-var sfx = new Audio("../sound/jacob/sfx.wav");
-sfx.play;
-          </code></pre>
-        </section>
-        <section>
-          <h2>Feature Detecting Codec Support</h2>
-          <pre><code>
-function canPlayOgg () {
-  var a = document.createElement('audio');
-  return !!(a.canPlayType &amp;&amp;
-            a.canPlayType('audio/ogg; codecs="vorbis"')
-             .replace(/no/, ''));
-};
-
-canPlayOgg(); // true or false
-          </code></pre>
-          <a href="http://diveintohtml5.info/everything.html#audio">
-            More feature detection
-          </a>
+          <br />
+          <div>Compatibility table at: https://developer.mozilla.org/en-US/docs/HTML/Supported_media_formats</div>
         </section>
         <section>
           <h2>Audio</h2>
@@ -66,165 +62,319 @@ canPlayOgg(); // true or false
           </pre>
         </section>
         <section>
-          <h2>Out of Control</h2>
-          <audio id="noControls">
-            <source src="../media/lateralus_clip.ogg" type="audio/ogg"/>
-            <source src="../media/lateralus_clip.mp3" type="audio/mp3"/>
-          </audio>
-          <button id="play">Play/Pause</button>
-          <button id="volUp">Volume+</button>
-          <button id="volDown">Volume-</button>
-          <input id="seek" type="range" value="" max=""/>
-          <script>
-            var audio = document.getElementById("noControls");
-            var play = document.getElementById("play");
-            var volUp = document.getElementById("volUp");
-            var volDown = document.getElementById("volDown");
-            var seek = document.getElementById("seek");
-            var playing = false;
+          <h2>In JS</h2>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var music = new Audio("../sound/media/lateralus_clip.ogg");
+music.play();
+music.pause();
+          </code></pre>
+        </section>
+        <section>
+          <h2>In JS</h2>
+          <div><button id="2-start-music">start music</button>    <button id="2-pause-music">stop music</button></div>
+          <pre><code contenteditable class="xml" style="font-size: 20px">
+&lt;button id="2-start-music"&gt;start music&lt;/button&gt;   &lt;button id="2-pause-music"&gt;stop music&lt;/button&gt;
+          </code></pre>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var music = new Audio("../media/strangers.ogg");
+var startButton = document.getElementById("2-start-music");
+var pauseButton = document.getElementById("2-pause-music");
 
-            play.addEventListener("click", function (e) {
-              playing = !playing;
-              if (playing) {
-                audio.play();
-              } else {
-                audio.pause();
-              }
+startButton.addEventListener("click", function(){
+  music.play();  
+});
+
+pauseButton.addEventListener("click", function(){
+  music.pause();
+});
+          </code></pre>
+          <script type="text/javascript">
+          (function() {
+            var music = new Audio("../media/strangers.ogg");
+            var startButton = document.getElementById("2-start-music");
+            var pauseButton = document.getElementById("2-pause-music");
+            startButton.addEventListener("click", function(){
+              music.play();  
             });
-
-            function changeVol (up) {
-              if (up) {
-                audio.volume += 0.1;
-              } else {
-                audio.volume -= 0.1;
-              }
-            };
-
-            volUp.addEventListener("click", function () {
-              changeVol(true);
+            pauseButton.addEventListener("click", function(){
+              music.pause();
             });
-
-            volDown.addEventListener("click", function () {
-              changeVol(false);
-            });
-
-            audio.addEventListener("timeupdate", function (e) {
-              seek.value = audio.currentTime;
-            });
-
-            seek.min = seek.value = audio.seekable.start(0);
-            seek.max = audio.seekable.end(0);
-            seek.addEventListener("change", function (e) {
-              audio.currentTime = seek.value;
-            });
+          })();
           </script>
         </section>
         <section>
-          <pre><code>
-&lt;audio id="noControls"&gt;
-  &lt;source src="../media/lateralus_clip.ogg" type="audio/ogg"/&gt;
-  &lt;source src="../media/lateralus_clip.mp3" type="audio/mp3"/&gt;
-&lt;/audio&gt;
-&lt;button id="play">Play/Pause&lt;/button&gt;
-&lt;button id="volUp">Volume+&lt;/button&gt;
-&lt;button id="volDown">Volume-&gt;/button&gt;
-&lt;input id="seek" type="range" value="" max=""/&gt;
-&lt;script&gt;
-  var audio = document.getElementById("noControls");
-  var play = document.getElementById("play");
-  var volUp = document.getElementById("volUp");
-  var volDown = document.getElementById("volDown");
-  var seek = document.getElementById("seek");
-  var playing = false;
-
-  play.addEventListener("click", function (e) {
-    playing = !playing;
-    if (playing) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-  });
-
-  function changeVol (up) {
-    if (up) {
-      audio.volume += 0.1;
-    } else {
-      audio.volume -= 0.1;
-    }
-  };
-
-  volUp.addEventListener("click", function () {
-    changeVol(true);
-  });
-
-  volDown.addEventListener("click", function () {
-    changeVol(false);
-  });
-
-  audio.addEventListener("timeupdate", function (e) {
-    seek.value = audio.currentTime;
-  });
-
-  seek.min = seek.value = audio.seekable.start(0);
-  seek.max = audio.seekable.end(0);
-  seek.addEventListener("change", function (e) {
-    audio.currentTime = seek.value;
-  });
-&lt;/script&gt;
+          <h2>Audio object properties</h2>
+          <ul>
+            <li><code>volume</code> set from 0 to 1</li>
+            <li><code>currentTime</code> read for currentTime in seconds. Set to seek.</li>
+            <li><code>loop</code> boolean. Set to <code>true</code> for background music</li>
+            <li><code>playbackRate</code> 1.0 is normal speed. 2.0 is fast. Negative is backward</li>
+          </ul>
+          <br />
+        </section>
+        <section>
+          <h2>Playing with playbackRate</h2>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+fastButton.addEventListener("click", function(){
+  music.playbackRate = 2.0;
+  music.play();
+});
+slowButton.addEventListener("click", function(){
+  music.playbackRate = 0.5;
+  music.play();
+});
+pauseButton.addEventListener("click", function(){
+  music.pause();
+});
           </code></pre>
+          <div><button id="3-start-fast-music">fast music</button>  <button id="3-start-slow-music">slow music</button> <button id="3-pause-music">stop music</button></div>
+          <script type="text/javascript">
+          (function() {
+            var music = new Audio("../media/strangers.ogg");
+            var fastButton = document.getElementById("3-start-fast-music");
+            var slowButton = document.getElementById("3-start-slow-music");
+            var pauseButton = document.getElementById("3-pause-music");
+
+            fastButton.addEventListener("click", function(){
+              music.playbackRate = 2.0;
+              music.play();
+            });
+            slowButton.addEventListener("click", function(){
+              music.playbackRate = 0.5;
+              music.play();
+            });
+            pauseButton.addEventListener("click", function(){
+              music.pause();
+            });
+          })();
+          </script>
+
+        </section>
+        <section>
+          <h2>playing with currentTime</h2>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+playButton.addEventListener("click", function(){
+  music.play();
+});
+resetButton.addEventListener("click", function(){
+  music.currentTime = 0;
+  music.play();
+});
+pauseButton.addEventListener("click", function(){
+  music.pause();
+});
+          </code></pre>
+
+          <div><button id="4-start-music">play music</button>  <button id="4-reset-music">reset music</button> <button id="4-pause-music">stop music</button></div>
+          <script type="text/javascript">
+          (function() {
+            var music = new Audio("../media/strangers.ogg");
+            var playButton = document.getElementById("4-start-music");
+            var resetButton = document.getElementById("4-reset-music");
+            var pauseButton = document.getElementById("4-pause-music");
+
+            playButton.addEventListener("click", function(){
+              music.play();
+            });
+            resetButton.addEventListener("click", function(){
+              music.currentTime = 0;
+              music.play();
+            });
+            pauseButton.addEventListener("click", function(){
+              music.pause();
+            });
+          })();
+          </script>
         </section>
         <section>
           <h2>Events</h2>
-          <audio id="audioA" controls>
-            <source src="../media/lateralus_clip.ogg" type="audio/ogg"/>
-            <source src="../media/lateralus_clip.mp3" type="audio/mp3"/>
-          </audio>
-          <br>
-          <audio id="audioB" controls>
-            <source src="../media/lateralus_clip.ogg" type="audio/ogg"/>
-            <source src="../media/lateralus_clip.mp3" type="audio/mp3"/>
-          </audio>
-          <script>
-            var audioA = document.getElementById("audioA");
-            var audioB = document.getElementById("audioB");
-
-            audioA.addEventListener("ended", function () {
-              audioB.currentTime = 0;
-              audioB.play();
-            });
-
-            audioB.addEventListener("ended", function () {
-              audioA.currentTime = 0;
-              audioA.play();
-            });
-          </script>
-          <pre><code>
-            &lt;audio id="audioA" controls&gt;
-              &lt;source src="../media/lateralus_clip.ogg" type="audio/ogg"/&gt;
-              &lt;source src="../media/lateralus_clip.mp3" type="audio/mp3"/&gt;
-            &lt;/audio&gt;
-            &lt;br/&gt;
-            &lt;audio id="audioB" controls&gt;
-              &lt;source src="../media/lateralus_clip.ogg" type="audio/ogg"/&gt;
-              &lt;source src="../media/lateralus_clip.mp3" type="audio/mp3"/&gt;
-            &lt;/audio&gt;
-            &lt;script&gt;
-              var audioA = document.getElementById("audioA");
-              var audioB = document.getElementById("audioB");
-
-              audioA.addEventListener("ended", function () {
-                audioB.currentTime = 0;
-                audioB.play();
-              });
-
-              audioB.addEventListener("ended", function () {
-                audioA.currentTime = 0;
-                audioA.play();
-              });
-            &lt;/script&gt;
+          <div>http://www.w3schools.com/tags/ref_av_dom.asp</div>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+audio.addEventListener("canplay", function(){
+  audio.play();
+});
           </code></pre>
-          <p>More events at <a href="http://areweplayingyet.com/">Are We Playing Yet?</a></p>
+          <ul>
+            <li><code>canplay</code></li>
+            <li><code>canplaythrough</code></li>
+            <li><code>durationchange</code></li>
+            <li><code>timeupdate</code></li>
+            <li><code>play</code></li>
+            <li><code>ended</code></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Events</h2>
+          <pre><code contenteditable class="xml" style="font-size: 20px">
+&lt;div id="5-loaded"&gt;&lt;button id="5-start-music"&gt;  .... &lt;/div&gt;
+&lt;div id="5-loading"&gt; loading..... &lt;/div&gt;
+          </code></pre>
+
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var music = new Audio("../media/firebeatz.mp3");
+var loadedEl = document.getElementById("5-loaded");
+var loadingEl = document.getElementById("5-loading");
+loadedEl.style.display = "none";
+
+music.addEventListener("canplaythrough", function(){
+  loadingEl.style.display = "none";
+  loadedEl.style.display = "block";
+});
+          </code></pre>
+          <div id="5-loaded"><button id="5-start-music">play music</button>   <button id="5-pause-music">stop music</button></div>
+          <div id="5-loading"> loading..... </div>
+          <script type="text/javascript">
+          (function() {
+            var music = new Audio("../media/firebeatz.mp3");
+            var loadedEl = document.getElementById("5-loaded");
+            var loadingEl = document.getElementById("5-loading");
+            loadedEl.style.display = "none";
+            music.addEventListener("canplaythrough", function(){
+              loadingEl.style.display = "none";
+              loadedEl.style.display = "block";
+            });
+            var playButton = document.getElementById("5-start-music");
+            var pauseButton = document.getElementById("5-pause-music");
+
+            playButton.addEventListener("click", function(){
+              music.play();
+            });
+            pauseButton.addEventListener("click", function(){
+              music.pause();
+            });
+          })();
+          </script>
+        </section>
+        <section>
+          <h2>Events</h2>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var leftStep = new Audio("../media/SandL1.ogg");
+var rightStep = new Audio("../media/SandR1.ogg");
+
+playButton.addEventListener("click", function(){
+  playSteps(leftStep, rightStep);
+});
+
+pauseButton.addEventListener("click", function(){
+  leftStep.pause();
+  leftStep.currentTime = 0;
+  rightStep.pause();
+  rightStep.currentTime = 0;
+});
+
+function playSteps(step1, step2){
+  step1.addEventListener("ended", function(){
+    step2.play();
+  });
+  step2.addEventListener("ended", function(){
+    step1.play();
+  });
+  step1.play();
+}
+          </code></pre>
+          <div><button id="6-start-sfx">play sfx</button>   <button id="6-pause-sfx">stop sfx</button></div>
+          <script>
+          (function(){
+            var playButton = document.getElementById("6-start-sfx");
+            var pauseButton = document.getElementById("6-pause-sfx");
+
+            var leftStep = new Audio("../media/SandL1.ogg");
+            var rightStep = new Audio("../media/SandR1.ogg");
+
+            playButton.addEventListener("click", function(){
+              playSteps(leftStep, rightStep);
+            });
+
+            pauseButton.addEventListener("click", function(){
+              leftStep.pause();
+              leftStep.currentTime = 0;
+              rightStep.pause();
+              rightStep.currentTime = 0;
+            });
+
+            function playSteps(step1, step2){
+              step1.addEventListener("ended", function(){
+                step2.play();
+              });
+              step2.addEventListener("ended", function(){
+                step1.play();
+              });
+              step1.play();
+            }
+          })();
+          </script>
+        </section>
+        <section>
+          <h2>More events</h2>
+          <pre><code contenteditable class="xml" style="font-size: 20px">
+&lt;div id="7-time"&gt;&lt;/div&gt;
+          </code></pre>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var audio = new Audio("../media/firebeatz.mp3");
+var totalTime = "unknown";
+
+function updateTotalTime(){
+  totalTime = audio.duration | 0;
+}
+
+audio.addEventListener("durationchange", updateTotalTime);
+
+audio.addEventListener("timeupdate", function (e) {
+  var curTime = audio.currentTime | 0;
+  timeEl.innerHTML = curTime + " / " + totalTime;
+});
+          </code></pre>
+          <div><button id="7-start">play music</button>   <button id="7-stop">stop music</button> <div id="7-time"></div></div>
+          <script>
+          (function(){
+            var audio = new Audio("../media/firebeatz.mp3");
+            audio.addEventListener("durationchange", updateTotalTime);
+            var totalTime = "unknown";
+
+            var startButton = document.getElementById("7-start");
+            var stopButton = document.getElementById("7-stop");
+            var timeEl = document.getElementById("7-time");
+
+            function updateTotalTime(){
+              totalTime = audio.duration | 0;
+            }
+
+            startButton.addEventListener("click", function(){
+              audio.play();
+            });
+
+            stopButton.addEventListener("click", function(){
+              audio.pause();
+            });
+
+            audio.addEventListener("timeupdate", function (e) {
+              var curTime = audio.currentTime | 0;
+              timeEl.innerHTML = curTime + " / " + totalTime;
+            });
+          })()
+          </script>
+        </section>
+        <section>
+          <h2>Support for sound codecs</h2>
+          <ul>
+            <li><code>canPlayType</code></li>
+            <li>returns <code>probably, maybe, no,</code> or <code>""</code></li>
+            <li>http://www.w3schools.com/tags/av_met_canplaytype.asp</li>
+          </ul>
+          <pre><code>
+function canPlay(audio, type){
+  if (audio.canPlayType){
+    var canPlay = audio.canPlayType(type).replace(/no/, '') !== "";
+    return canPlay;
+  }
+}
+
+var a = document.createElement('audio');
+canPlay(a, "audio/ogg");     => true
+          </code></pre>
+          <a href="http://diveintohtml5.info/everything.html#audio">
+            More feature detection
+          </a>
         </section>
         <section>
           <h2>Video</h2>
@@ -242,8 +392,148 @@ canPlayOgg(); // true or false
         <section>
           <h2>Mixing Video and Canvas 2D</h2>
           <a href="http://html5doctor.com/demos/video-canvas-magic/demo2.html">Demo</a>
+          <br />
+          <div>code at http://html5doctor.com/video-canvas-magic/</div>
         </section>
+      </section>
+      <section>
+        <section>
+          <h2>Web Audio API</h2>
+          <small>http://caniuse.com/#feat=audio-api</small>
         </section>
+        <section>
+          <h2>Web Audio API</h2>
+          <div>Low level API for generating and manipulating audio data</div>
+        </section>
+        <section>
+          <h2>Sine Wave Generator</h2>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+var startButton = document.getElementById("8-start");
+var endButton = document.getElementById("8-stop");
+var context = new webkitAudioContext();
+var oscillator = context.createOscillator();
+oscillator.frequency.value = 200;
+
+var started = false;
+oscillator.frequency.value = 200;
+oscillator.connect(context.destination);   // destination is speaker
+
+startButton.addEventListener("click", function(){
+  if (started){ 
+    oscillator.connect(context.destination); 
+  } else {
+    oscillator.start(0);  
+    started = true;
+  }
+});
+
+endButton.addEventListener("click", function(){
+  oscillator.disconnect();
+});
+          </code></pre>
+
+          <div><button id="8-start">play wave</button>   <button id="8-stop">stop wave</button></div>
+          <script>
+          (function(){
+            var startButton = document.getElementById("8-start");
+            var endButton = document.getElementById("8-stop");
+            var context = new webkitAudioContext();
+            var oscillator = context.createOscillator();
+            
+            var started = false;
+            oscillator.frequency.value = 200;
+            oscillator.connect(context.destination);
+
+            startButton.addEventListener("click", function(){
+              if (started){ 
+                oscillator.connect(context.destination); 
+              } else {
+                oscillator.start(0);  
+                started = true;
+              }
+            });
+
+            endButton.addEventListener("click", function(){
+              oscillator.disconnect();
+            });
+          })();
+          </script>
+        </section>
+        <section>
+          <h2>Sine Wave Generator (cont'd)</h2>
+          <pre><code contenteditable class="javascript" style="font-size: 20px">
+minusButton.addEventListener("click", function(){
+  oscillator.frequency.value -= 20;              
+});
+
+plusButton.addEventListener("click", function(){
+  oscillator.frequency.value += 20;
+});            
+          </code></pre>
+
+          <div>
+            <button id="9-start">play wave</button>   <button id="9-stop">stop wave</button> 
+            <button id="9-minus">minus freq</button>   <button id="9-plus">plus freq</button> 
+          </div>
+          <script>
+          (function(){
+            var startButton = document.getElementById("9-start");
+            var minusButton = document.getElementById("9-minus");
+            var plusButton = document.getElementById("9-plus");
+            var endButton = document.getElementById("9-stop");
+
+            var started = false;
+            var context = new webkitAudioContext();
+            var oscillator = context.createOscillator();
+            oscillator.frequency.value = 200;
+
+            oscillator.connect(context.destination);
+
+            startButton.addEventListener("click", function(){
+              if (started){ 
+                oscillator.connect(context.destination); 
+              } else {
+                oscillator.start(0);  
+                started = true;
+              }
+            });
+
+            endButton.addEventListener("click", function(){
+              oscillator.disconnect();
+            });
+
+            minusButton.addEventListener("click", function(){
+              oscillator.frequency.value -= 20;              
+            });
+
+            plusButton.addEventListener("click", function(){
+              oscillator.frequency.value += 20;
+            });
+          })();
+          </script>
+        </section>
+        <section>
+          <h2>Web Audio Demos</h2>
+          <div>https://webaudiodemos.appspot.com/</div>
+        </section>
+        <section>
+          <h2>Web Audio Keyboard</h2>
+          <div>https://webaudiodemos.appspot.com/SynthTemplate/index.html</div>
+        </section>
+        <section>
+          <h2>Drum Machine</h2>
+          <div>http://webaudiodemos.appspot.com/MIDIDrums/index.html</div>
+        </section>
+        <section>
+          <h2>User input (tuner)</h2>
+          <div>https://webaudiodemos.appspot.com/pitchdetect/index.html</div>
+        </section>
+        <section>
+          <h2>User input (visualization)</h2>
+          <div>https://webaudiodemos.appspot.com/input/index.html</div>
+        </section>
+      </section>
+
       </div>
     </div>
     <script src="../lib/js/head.min.js"></script>
