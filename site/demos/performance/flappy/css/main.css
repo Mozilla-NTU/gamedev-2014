@@ -1,0 +1,142 @@
+body {
+  background: black;
+  margin: 0;
+  padding: 0;
+  /* background-image: url(../img/congruent_pentagon.png); */
+  background-image: url(../img/stardust.png);
+}
+
+#overlay {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#start-screen {
+  position: absolute;
+  z-index: 5000;
+  height: 100%;
+  width: 100%;
+  background-color: blue;
+}
+
+#start-screen button {
+  height: 80px;
+  width: 80px;
+  top: 100px;
+  position: absolute;
+  margin: auto;
+  top: 30%;
+  left: 0;
+  right: 0;
+}
+
+
+#container {
+  pointer-events: none;
+  box-sizing: padding-box;
+  border: 1px solid white;
+  width: 700px;
+  height: 400px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bird {
+  z-index: 5;
+  top: 0;
+  left:0;
+  background-image: url(../img/birdie.png);
+  width: 183px;
+  height: 168px;
+  position: absolute;
+}
+
+.bird.dumb {
+  z-index: 5;
+  top: 0;
+  left:0;
+  background-image: url(../img/little-dumb-bird.png);
+  width: 75px;
+  height: 51px;
+  position: absolute;
+}
+
+.bird.small {
+  z-index: 5;
+  top: 0;
+  left:0;
+  background-image: url(../img/dumb-bird.png);
+  width: 32px;
+  height: 32px;
+  position: absolute;
+}
+
+.cloud {
+  z-index: 1;
+  position: absolute;
+  left: -120px;
+  transition-property: transform;
+  transition-timing-function: linear;
+  transform: translateX(820px);
+}
+
+.cloud.small {
+  background-image: url(../img/small-cloud.png);
+  width: 130px;
+  height: 47px;
+}
+
+.cloud.med {
+  background-image: url(../img/med-cloud.png);
+  width: 200px;
+  height: 171px;
+}
+
+.cloud.large {
+  background-image: url(../img/large-cloud.png);
+  width: 170px;
+  height: 100px;
+}
+
+.pipe {
+  z-index: 10;
+  width: 100px;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: -120px;
+  background-image: url(../img/small-pipe.png);
+  transition-property: transform;
+  transition-timing-function: linear;
+  transform: translateX(820px);
+}
+
+.splash {
+  position: absolute;
+  top: 0;
+  left: -100px;
+  z-index: 9;
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  transition-property: transform;
+  transition-timing-function: linear;
+}
+
+#fps {
+  pointer-events: none;
+  z-index: 4000;
+  position: fixed;
+  top: 40px;
+  left: 170px;
+  font-size: 48px;
+  color: white;
+  width: 30px;
+  height: 30px;
+}
