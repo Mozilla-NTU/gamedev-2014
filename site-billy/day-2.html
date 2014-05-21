@@ -39,44 +39,45 @@
         
         <section>
           <h2>Animation Basics</h2>
-	  <h3>Using the HTML5 Canvas</h3>
-	  <img style="height: 400px;" src="./assets/day-2/cover.jpg">
+          <h3>Using the HTML5 Canvas</h3>
+          <img style="height: 400px;" src="./assets/day-2/cover.jpg"><br/>
+          Demos: <a href="http://bit.ly/anim-demos" target="_blank">bit.ly/anim-demos</a>
           <p>Presented by <a href="http://lamberta.org">Billy Lamberta</a></p>
         </section>
 
-	<section>
-	  <h2>What is Animation?</h2>
-	  <img class="story-image" src="./assets/day-2/horse-frames.jpg">
-	  <p><em>The Horse in Motion</em>. Eadweard Muybridge, 1878</p>
-	  <aside class="notes">
-	  </aside>
-	</section>
+        <section>
+          <h2>What is Animation?</h2>
+          <img class="story-image" src="./assets/day-2/horse-frames.jpg">
+          <p><em>The Horse in Motion</em>. Eadweard Muybridge, 1878</p>
+          <aside class="notes">
+          </aside>
+        </section>
 
-	<section>
-	  <h2>What is Animation?</h2>
-	  <img class="story-image" src="./assets/day-2/horse-motion.gif">
-	  <aside class="notes">
-	  </aside>
-	</section>
+        <section>
+          <h2>What is Animation?</h2>
+          <img class="story-image" src="./assets/day-2/horse-motion.gif">
+          <aside class="notes">
+          </aside>
+        </section>
 
-	<section>
-	  <h2>Hand-drawn Animation</h2>
-	  <ul>
-	    <li>Frame</li>
-	    <li>Sequence</li>
-	    <li>Speed</li>
-	  </ul>
-	  <br/>
-	  <img style="height:380px;" class="story-image" src="./assets/day-2/flip-book.gif">
-	  <p><em>Alice’s Flip Book</em>. Swamp Press, 1981</p>
-	  <aside class="notes">
-	  </aside>
-	</section>
-	
-	<section>
-	  <h2>Computer Animation</h2>
-	  <p>Simple render loop:</p>
-	  <code><pre>  FPS = 24
+        <section>
+          <h2>Hand-drawn Animation</h2>
+          <ul>
+            <li>Frame</li>
+            <li>Sequence</li>
+            <li>Speed</li>
+          </ul>
+          <br/>
+          <img style="height:380px;" class="story-image" src="./assets/day-2/flip-book.gif">
+          <p><em>Alice’s Flip Book</em>. Swamp Press, 1981</p>
+          <aside class="notes">
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Computer Animation</h2>
+          <p>Simple render loop:</p>
+          <code><pre>  FPS = 24
   MS_PER_FRAME = 1000/FPS
   
   while (true) {
@@ -85,8 +86,8 @@
     draw()
     sleep(MS_PER_FRAME)
   }</code></pre>
-	  <p>In JavaScript:</p>
-	  <code class="javascript"><pre>
+          <p>In JavaScript:</p>
+          <code class="javascript"><pre>
   var FPS = 24;
   var MS_PER_FRAME = 1000/FPS; //41.667
   
@@ -97,14 +98,14 @@
   }
   
   setInterval(drawFrame, MS_PER_FRAME);</code></pre>
-	  <aside class="notes">
-	  </aside>
-	</section>
+          <aside class="notes">
+          </aside>
+        </section>
 
-	<section>
-	  <h2>Canvas Animation</h2>
-	  <h4>Smooth loops with <em class="highlight">requestAnimationFrame</em></h4>
-	  <pre><code class="javascript">  var canvas = document.getElementById('myCanvas');
+        <section>
+          <h2>Canvas Animation</h2>
+          <h4>Smooth loops with <em class="highlight">requestAnimationFrame</em></h4>
+          <pre><code class="javascript">  var canvas = document.getElementById('myCanvas');
   var ctx = canvas.getContext('2d');
   var SCREEN_WIDTH = canvas.width;
   var SCREEN_HEIGHT = canvas.height;
@@ -119,42 +120,42 @@
   drawFrame();</code></pre>
         </section>
 
-	<section>
-	  <h2>Canvas 2D Coordinate System</h2>
-	  <img class="story-image" src="./assets/day-2/2d-coordinates.png">
-	  <aside class="notes">
-	  </aside>
-	</section>
+        <section>
+          <h2>Canvas 2D Coordinate System</h2>
+          <img class="story-image" src="./assets/day-2/2d-coordinates.png">
+          <aside class="notes">
+          </aside>
+        </section>
 
-	<section>
-	  <h2>Transforms</h2>
-	  <img height="320" src="./assets/day-2/2d-transforms.png">
-	  <h3>translate, rotate, scale</h3>
-	  <aside class="notes">
-	  </aside>
-	</section>
+        <section>
+          <h2>Transforms</h2>
+          <img height="320" src="./assets/day-2/2d-transforms.png">
+          <h3>translate, rotate, scale</h3>
+          <aside class="notes">
+          </aside>
+        </section>
 
-	<section>
-	  <h2>Transforms</h2>
-	  <img height="300" src="./assets/day-2/2d-transforms-grid.png">
-	  <p>Affects everything drawn <em class="highlight">after</em></p>
-	  <code style="line-height:1.5em;" class="javascript"><pre>  ctx.translate(dx, dy);
+        <section>
+          <h2>Transforms</h2>
+          <img height="300" src="./assets/day-2/2d-transforms-grid.png">
+          <p>Affects everything drawn <em class="highlight">after</em></p>
+          <code style="line-height:1.5em;" class="javascript"><pre>  ctx.translate(dx, dy);
   ctx.rotate(rx, ry);
   ctx.scale(sx, sy):</code></pre>
-	  <p>Keep track of your transform <em class="highlight">stack</em></p>
-	  <code class="javascript"><pre>
+          <p>Keep track of your transform <em class="highlight">stack</em></p>
+          <code class="javascript"><pre>
   ctx.save();
   ...
   ctx.restore();</code></pre>
-	  <aside class="notes">
-	    You can think of these commands as like a 'state machine'. Once you push the button, all subsequent drawing commands will use the new coordinate system.<br/>
-	    You can manage these by using save and restore to push and pop the transform stack.
-	  </aside>
-	</section>
-	
-	<section>
-	  <h3>Drawing in a Loop</h3>
-	  <code style="height:580px; max-height:600px;" class="javascript"><pre>  //normal setup...
+          <aside class="notes">
+            You can think of these commands as like a 'state machine'. Once you push the button, all subsequent drawing commands will use the new coordinate system.<br/>
+            You can manage these by using save and restore to push and pop the transform stack.
+          </aside>
+        </section>
+        
+        <section>
+          <h3>Drawing in a Loop</h3>
+          <code style="height:580px; max-height:600px;" class="javascript"><pre>  //normal setup...
   var canvas = document.getElementById('myCanvas');
   var ctx = canvas.getContext('2d');
   var SCREEN_WIDTH = canvas.width;
@@ -184,55 +185,55 @@
     }
     a += 0.02;
   }());</code></pre>
-	  <aside class="notes">
-	  </aside>
-	</section>
-	
-	<section animation="transformAnim">
-	  <h3>Drawing in a Loop</h3>
-	  <canvas id="transformAnimCanvas" width="512" height="512" style="background-color: #fff;"></canvas>
-	  <aside class="notes">
-	  </aside>
-	  <script>
+          <aside class="notes">
+          </aside>
+        </section>
+        
+        <section animation="transformAnim">
+          <h3>Drawing in a Loop</h3>
+          <canvas id="transformAnimCanvas" width="512" height="512" style="background-color: #fff;"></canvas>
+          <aside class="notes">
+          </aside>
+          <script>
             (function () {
-	      var canvas = document.getElementById('transformAnimCanvas');
-	      var ctx = canvas.getContext('2d');
-	      var SCREEN_WIDTH = canvas.width;
-	      var SCREEN_HEIGHT = canvas.height;
-	      var colors = ['#f00','#0f0','#00f','#ff0','#0ff','#f0f'];
-	      var a = 0;
-	      var n = SCREEN_HEIGHT/5;
-	      
-	      if (!window.animations) window.animations = {};
-	      window.animations['transformAnim'] = function drawFrame () {
-		window.animFrame = window.requestAnimationFrame(drawFrame);
-		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+              var canvas = document.getElementById('transformAnimCanvas');
+              var ctx = canvas.getContext('2d');
+              var SCREEN_WIDTH = canvas.width;
+              var SCREEN_HEIGHT = canvas.height;
+              var colors = ['#f00','#0f0','#00f','#ff0','#0ff','#f0f'];
+              var a = 0;
+              var n = SCREEN_HEIGHT/5;
+              
+              if (!window.animations) window.animations = {};
+              window.animations['transformAnim'] = function drawFrame () {
+                window.animFrame = window.requestAnimationFrame(drawFrame);
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-		var t, r, s;
-		for (var i = 0; i < n; i++) {
-		  ctx.save();
-		  t = i * 5;
-		  r = a + i * 0.1;
-		  s = Math.sin(a) * 10;
-		  
-		  ctx.translate(t, t);
-		  ctx.rotate(r);
-		  ctx.scale(s, s);
-		  
-		  ctx.fillStyle = colors[i % 6];
-		  ctx.fillRect(0, 0, 100, 100);
-		  ctx.restore();
-		}
-		a += 0.02;
-	      };
-	    }());
-	  </script>
-	  <br/><a href="demos/day-2/01-draw-in-a-loop.html" target="_blank">[new tab]</a>
-	</section>
-		
-	<section>
-	  <h2>A Ball Class</h2>
-	  <pre><code style="height:450px; max-height:600px;" class="javascript">  function Ball () {
+                var t, r, s;
+                for (var i = 0; i < n; i++) {
+                  ctx.save();
+                  t = i * 5;
+                  r = a + i * 0.1;
+                  s = Math.sin(a) * 10;
+                  
+                  ctx.translate(t, t);
+                  ctx.rotate(r);
+                  ctx.scale(s, s);
+                  
+                  ctx.fillStyle = colors[i % 6];
+                  ctx.fillRect(0, 0, 100, 100);
+                  ctx.restore();
+                }
+                a += 0.02;
+              };
+            }());
+          </script>
+          <br/><a href="demos/day-2/01-draw-in-a-loop.html" target="_blank">[new tab]</a>
+        </section>
+                
+        <section>
+          <h2>A Ball Class</h2>
+          <pre><code style="height:450px; max-height:600px;" class="javascript">  function Ball () {
     this.x = 0;
     this.y = 0;
     this.rotation = 0;
@@ -254,29 +255,29 @@
     ctx.stroke();
     ctx.restore();
   };</code></pre>
-	  <code style="html"><pre>  &lt;script src=&quot;Ball.js&quot;&gt;&lt;/script&gt;</code></pre>
-	</section>
+          <code style="html"><pre>  &lt;script src=&quot;Ball.js&quot;&gt;&lt;/script&gt;</code></pre>
+        </section>
 
-	<section>
-	  <h2>Trigonometry Tools</h2>
-	  <img style="height:400px;" src="./assets/day-2/pencil-compass.jpg">
-	  <aside class="notes">
-	  </aside>
-	</section>
+        <section>
+          <h2>Trigonometry Tools</h2>
+          <img style="height:400px;" src="./assets/day-2/pencil-compass.jpg">
+          <aside class="notes">
+          </aside>
+        </section>
 
-	<section>
-	  <h2>Degrees and Radians</h2>
-	  <img height="400" src="./assets/day-2/unit-circle.png">
-	  <code style="font-size:2em; line-height:1.6em;"><pre>  radians = degrees * (Math.PI / 180)
+        <section>
+          <h2>Degrees and Radians</h2>
+          <img height="400" src="./assets/day-2/unit-circle.png">
+          <code style="font-size:2em; line-height:1.6em;"><pre>  radians = degrees * (Math.PI / 180)
   degrees = radians * (180 / Math.PI)</code></pre>
-	  <aside class="notes">
-	  </aside>
-	</section>
-	
-	<section>
-	  <h2>Surfing the Sine Wave</h2>
-	  <img height="150" src="./assets/day-2/sin-wave.gif">
-	  <pre><code style="line-height:1.3em;" class="javascript">  var angle = 0;
+          <aside class="notes">
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Surfing the Sine Wave</h2>
+          <img height="150" src="./assets/day-2/sin-wave.gif">
+          <pre><code style="line-height:1.3em;" class="javascript">  var angle = 0;
   var range = 150;
   var speed = 0.1;
   var ball = new Ball();
@@ -292,47 +293,47 @@
     angle += speed;
     ball.draw(ctx);
   }());
-	  </code></pre>
-	</section>
-	
-	<section animation="sine">
-	  <h2>Surfing the Sine Wave</h2>
-	  <canvas id="sineCanvas" width="512" height="512" style="background-color: #fff;"></canvas>
-	  <script>
+          </code></pre>
+        </section>
+        
+        <section animation="sine">
+          <h2>Surfing the Sine Wave</h2>
+          <canvas id="sineCanvas" width="512" height="512" style="background-color: #fff;"></canvas>
+          <script>
             (function () {
-	      var canvas = document.getElementById('sineCanvas');
-	      var ctx = canvas.getContext('2d');
-	      var SCREEN_WIDTH = canvas.width;
-	      var SCREEN_HEIGHT = canvas.height;
-	      var ball = new Ball();
+              var canvas = document.getElementById('sineCanvas');
+              var ctx = canvas.getContext('2d');
+              var SCREEN_WIDTH = canvas.width;
+              var SCREEN_HEIGHT = canvas.height;
+              var ball = new Ball();
               var angle = 0;
-	      var range = 150;
-	      var speed = 0.1;
+              var range = 150;
+              var speed = 0.1;
 
-	      ball.x = -ball.radius;
-	      ball.y = SCREEN_HEIGHT/2;
+              ball.x = -ball.radius;
+              ball.y = SCREEN_HEIGHT/2;
 
-	      if (!window.animations) window.animations = {};
-	      window.animations['sine'] = function drawFrame () {
-		window.animFrame = window.requestAnimationFrame(drawFrame);
-		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		if (ball.x > SCREEN_WIDTH+ball.radius) { ball.x = -ball.radius };
-		ball.x += 2;
-		ball.y = Math.sin(angle) * range + SCREEN_HEIGHT/2;
-		angle += speed;
-		ball.draw(ctx);
-	      };
-	    }());
-	  </script>
-	  <br/><a href="demos/day-2/02-sine-wave.html" target="_blank">[new tab]</a>
-	  <aside class="notes">
-	  </aside>
-	</section>
+              if (!window.animations) window.animations = {};
+              window.animations['sine'] = function drawFrame () {
+                window.animFrame = window.requestAnimationFrame(drawFrame);
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                if (ball.x > SCREEN_WIDTH+ball.radius) { ball.x = -ball.radius };
+                ball.x += 2;
+                ball.y = Math.sin(angle) * range + SCREEN_HEIGHT/2;
+                angle += speed;
+                ball.draw(ctx);
+              };
+            }());
+          </script>
+          <br/><a href="demos/day-2/02-sine-wave.html" target="_blank">[new tab]</a>
+          <aside class="notes">
+          </aside>
+        </section>
 
-	<section>
-	  <h2>Circle the Cosine</h2>
-	  <img height="150" src="./assets/day-2/cosine-wave.png">
-	  <pre><code style="line-height:1.3em;" class="javascript">  var angle = 0;
+        <section>
+          <h2>Circle the Cosine</h2>
+          <img height="150" src="./assets/day-2/cosine-wave.png">
+          <pre><code style="line-height:1.3em;" class="javascript">  var angle = 0;
   var radius = 150; //range
   var speed = 0.05;
   var ball = new Ball();
@@ -345,66 +346,66 @@
     angle += speed;
     ball.draw(ctx);
   }());</code></pre>
-	</section>
-	
-	<section animation="cosine">
-	  <h3>Circle the Cosine</h3>
-	  <canvas id="cosineCanvas" width="512" height="512" style="background-color: #fff;"></canvas>
-	  <br/><a href="demos/day-2/03-circle.html" target="_blank">[new tab]</a>
-	  <aside class="notes">
-	  </aside>
-	  <script>
+        </section>
+        
+        <section animation="cosine">
+          <h3>Circle the Cosine</h3>
+          <canvas id="cosineCanvas" width="512" height="512" style="background-color: #fff;"></canvas>
+          <br/><a href="demos/day-2/03-circle.html" target="_blank">[new tab]</a>
+          <aside class="notes">
+          </aside>
+          <script>
             (function () {
-	      var canvas = document.getElementById('cosineCanvas');
-	      var ctx = canvas.getContext('2d');
-	      var SCREEN_WIDTH = canvas.width;
-	      var SCREEN_HEIGHT = canvas.height;
-	      var ball = new Ball();
+              var canvas = document.getElementById('cosineCanvas');
+              var ctx = canvas.getContext('2d');
+              var SCREEN_WIDTH = canvas.width;
+              var SCREEN_HEIGHT = canvas.height;
+              var ball = new Ball();
               var angle = 0;
               var radius = 150; //range in sine-slide
               var speed = 0.05;
 
-	      if (!window.animations) window.animations = {};
-	      window.animations['cosine'] = function drawFrame () {
-		window.animFrame = window.requestAnimationFrame(drawFrame);
-		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		ball.x = Math.cos(angle) * radius + SCREEN_WIDTH/2;
-		ball.y = Math.sin(angle) * radius + SCREEN_HEIGHT/2;
-		angle += speed;
-		ball.draw(ctx);
-	      };
-	    }());
-	  </script>
-	</section>
+              if (!window.animations) window.animations = {};
+              window.animations['cosine'] = function drawFrame () {
+                window.animFrame = window.requestAnimationFrame(drawFrame);
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                ball.x = Math.cos(angle) * radius + SCREEN_WIDTH/2;
+                ball.y = Math.sin(angle) * radius + SCREEN_HEIGHT/2;
+                angle += speed;
+                ball.draw(ctx);
+              };
+            }());
+          </script>
+        </section>
 
-	<section>
-	  <h2>Calculating Distance</h2>
-	  <h4>(with the Pythagorean theorem)</h4>
-	  <img height="280" src="./assets/day-2/distance.jpg">
-	  <code style="font-size:2em; line-height:1.6em;" class="javascript"><pre>  dx = pt1.x - pt2.x
+        <section>
+          <h2>Calculating Distance</h2>
+          <h4>(with the Pythagorean theorem)</h4>
+          <img height="280" src="./assets/day-2/distance.jpg">
+          <code style="font-size:2em; line-height:1.6em;" class="javascript"><pre>  dx = pt1.x - pt2.x
   dy = pt1.y - pt2.y
   dist = Math.sqrt(dx*dx + dy*dy)</code></pre>
-	  <aside class="notes">
-	  </aside>
-	</section>
+          <aside class="notes">
+          </aside>
+        </section>
 
-	<section>
-	  <h3>Applying Force in the Render Loop</h3>
-	  <img height="400" src="./assets/day-2/newton.jpg"><br/>
-	  <ul>
-	    <li>Velocity</li>
-	    <li>Acceleration</li>
-	    <li>Gravity</li>
-	  </ul>
-	  <p style="margin-top:20px;">Not just a good idea—It’s the Law.<p>
-	  <aside class="notes">
-	  </aside>
-	</section>
-	
-	<section animation="velocity">
-	  <h2>Velocity</h2>
-	  <p>The speed of something in a given direction.</p>
-	  <pre><code style="line-height:1.3em;" class="javascript">  var ball = new Ball();
+        <section>
+          <h3>Applying Force in the Render Loop</h3>
+          <img height="400" src="./assets/day-2/newton.jpg"><br/>
+          <ul>
+            <li>Velocity</li>
+            <li>Acceleration</li>
+            <li>Gravity</li>
+          </ul>
+          <p style="margin-top:20px;">Not just a good idea—It’s the Law.<p>
+          <aside class="notes">
+          </aside>
+        </section>
+        
+        <section animation="velocity">
+          <h2>Velocity</h2>
+          <p>The speed of something in a given direction.</p>
+          <pre><code style="line-height:1.3em;" class="javascript">  var ball = new Ball();
   ball.x = -ball.radius;
   ball.y = SCREEN_HEIGHT/2;
   var vx = 1;
@@ -416,37 +417,37 @@
     ball.x += vx;
     ball.draw(ctx);
   }());</code></pre>
-	  <canvas id="velocityCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
-	  <br/><a href="demos/day-2/04-velocity.html" target="_blank">[new tab]</a>
-	  <aside class="notes">
-	  </aside>
-	  <script>
+          <canvas id="velocityCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
+          <br/><a href="demos/day-2/04-velocity.html" target="_blank">[new tab]</a>
+          <aside class="notes">
+          </aside>
+          <script>
             (function () {
-	      var canvas = document.getElementById('velocityCanvas');
-	      var ctx = canvas.getContext('2d');
-	      var SCREEN_WIDTH = canvas.width;
-	      var SCREEN_HEIGHT = canvas.height;
-	      var vx = 1;
-	      var ball = new Ball();
-	      ball.x = -ball.radius;
-	      ball.y = SCREEN_HEIGHT/2;
+              var canvas = document.getElementById('velocityCanvas');
+              var ctx = canvas.getContext('2d');
+              var SCREEN_WIDTH = canvas.width;
+              var SCREEN_HEIGHT = canvas.height;
+              var vx = 1;
+              var ball = new Ball();
+              ball.x = -ball.radius;
+              ball.y = SCREEN_HEIGHT/2;
 
-	      if (!window.animations) window.animations = {};
-	      window.animations['velocity'] = function drawFrame () {
-		window.animFrame = window.requestAnimationFrame(drawFrame);
-		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		if (ball.x > SCREEN_WIDTH+ball.radius) { ball.x = -ball.radius };
-		ball.x += vx;
-		ball.draw(ctx);
-	      };
-	    }());
-	  </script>
-	</section>
+              if (!window.animations) window.animations = {};
+              window.animations['velocity'] = function drawFrame () {
+                window.animFrame = window.requestAnimationFrame(drawFrame);
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                if (ball.x > SCREEN_WIDTH+ball.radius) { ball.x = -ball.radius };
+                ball.x += vx;
+                ball.draw(ctx);
+              };
+            }());
+          </script>
+        </section>
 
-	<section animation="rotationVel">
-	  <h3>Applying Velocity to Rotation</h3>
-	  <p>(Or any property, really.)</p>
-	  <pre><code style="line-height:1.3em;" class="javascript">  var arrow = new Arrow();
+        <section animation="rotationVel">
+          <h3>Applying Velocity to Rotation</h3>
+          <p>(Or any property, really.)</p>
+          <pre><code style="line-height:1.3em;" class="javascript">  var arrow = new Arrow();
   arrow.x = SCREEN_WIDTH/2;
   arrow.y = SCREEN_HEIGHT/2;
   var vr = 2; //in degrees
@@ -457,36 +458,36 @@
     arrow.rotation += vr * Math.PI/180; //to radians
     arrow.draw(ctx);
   }());</code></pre>
-	  <canvas id="rotationVelCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
-	  <br/><a href="demos/day-2/05-rotate.html" target="_blank">[new tab]</a>
-	  <script>
+          <canvas id="rotationVelCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
+          <br/><a href="demos/day-2/05-rotate.html" target="_blank">[new tab]</a>
+          <script>
             (function () {
-	      var canvas = document.getElementById('rotationVelCanvas');
-	      var ctx = canvas.getContext('2d');
-	      var SCREEN_WIDTH = canvas.width;
-	      var SCREEN_HEIGHT = canvas.height;
-	      var vr = 2; //degrees
-	      var arrow = new Arrow();
-	      arrow.x = SCREEN_WIDTH/2;
+              var canvas = document.getElementById('rotationVelCanvas');
+              var ctx = canvas.getContext('2d');
+              var SCREEN_WIDTH = canvas.width;
+              var SCREEN_HEIGHT = canvas.height;
+              var vr = 2; //degrees
+              var arrow = new Arrow();
+              arrow.x = SCREEN_WIDTH/2;
               arrow.y = SCREEN_HEIGHT/2;
 
-	      if (!window.animations) window.animations = {};
-	      window.animations['rotationVel'] = function drawFrame () {
-		window.animFrame = window.requestAnimationFrame(drawFrame);
-		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		arrow.rotation += vr * Math.PI/180; //to radians
-		arrow.draw(ctx);
-	      };
-	    }());
-	  </script>
-	  <aside class="notes">
-	  </aside>
-	</section>
+              if (!window.animations) window.animations = {};
+              window.animations['rotationVel'] = function drawFrame () {
+                window.animFrame = window.requestAnimationFrame(drawFrame);
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                arrow.rotation += vr * Math.PI/180; //to radians
+                arrow.draw(ctx);
+              };
+            }());
+          </script>
+          <aside class="notes">
+          </aside>
+        </section>
 
-	<section animation="acceleration">
-	  <h2>Acceleration</h2>
-	  <p>Increase in the rate or speed of something.</p>
-	  <pre><code style="line-height:1.3em;" class="javascript">  var ball = new Ball();
+        <section animation="acceleration">
+          <h2>Acceleration</h2>
+          <p>Increase in the rate or speed of something.</p>
+          <pre><code style="line-height:1.3em;" class="javascript">  var ball = new Ball();
   ball.x = ball.radius;
   ball.y = SCREEN_HEIGHT/2;
   var vx = 0;
@@ -500,87 +501,87 @@
     ball.x += vx;
     ball.draw(ctx);
   }());</code></pre>
-	  <canvas id="accelerationCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
-	  <br/><a href="demos/day-2/06-accelerate.html" target="_blank">[new tab]</a>
-	  <aside class="notes">
-	  </aside>
-	  <script>
+          <canvas id="accelerationCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
+          <br/><a href="demos/day-2/06-accelerate.html" target="_blank">[new tab]</a>
+          <aside class="notes">
+          </aside>
+          <script>
             (function () {
-	      var canvas = document.getElementById('accelerationCanvas');
-	      var ctx = canvas.getContext('2d');
-	      var SCREEN_WIDTH = canvas.width;
-	      var SCREEN_HEIGHT = canvas.height;
-	      var ball = new Ball();
-	      ball.x = ball.radius;
-	      ball.y = SCREEN_HEIGHT/2;
-	      var vx = 0;
-	      var ax = 0.5;
+              var canvas = document.getElementById('accelerationCanvas');
+              var ctx = canvas.getContext('2d');
+              var SCREEN_WIDTH = canvas.width;
+              var SCREEN_HEIGHT = canvas.height;
+              var ball = new Ball();
+              ball.x = ball.radius;
+              ball.y = SCREEN_HEIGHT/2;
+              var vx = 0;
+              var ax = 0.5;
 
-	      if (!window.animations) window.animations = {};
-	      window.animations['acceleration'] = function drawFrame () {
-		window.animFrame = window.requestAnimationFrame(drawFrame);
-		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		if (ball.x > SCREEN_WIDTH+ball.radius) { ball.x = ball.radius; vx = 0; };
-		vx += ax;
-		ball.x += vx;
-		ball.draw(ctx);
-	      };
-	    }());
-	  </script>
-	</section>
+              if (!window.animations) window.animations = {};
+              window.animations['acceleration'] = function drawFrame () {
+                window.animFrame = window.requestAnimationFrame(drawFrame);
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                if (ball.x > SCREEN_WIDTH+ball.radius) { ball.x = ball.radius; vx = 0; };
+                vx += ax;
+                ball.x += vx;
+                ball.draw(ctx);
+              };
+            }());
+          </script>
+        </section>
 
-	<section animation="gravity">
-	  <h2>Gravity</h2>
-	  <p>Is just acceleration applied to the <em class="highlight">y-position</em>.</p>
-	  <p>(Apologies to Newton and Einstein.)</p>
-	  <canvas id="gravityCanvas" width="480" height="480" style="margin-top:10px; background-color: #fff;"></canvas>
-	  <br/><a href="demos/day-2/07-gravity.html" target="_blank">[new tab]</a>
-	  <aside class="notes">
-	  </aside>
-	  <script>
+        <section animation="gravity">
+          <h2>Gravity</h2>
+          <p>Is just acceleration applied to the <em class="highlight">y-position</em>.</p>
+          <p>(Apologies to Newton and Einstein.)</p>
+          <canvas id="gravityCanvas" width="480" height="480" style="margin-top:10px; background-color: #fff;"></canvas>
+          <br/><a href="demos/day-2/07-gravity.html" target="_blank">[new tab]</a>
+          <aside class="notes">
+          </aside>
+          <script>
             (function () {
-	      var canvas = document.getElementById('gravityCanvas');
-	      var ctx = canvas.getContext('2d');
-	      var SCREEN_WIDTH = canvas.width;
-	      var SCREEN_HEIGHT = canvas.height;
-	      var ball = new Ball();
-	      ball.x = SCREEN_WIDTH/2;
-	      ball.y = ball.radius;
-	      var vx = 0;
+              var canvas = document.getElementById('gravityCanvas');
+              var ctx = canvas.getContext('2d');
+              var SCREEN_WIDTH = canvas.width;
+              var SCREEN_HEIGHT = canvas.height;
+              var ball = new Ball();
+              ball.x = SCREEN_WIDTH/2;
+              ball.y = ball.radius;
+              var vx = 0;
               var vy = 0;
               var ax = 0;
               var ay = 0;
               var gravity = 0.1;
 
-	      if (!window.animations) window.animations = {};
-	      window.animations['gravity'] = function drawFrame () {
-		window.animFrame = window.requestAnimationFrame(drawFrame);
-		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		if (ball.y > SCREEN_HEIGHT+ball.radius) { ball.y = ball.radius; vy = 0; };
-		vx += ax;
-		vy += ay;
-		vy += gravity;
-		ball.x += vx;
-		ball.y += vy;
-		ball.draw(ctx);
-	      };
-	    }());
-	  </script>
-	</section>
+              if (!window.animations) window.animations = {};
+              window.animations['gravity'] = function drawFrame () {
+                window.animFrame = window.requestAnimationFrame(drawFrame);
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                if (ball.y > SCREEN_HEIGHT+ball.radius) { ball.y = ball.radius; vy = 0; };
+                vx += ax;
+                vy += ay;
+                vy += gravity;
+                ball.x += vx;
+                ball.y += vy;
+                ball.draw(ctx);
+              };
+            }());
+          </script>
+        </section>
 
-	<section>
-	  <h2>Easing</h2>
-	  <p>(The fancy term is <em class="highlight">non-linear interpolation</em>.)</p>
-	  <img class="story-image" src="./assets/day-2/ease.png">
-	  <aside class="notes">
-	    Can use on any property. We're using position in these examples because it's easy to see.
-	  </aside>
-	</section>
-	
-	<section animation="easingBasic">
-	  <h2>Easing</h2>
-	  <p>Closing in on the target.</p>
-	  <pre><code style="line-height:1.3em;" class="javascript">  var ball = new Ball();
+        <section>
+          <h2>Easing</h2>
+          <p>(The fancy term is <em class="highlight">non-linear interpolation</em>.)</p>
+          <img class="story-image" src="./assets/day-2/ease.png">
+          <aside class="notes">
+            Can use on any property. We're using position in these examples because it's easy to see.
+          </aside>
+        </section>
+        
+        <section animation="easingBasic">
+          <h2>Easing</h2>
+          <p>Closing in on the target.</p>
+          <pre><code style="line-height:1.3em;" class="javascript">  var ball = new Ball();
   var targetX = SCREEN_WIDTH - ball.radius;
   var targetY = SCREEN_HEIGHT - ball.radius;
   var easing = 0.05;
@@ -594,49 +595,49 @@
     ball.y += vy;
     ball.draw(ctx);
   }());</code></pre>
-	  <canvas id="easingBasicCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
-	  <br/><a href="demos/day-2/08-easing-bad.html" target="_blank">[new tab]</a>
-	  <aside class="notes">
-	    Click canvas to reset.<br/>
-	    Hard to get exact, so the ball position keeps being incremented until the float blows up.<br/>
-	    This is non-optimal.
-	  </aside>
-	  <script>
+          <canvas id="easingBasicCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
+          <br/><a href="demos/day-2/08-easing-bad.html" target="_blank">[new tab]</a>
+          <aside class="notes">
+            Click canvas to reset.<br/>
+            Hard to get exact, so the ball position keeps being incremented until the float blows up.<br/>
+            This is non-optimal.
+          </aside>
+          <script>
             (function () {
-	      var canvas = document.getElementById('easingBasicCanvas');
-	      var ctx = canvas.getContext('2d');
-	      var SCREEN_WIDTH = canvas.width;
-	      var SCREEN_HEIGHT = canvas.height;
-	      var ball = new Ball();
-	      var easing = 0.05;
+              var canvas = document.getElementById('easingBasicCanvas');
+              var ctx = canvas.getContext('2d');
+              var SCREEN_WIDTH = canvas.width;
+              var SCREEN_HEIGHT = canvas.height;
+              var ball = new Ball();
+              var easing = 0.05;
               var targetX = SCREEN_WIDTH - ball.radius;
               var targetY = SCREEN_HEIGHT - ball.radius;
-	      ctx.font = "22px Helvetica";
-	      
-	      if (!window.animations) window.animations = {};
-	      window.animations['easingBasic'] = function drawFrame () {
-		window.animFrame = window.requestAnimationFrame(drawFrame);
-		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		var vx = (targetX - ball.x) * easing;
-		var vy = (targetY - ball.y) * easing;
-		ball.x += vx;
-		ball.y += vy;
-		ball.draw(ctx);
-		ctx.fillText("ball.x: "+ ball.x, 10, SCREEN_HEIGHT-35);
-		ctx.fillText("ball.y: "+ ball.y, 10, SCREEN_HEIGHT-10);
-	      };
+              ctx.font = "22px Helvetica";
+              
+              if (!window.animations) window.animations = {};
+              window.animations['easingBasic'] = function drawFrame () {
+                window.animFrame = window.requestAnimationFrame(drawFrame);
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                var vx = (targetX - ball.x) * easing;
+                var vy = (targetY - ball.y) * easing;
+                ball.x += vx;
+                ball.y += vy;
+                ball.draw(ctx);
+                ctx.fillText("ball.x: "+ ball.x, 10, SCREEN_HEIGHT-35);
+                ctx.fillText("ball.y: "+ ball.y, 10, SCREEN_HEIGHT-10);
+              };
 
-	      canvas.onclick = function () {
-		ball.x = ball.y = 0;
-	      };
-	    }());
-	  </script>
-	</section>
+              canvas.onclick = function () {
+                ball.x = ball.y = 0;
+              };
+            }());
+          </script>
+        </section>
 
-	<section animation="easingBetter">
-	  <h2>Easing</h2>
-	  <p style="margin-top:-12px">Know when to say when.</p>
-	  <pre><code style="font-size:0.9em; line-height:1.1em;" class="javascript">  var targetX = SCREEN_WIDTH - ball.radius;
+        <section animation="easingBetter">
+          <h2>Easing</h2>
+          <p style="margin-top:-12px">Know when to say when.</p>
+          <pre><code style="font-size:0.9em; line-height:1.1em;" class="javascript">  var targetX = SCREEN_WIDTH - ball.radius;
   var targetY = SCREEN_HEIGHT - ball.radius;
   var easing = 0.05;
   var easeComplete = false;
@@ -659,156 +660,156 @@
     }
     ball.draw(ctx);
   }());</code></pre>
-	  <canvas id="easingBetterCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
-	  <br/><a href="demos/day-2/09-easing-better.html" target="_blank">[new tab]</a>
-	  <aside class="notes">
-	    Click canvas to reset.<br/>
-	    Hard to get exact, so the ball position keeps being incremented until the float blows up.<br/>
-	    This is non-optimal.
-	  </aside>
-	  <script>
+          <canvas id="easingBetterCanvas" width="512" height="164" style="background-color: #fff;"></canvas>
+          <br/><a href="demos/day-2/09-easing-better.html" target="_blank">[new tab]</a>
+          <aside class="notes">
+            Click canvas to reset.<br/>
+            Hard to get exact, so the ball position keeps being incremented until the float blows up.<br/>
+            This is non-optimal.
+          </aside>
+          <script>
             (function () {
-	      var canvas = document.getElementById('easingBetterCanvas');
-	      var ctx = canvas.getContext('2d');
-	      var SCREEN_WIDTH = canvas.width;
-	      var SCREEN_HEIGHT = canvas.height;
-	      var ball = new Ball();
-	      var easing = 0.05;
+              var canvas = document.getElementById('easingBetterCanvas');
+              var ctx = canvas.getContext('2d');
+              var SCREEN_WIDTH = canvas.width;
+              var SCREEN_HEIGHT = canvas.height;
+              var ball = new Ball();
+              var easing = 0.05;
               var targetX = SCREEN_WIDTH - ball.radius;
               var targetY = SCREEN_HEIGHT - ball.radius;
-	      var easeComplete = false;
-	      ctx.font = "22px Helvetica";
-	      var x_str = null;
-	      var y_str = null
-	      
-	      if (!window.animations) window.animations = {};
-	      window.animations['easingBetter'] = function drawFrame () {
-		window.animFrame = window.requestAnimationFrame(drawFrame);
-		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+              var easeComplete = false;
+              ctx.font = "22px Helvetica";
+              var x_str = null;
+              var y_str = null
+              
+              if (!window.animations) window.animations = {};
+              window.animations['easingBetter'] = function drawFrame () {
+                window.animFrame = window.requestAnimationFrame(drawFrame);
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-		var dx = targetX - ball.x;
-		var dy = targetY - ball.y;
+                var dx = targetX - ball.x;
+                var dy = targetY - ball.y;
 
-		if (!easeComplete && Math.abs(dx) < 1 && Math.abs(dy) < 1) {
-		  ball.x = targetX;
-		  ball.y = targetY;
-		  easeComplete = true;
-		  x_str = y_str = "close enough!"
-		} else if (!easeComplete) {
-		  var vx = dx * easing;
-		  var vy = dy * easing;
-		  ball.x += vx;
-		  ball.y += vy;
-		  x_str = ball.x;
-		  y_str = ball.y;
-		}
-		ball.draw(ctx);
-		ctx.fillText("ball.x: "+ x_str, 10, SCREEN_HEIGHT-35);
-		ctx.fillText("ball.y: "+ y_str, 10, SCREEN_HEIGHT-10);
-	      };
+                if (!easeComplete && Math.abs(dx) < 1 && Math.abs(dy) < 1) {
+                  ball.x = targetX;
+                  ball.y = targetY;
+                  easeComplete = true;
+                  x_str = y_str = "close enough!"
+                } else if (!easeComplete) {
+                  var vx = dx * easing;
+                  var vy = dy * easing;
+                  ball.x += vx;
+                  ball.y += vy;
+                  x_str = ball.x;
+                  y_str = ball.y;
+                }
+                ball.draw(ctx);
+                ctx.fillText("ball.x: "+ x_str, 10, SCREEN_HEIGHT-35);
+                ctx.fillText("ball.y: "+ y_str, 10, SCREEN_HEIGHT-10);
+              };
 
-	      canvas.onclick = function () {
-		ball.x = ball.y = 0;
-		easeComplete = false;
-	      };
-	    }());
+              canvas.onclick = function () {
+                ball.x = ball.y = 0;
+                easeComplete = false;
+              };
+            }());
           </script>
-	</section>
-	
-	<section>
-	  <h2>Sprite Sheets</h2>
-	  <img style="height:500px; padding:10px" src="./assets/day-2/spritesheet-character.png">
-	  <aside class="notes">
-	  </aside>
-	</section>
-
-	<section>
-	  <h2>Sprite Sheets</h2>
-	  <img style="float:left;height:450px;" src="./assets/day-2/horse-frames.jpg">
-	  <img style="float:left; height:450px; margin-left:20px; padding:2px" src="./assets/day-2/spritesheet-character.png">
-	  <aside class="notes">
-	  </aside>
-	</section>
-
-	<section animation="spritesheet">
-	  <h2>Sprite Sheets</h2>
-	  <canvas id="spritesheetCanvas" width="512" height="512"></canvas>
-	  <img id="spritesheet-background" style="display:none;" src="./assets/day-2/spritesheet-background.png">
-	  <aside class="notes">
-	  </aside>
-	  <script>
-            (function () {
-	      var canvas = document.getElementById('spritesheetCanvas');
-	      var ctx = canvas.getContext('2d');
-	      var SCREEN_WIDTH = canvas.width;
-	      var SCREEN_HEIGHT = canvas.height;
-	      var bgImg = document.getElementById('spritesheet-background');
-	      var sprite = new Sprite("assets/day-2/spritesheet-character.png", {
-		rows:4, cols:6, width: 34, height: 86
-	      });
-	      sprite.x = 100;
-	      sprite.y = 100;
-	      var speed = 2;
-	      var i = 0;
-	      var direction = 0;
-	      sprite.play(0);
-	      function getRandomInt(min, max) {
-		return Math.floor(Math.random() * (max - min + 1)) + min;
-	      }
-	      
-	      if (!window.animations) window.animations = {};
-	      window.animations['spritesheet'] = function drawFrame () {
-		window.animFrame = window.requestAnimationFrame(drawFrame);
-		ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		
-		//screen wrapping
-		if (sprite.x > SCREEN_WIDTH) {
-		  sprite.x = -sprite.width;
-		} else if (sprite.x+sprite.width < 0) {
-		  sprite.x = SCREEN_WIDTH;
-		}
-		if (sprite.y > SCREEN_HEIGHT) {
-		  sprite.y = -sprite.height;
-		} else if (sprite.y+sprite.height < 0) {
-		  sprite.y = SCREEN_HEIGHT;
-		}
-
-		//select random direction
-		i++;
-		if (i % 180 === 0) {
-		  direction = getRandomInt(0, 3);
-		  sprite.play(direction);
-		}
-		switch (direction) {
-		case 0: //right
-		  sprite.x += speed;
-		  break;
-		case 1: //left
-		  sprite.x -= speed;
-		  break;
-		case 2: //down
-		  sprite.y += speed;
-		  break;
-		case 3: //up
-		  sprite.y -= speed;
-		  break;
-		}
-		ctx.drawImage(bgImg, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		if (sprite.imageLoaded) sprite.draw(ctx);
-	      };
-	    }());
-          </script>
-	</section>
-	
+        </section>
+        
         <section>
-	  <h3>All this, and much more!</h3>
-	  <p>The codez for all these demos are available online:</p>
-	  <p><a href="https://lamberta.github.io/html5-animation/" target="_blank">bit.ly/html5-animation</a></p>
-	  <p>Taken from my book, <em>HTML5 Animation with JavaScript</em>:</p>
-	  <a href="http://amzn.com/1430236655?tag=html5anim-20" target="_blank">
-	    <img alt="HTML5 Animation with JavaScript" style="height:300px;background-color: #fff;" src="./assets/day-2/book-thumb.png">
-	  </a>
-	  <h3>Thanks!</h3>
+          <h2>Sprite Sheets</h2>
+          <img style="height:500px; padding:10px" src="./assets/day-2/spritesheet-character.png">
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section>
+          <h2>Sprite Sheets</h2>
+          <img style="float:left;height:450px;" src="./assets/day-2/horse-frames.jpg">
+          <img style="float:left; height:450px; margin-left:20px; padding:2px" src="./assets/day-2/spritesheet-character.png">
+          <aside class="notes">
+          </aside>
+        </section>
+
+        <section animation="spritesheet">
+          <h2>Sprite Sheets</h2>
+          <canvas id="spritesheetCanvas" width="512" height="512"></canvas>
+          <img id="spritesheet-background" style="display:none;" src="./assets/day-2/spritesheet-background.png">
+          <aside class="notes">
+          </aside>
+          <script>
+            (function () {
+              var canvas = document.getElementById('spritesheetCanvas');
+              var ctx = canvas.getContext('2d');
+              var SCREEN_WIDTH = canvas.width;
+              var SCREEN_HEIGHT = canvas.height;
+              var bgImg = document.getElementById('spritesheet-background');
+              var sprite = new Sprite("assets/day-2/spritesheet-character.png", {
+                rows:4, cols:6, width: 34, height: 86
+              });
+              sprite.x = 100;
+              sprite.y = 100;
+              var speed = 2;
+              var i = 0;
+              var direction = 0;
+              sprite.play(0);
+              function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+              }
+              
+              if (!window.animations) window.animations = {};
+              window.animations['spritesheet'] = function drawFrame () {
+                window.animFrame = window.requestAnimationFrame(drawFrame);
+                ctx.clearRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                
+                //screen wrapping
+                if (sprite.x > SCREEN_WIDTH) {
+                  sprite.x = -sprite.width;
+                } else if (sprite.x+sprite.width < 0) {
+                  sprite.x = SCREEN_WIDTH;
+                }
+                if (sprite.y > SCREEN_HEIGHT) {
+                  sprite.y = -sprite.height;
+                } else if (sprite.y+sprite.height < 0) {
+                  sprite.y = SCREEN_HEIGHT;
+                }
+
+                //select random direction
+                i++;
+                if (i % 180 === 0) {
+                  direction = getRandomInt(0, 3);
+                  sprite.play(direction);
+                }
+                switch (direction) {
+                case 0: //right
+                  sprite.x += speed;
+                  break;
+                case 1: //left
+                  sprite.x -= speed;
+                  break;
+                case 2: //down
+                  sprite.y += speed;
+                  break;
+                case 3: //up
+                  sprite.y -= speed;
+                  break;
+                }
+                ctx.drawImage(bgImg, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                if (sprite.imageLoaded) sprite.draw(ctx);
+              };
+            }());
+          </script>
+        </section>
+        
+        <section>
+          <h3>All this, and much more!</h3>
+          <p>The codez for all these demos are available online:</p>
+          <p><a href="https://lamberta.github.io/html5-animation/" target="_blank">bit.ly/html5-animation</a></p>
+          <p>Taken from my book, <em>HTML5 Animation with JavaScript</em>:</p>
+          <a href="http://amzn.com/1430236655?tag=html5anim-20" target="_blank">
+            <img alt="HTML5 Animation with JavaScript" style="height:300px;background-color: #fff;" src="./assets/day-2/book-thumb.png">
+          </a>
+          <h3>Thanks!</h3>
           <h4><em class="highlight-orange">Billy Lamberta</em> / <a href="http://lamberta.org">lamberta.org</a></h4>
         </section>
 
