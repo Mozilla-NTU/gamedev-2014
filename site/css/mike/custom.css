@@ -13,7 +13,8 @@
   margin-top: 3%;
 }
 
-.reveal .slides section > ul > p > a {
+.reveal .slides section > ul > p > a,
+.reveal .slides section > ol > p > a {
   font-size: 41px;
   font-weight: bold;
   color: rgba(40, 98, 237, 1);
