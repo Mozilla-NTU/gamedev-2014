@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Game Dev Basics</title>
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/mike/custom.css">
+    <link rel="stylesheet" href="../css/theme/beige.css" id="theme">
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Questions?</h1>
+          <img class="bullet-image" style="max-width: 200px; left: -25px; top: 23px;" src="../img/mike/HTML5Question2_2.png" />
+          <ol>
+          <li>How do you do localization in HTML5?</li>
+          <li>Can you restrict HTML5 games geographically?</li>
+          <li>Are you going to cover multiplayer games?</li>
+          <li>How do you save your game?</li>
+          <ul><li>... with loss of connection?</li></ul>
+          <li>How do you feel about the move from Mozilla <br />to support W3C EME?</li>
+          </ol>
+          <br />
+          <br />
+          <p>Ask us more! <a href="mailto:ntu.questions@gmail.com">ntu.questions@gmail.com</a></p>
+        </section>
+        <section>
+          <h1 id="hot-tip">HOT TIP!<img class="left" src="../img/mike/Meet-the-Firefox-OS-Mascot-a-Fox-That-s-on-Fire.png" /><img class="right" src="../img/mike/Meet-the-Firefox-OS-Mascot-a-Fox-That-s-on-Fire.png" /></h1>
+          <h2>Hacker News</h2>
+          <img style="border-radius: 20px;" class="bullet-image" src="../img/mike/hacker-news-logo.png" />
+          <ul>
+            <li>News that programmers find interesting</li>
+            <li>Links &amp; discussion borad</li>
+            <li>Vote based, like Reddit</li>
+            <li>Range of topics</li>
+            <ul><li>- startup news</li></ul>
+            <ul><li>- programming languages</li></ul>
+            <ul><li>- science</li></ul>
+            <ul><li>- politics</li></ul>
+            <li><a href="https://news.ycombinator.com/">Check it out!</a></li>
+            <p><a href="http://j.mp/performance-ntu">j.mp/performance-ntu</a></p>
+          </ul>
+        </section>
+        <section>
+          <h2>Performance</h2>
+          <img class="bullet-image" src="../img/mike/race-car.svg" />
+          <ul>
+            <li>What makes a good game <i>Good</i>?</li>
+            <ul><li>Beautiful Artwork</li></ul>
+            <ul><li>Great Music</li></ul>
+            <ul><li>Compelling Story</li></ul>
+            <ul><li><b>GRAPHICS!!!</b></li></ul>
+          </ul>
+        </section>
+        <section>
+          <h2>Graphics</h2>
+          <img class="bullet-image" src="../img/mike/Mario.gif" />
+          <ul>
+            <li>Resolution &amp; Framerate</li>
+            <ul><li>Movies are 24 fps</li></ul>
+            <ul><li>Games should aim for 60 fps</li></ul>
+            <li>Higher framerate = smoother, more fun</li>
+            <li>Which would you rather play?</li>
+            <p><a href="../demos/performance/crappy/index.html">Low Framerate</a></p>
+            <p><a href="../demos/performance/flappy/index.html">High Framerate</a></p>
+          </ul>
+        </section>
+        <section>
+          <h2>Moral of the Story</h2>
+          <ul>
+            <li>Don't do a lot of work in the tick</li>
+            <ul><li>60fps -&gt; 16ms per tick</li></ul>
+            <ul><li>tick fast!</li></ul>
+            <ul><li>Profiler can help</li></ul>
+          </ul>
+        </section>
+        <section>
+          <h2>The Challenge</h2>
+          <img style="border-radius: 70px;" class="bullet-image" src="../img/mike/karatekid.gif" />
+          <ul>
+            <li>OpenGL, DirectX</li>
+            <ul><li>talk directly to GPU</li></ul>
+            <ul><li>but <b>STEEP</b> learning curve</li></ul>
+            <li>HTML5</li>
+            <ul><li>easy learning curve</li></ul>
+            <ul><li>but only indirect access to GPU</li></ul>
+            <ul><li>great for web development</li></ul>
+            <ul><li>really hard to optimize deeply</li></ul>
+          </ul>
+        </section>
+        <section>
+          <h2>Canvas, why u no fast?</h2>
+          <img style="border-radius: 70px;" class="bullet-image" src="../img/mike/whyuno.jpg" />
+          <ul>
+            <li>Canvas Draws do this:</li>
+            <ul><li>javascript -&gt; c++ -&gt; OpenGL -&gt; javascript</li></ul>
+            <ul><li>very hard to optimize this</li></ul>
+            <li>OpenGL, many ways to optimize</li>
+            <ul><li>batch up draw calls before flushing buffer</li></ul>
+            <ul><li>not tied to specific implementation</li></ul>
+            <li>...but, there are still things we can do</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Layers &amp; Dirty Rectangles</h2>
+          <img class="bullet-image" src="../img/mike/Layers.png" />
+          <ul>
+            <li>Don't draw entire seen every tick</li>
+            <li>Use multiple canvases</li>
+            <li>Only clear certain areas of screen</li>
+            <ul><li>known as "dirty rectangles"</li></ul>
+          </ul>
+        </section>
+        <section>
+          <h2>Layers</h2>
+          <pre><code>
+#background {
+  z-index: 1;
+}
+#characters {
+  z-index: 2
+}
+#foreground {
+  z-index: 3
+}
+
+
+<canvas id="background" width="400" height="400"></canvas>
+<canvas id="bird" width="400" height="400"></canvas>
+<canvas id="pipes" width="400" height="400"></canvas>
+          </code></pre>
+        </section>
+        <section>
+          <h2>Layers</h2>
+          <pre><code>
+Pipe.prototype.draw = function(pipeCtx) {
+  this.ctx.clearRect(this.lastX, this.y, this.width, this.height);
+  this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+}
+          </code></pre>
+        </section>
+        <section>
+          <h2>Scaling === BAD</h2>
+          <img style="border-radius: 100px" class="bullet-image" src="../img/mike/Radiation_warning_symbol.svg" />
+          <p style="color: red">Warning: NEATO canvas feature</p>
+          <ul>
+            <li>Canvas has nice auto-scaling feature</li>
+            <ul><li>ctx.drawImage: sw, sh, dw, dh</li></ul>
+            <li>DON'T USE IT</li>
+            <ul><li>scaling is slow</li></ul>
+            <ul><li>especially every tick</li></ul>
+            <li>Draw images at their native res</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Rounding === GOOD</h2>
+          <img style="border-radius: 100px" class="bullet-image" src="../img/mike/Radiation_warning_symbol.svg" />
+          <p style="color: red">Warning: NEATO canvas feature</p>
+          <ul>
+            <li>drawImage with floats causes blending</li>
+            <ul><li>browser interpolates between pixels</li></ul>
+            <li>DON'T USE IT</li>
+            <ul><li>complex maths going on</li></ul>
+            <ul><li>especially every tick</li></ul>
+            <li>Truncate pixels values before draw</li>
+            <p><a href="../demos/basics/rounding-without.html">Check it out</a></p>
+          </ul>
+        </section>
+        <section>
+          <h2>Why learn canvas?</h2>
+          <img style="border-radius: 100px" class="bullet-image" src="../img/mike/huh.gif" />
+          <ul>
+            <li>Performance problems, weird gotchas</li>
+            <ul><li>better is WebGL, CSS transforms</li></ul>
+            <li>WebGL is really hard to learn, implement</li>
+            <ul><li>no quick learning</li></ul>
+            <ul><li>no quick prototypes</li></ul>
+            <li>CSS tranforms has it's own weird gotchas</li>
+            <li>Canvas is easy</li>
+            <ul><li>quick prototypes</li></ul>
+            <ul><li>make POC fast, optimize later</li></ul>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        dependencies: [
+          { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        ],
+      });
+    </script>
+  </body>
+</html>
+

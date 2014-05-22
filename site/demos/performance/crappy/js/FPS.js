@@ -1,8 +1,11 @@
 (function(exports) {
   'use strict';
 
-  function FPS(container) {
-    this.container = container;
+  function FPS(stage) {
+    this.container = document.createElement('div');
+    this.container.id = 'fps';
+    document.body.appendChild(this.container);
+
     this.threshold = 200;
     this.timeSinceLastUpdate = 0;
     this.framesSinceLastUpdate = 0;
