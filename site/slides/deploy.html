@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Deploying Code</title>
+    <link rel="stylesheet" href="../css/reveal.css">
+    <link rel="stylesheet" href="../css/theme/solarized.css" id="theme">
+    <link rel="stylesheet" href="../lib/css/zenburn.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section> 
+          <section>
+            <h1>Deploying your app</h1>
+          </section>
+          <section>
+            <ul>
+              <li>On the web</li>
+              <li>On the desktop</li>
+              <li>On mobile</li>
+              <li>Mobile App stores</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>On the web</h2>
+          </section>
+          <section>
+            <h2>Self-hosting (static)</h2>
+            <ul>
+              <li>Host static assets on Amazon s3 <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html">(documentation)</a></li>
+              <li>Use CDN (e.g. Amazon cloudfront) for worldwide reach</li>
+              <li><strong>PRO:</strong> very simple (no server!) and cheap</li>
+              <li><strong>CON:</strong> no audience, no backend</li>
+              <li>...but can use cheap services like <a href="https://www.parse.com/">Parse</a>, <a href="http://www.pubnub.com/">Pubnub</a> for backend</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Self-hosting (dynamic)</h2>
+            <ul>
+              <li>Can use VPS provider (virtual private server) like Amazon EC2</li>
+              <li><strong>PRO:</strong> flexible, allows backend</li>
+              <li><strong>CON:</strong> no audience, more expensive</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Facebook</h2>
+            <ul>
+              <li><a href="https://developers.facebook.com/docs/games/overview">Docs</a></li>
+              <li>Show game within facebook website</li>
+              <li>List on Facebook App Center</li>
+              <li><strong>PRO:</strong> APIs for friend data, invites, monetization</li>
+              <li><strong>CON:</strong> still have to host website yourself, extra code to use APIs</li>
+            </ul>
+            <img src="../img/jacob/facebook.png" style="width:70%;height:70%;" />
+          </section>
+          <section>
+            <h2>Kongregate</h2>
+            <ul>
+              <li><a href="http://www.kongregate.com/html5-games">HTML5 games on Kongregate</a></li>
+              <li>upload at: http://www.kongregate.com/games/new</li>
+              <li><strong>PRO:</strong> audience</li>
+            </ul>
+            <img src="../img/jacob/kongregate.png" />
+          </section>
+          <section>
+            <h2>Chrome web store</h2>
+            <ul>
+              <li>Instructions at: https://developer.chrome.com/webstore/publish</li>
+              <li><strong>PRO:</strong> very easy</li>
+              <li><strong>CON:</strong> not popular (order of magnitude), low quality outside of top few apps</li>
+            </ul>
+            <img src="../img/jacob/chrome_store.png" style="height:70%; width: 70%;"/>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>On the desktop</h2>
+          </section>
+          <section>
+            <h2>node-webkit</h2>
+            <ul>
+              <li>https://github.com/rogerwang/node-webkit</li>
+              <li>package HTML apps as desktop apps</li>
+              <li>ex. <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=205801629">A Wizard's Lizard</a></li>
+              <li><strong>PRO:</strong> go wherever binaries go</li>
+              <li><strong>CON:</strong> performance overhead</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Steam Greenlight</h2>
+            <ul>
+              <li>$100 signup fee</li>
+              <li>Community decides which games are approved</li>
+              <li><a href="http://steamcommunity.com/greenlight/faq/">FAQ</a></li>
+            </ul>
+            <img src="../img/jacob/steam_graph.jpg" />
+          </section>
+          
+        </section>
+        <section>
+          <section>
+            <h2>Going mobile</h2>
+          </section>
+          <section>
+            <h2>Phonegap</h2>
+            <ul>
+              <li>Turns web apps into mobile apps <a href="http://phonegap.com/">(website)</a></li>
+              <li><strong>PRO:</strong> easiest and simplest way to get game on mobile, good for board games</li>
+              <li><strong>CON:</strong> canvas animation can be slow (other animation tech include css3, like http://famo.us/)</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Lime.js</h2>
+            <ul>
+              <li><strong>PRO:</strong> free, runs on iOS, good performance</li>
+              <li><strong>CON:</strong> no android support</li>
+              <img src="../img/jacob/voodoo.jpg" />
+              <br />
+              <small>Voodoo friends on lime.js</small>
+            </ul>
+          </section>
+          <section>
+            <h2>Cocoon.js</h2>
+            <ul>
+              <li>PRO: runs on iOS and Android, supports 3d (webGL)</li>
+              <li>CON: Canvas and webGL only</li>
+            </ul>
+            <img src="../img/jacob/cocoon.jpg" />
+            <br />
+            <small>Run Pixie Run on iOS and Android</small>
+          </section>
+          <section>
+            <h2>Game Closure</h2>
+            <ul>
+              <li>http://doc.gameclosure.com/</li>
+              <li>example <a href="https://play.google.com/store/apps/details?id=com.popsiclebeat.kiwirunkr">Kiwi Run</a></li>
+              <li><strong>PRO:</strong> good performance on Android and iOS</li>
+              <li><strong>CON:</strong> have to use GC timestep game library</li>
+            </ul>
+            <img src="../img/jacob/kiwirun.webp" />
+          </section>
+          <section>
+            <h2>Impact.js w/ejecta</h2>
+            <ul>
+              <li>ejecta - iOS implementation of HTML Canvas</li>
+              <li><a href="http://www.ntaso.com/tutorial-tetris-with-impact-js/">Tutorial</a></li>
+              <li><strong>PRO:</strong> partially <a href="https://github.com/phoboslab/Ejecta">open source</a>, runs on iOS, good performance</li>
+              <li><strong>CON:</strong> $99 license fee, doesn't run on Android, canvas-only</li>
+            </ul>
+          </section>
+          </section>
+      
+          <section>
+            <section>
+              <h2>Mobile app stores</h2>
+            </section>
+            <section>
+            <h2>App Store Comparison</h2>
+            <img src="../img/jacob/android_vs_ios.jpg" style="height: 70%; width: 70%"/>
+          </section>
+          <section>
+            <h2>App store comparison</h2>
+            <img src="../img/jacob/marketshare.png" style="height: 70%; width: 70%"/>
+          </section>
+          <section>
+            <h2>iOS app store</h2>
+            <ul>
+              <li>$99 yearly developer fee</li>
+              <li>https://developer.apple.com</li>
+              <li><a href="http://www.raywenderlich.com/8045/how-to-submit-your-app-to-apple-from-no-account-to-app-store-part-2">tutorial</a></li>
+              <li><strong>PRO:</strong> big reach, high monetization</li>
+              <li><strong>CON:</strong> fickle review process lasting 1-4 weeks, 30% "tax"</li>
+            </ul>
+          </section>
+          <section>
+            <h2>iOS app store</h2>
+            <img src="../img/jacob/itunes_signup.png" />
+          </section>
+          <section>
+            <h2>iOS app store</h2>
+            <img src="../img/jacob/itunes_conn.jpg" />
+          </section>
+          <section>
+            <h2>iOS app store</h2>
+            <img src="../img/jacob/contracts.png" />
+          </section>
+          <section>
+            <h2>iOS app store</h2>
+            <img src="../img/jacob/new_app.jpg" />
+          </section>
+          <section>
+            <h2>iOS app store</h2>
+            <img src="../img/jacob/apple_submit.jpg" style="height: 70%; width: 70%"/>
+          </section>
+          <section>
+            <h2>iOS app store</h2>
+            <img src="../img/jacob/xcode.png" />
+          </section>
+          <section>
+            <h2>iOS app store</h2>
+            <img src="../img/jacob/waiting.png" />
+          </section>
+          <section>
+            <h2>Android app store (Google Play)</h2>
+            <ul>
+              <li>$25 one-time developer fee</li>
+              <li>https://play.google.com/apps/publish</li>
+              <li><strong>PRO:</strong> no review process, big reach</li>
+              <li><strong>CON:</strong> Android users spend less than iOS users, 30% "tax"</li>
+            </ul>
+            <img src="../img/jacob/play_submit.png" style="height: 70%; width: 70%"/>
+          </section>
+        </section>
+      </div>
+    </div>
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
+
